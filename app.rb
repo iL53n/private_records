@@ -114,7 +114,18 @@ namespace '/api/v1' do
   end
 
   # update
-
+  patch '/candidates/:uid' do |uid|
+    candidate = Candidate.where(uid: uid).first
+    unless candidate
+      halt(404, { message: 'Кандидата с таким UID не существует!' }.to_json)
+    end
+    if candidate.update_attributes(json_params)
+      CandidateSerializer.new(candidate).to_json
+    else
+      status 422
+      body CandidateSerializer.new(candidate).to_json
+    end
+  end
 
   # delete
 end
