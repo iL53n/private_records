@@ -25,6 +25,7 @@ class Candidate
 
   index({ uid: 1 }, { unique: true, name: 'uid_index' })
 
+  scope :id,  ->(id)  { where(id: id) }
   scope :uid, ->(uid) { where(uid: uid) }
 end
 
@@ -58,15 +59,25 @@ namespace '/api/v1' do
     content_type 'application/json'
   end
 
+  # index
   get '/candidates' do
     candidates = Candidate.all
 
     # we can add more params in array
     # example: /api/v1/candidates?uid=123
-    [:uid].each do |filter|
+    [:id, :uid].each do |filter|
       candidates = candidates.send(filter, params[filter]) if params[filter]
     end
 
     candidates.map { |candidate| CandidateSerializer.new(candidate) }.to_json
+  end
+
+  # show
+  get '/candidates/:uid' do |uid|
+    candidate = Candidate.where(uid: uid).first
+    unless candidate
+      halt(404, { message: 'Кандидата с таким UID не существует!' }.to_json)
+    end
+    CandidateSerializer.new(candidate).to_json
   end
 end
