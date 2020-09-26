@@ -128,4 +128,9 @@ namespace '/api/v1' do
   end
 
   # delete
+  delete '/candidates/:uid' do |uid|
+    candidate = Candidate.where(uid: uid).first
+    candidate&.destroy
+    status 204
+  end
 end
