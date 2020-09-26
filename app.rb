@@ -17,10 +17,11 @@ class Candidate
   field :email,      type: String
   field :phone,      type: String
 
-  validates :first_name,
-            :last_name,
-            :email,
-            :phone,
+  validates :uid,
+            # :first_name,
+            # :last_name,
+            # :email,
+            # :phone,
             presence: true
 
   index({ uid: 1 }, { unique: true, name: 'uid_index' })
@@ -63,9 +64,9 @@ namespace '/api/v1' do
   # helpers
   helpers do
     def base_url
-      @base_url ||= "
-      #{request.env['rack.url_scheme']}://{request.env['HTTP_HOST']}
-                    "
+      url_scheme = request.env['rack.url_scheme']
+      http_host = request.env['HTTP_HOST']
+      @base_url ||= "#{url_scheme}://#{http_host}"
     end
 
     def json_params
@@ -100,7 +101,17 @@ namespace '/api/v1' do
   end
 
   # create
-
+  post '/candidates' do
+    candidate = Candidate.new(json_params)
+    if candidate.save
+      candidate_url = "#{base_url}/api/v1/candidates/#{candidate.uid}"
+      response.headers['Location'] = candidate_url
+      status 201
+    else
+      status 422
+      body CandidateSerializer.new(candidate).to_json
+    end
+  end
 
   # update
 
