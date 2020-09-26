@@ -24,6 +24,8 @@ class Candidate
             presence: true
 
   index({ uid: 1 }, { unique: true, name: 'uid_index' })
+
+  scope :uid, ->(uid) { where(uid: uid) }
 end
 
 # Endpoints
@@ -37,6 +39,13 @@ namespace '/api/v1' do
   end
 
   get '/candidates' do
-    Candidate.all.to_json
+    candidates = Candidate.all
+
+    # we can add more params in array
+    [:uid].each do |filter|
+      candidates = candidates.send(filter, params[filter]) if params[filter]
+    end
+
+    candidates.to_json
   end
 end
