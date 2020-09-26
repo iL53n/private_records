@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'sinatra'
+require 'sinatra/namespace'
 require 'mongoid'
 
 # DB Setup
@@ -28,4 +29,8 @@ end
 # Endpoints
 get '/' do
   erb :show
+end
+
+namespace '/api/v1' do
+
 end
