@@ -76,9 +76,23 @@ namespace '/api/v1' do
         halt 400, { message: 'Invalid JSON' }.to_json
       end
     end
+
+    def candidate
+      @candidate ||= Candidate.where(uid: params[:uid]).first
+    end
+
+    def candidate_not_found!
+      unless candidate
+        halt(404, { message: 'Кандидата с таким UID не существует!' }.to_json)
+      end
+    end
+
+    def serialize(candidate)
+      CandidateSerializer.new(candidate).to_json
+    end
   end
 
-  # index
+  # INDEX
   get '/candidates' do
     candidates = Candidate.all
 
@@ -91,45 +105,30 @@ namespace '/api/v1' do
     candidates.map { |candidate| CandidateSerializer.new(candidate) }.to_json
   end
 
-  # show
+  # SHOW
   get '/candidates/:uid' do |uid|
-    candidate = Candidate.where(uid: uid).first
-    unless candidate
-      halt(404, { message: 'Кандидата с таким UID не существует!' }.to_json)
-    end
-    CandidateSerializer.new(candidate).to_json
+    candidate_not_found!
+    serialize(candidate)
   end
 
-  # create
+  # CREATE
   post '/candidates' do
     candidate = Candidate.new(json_params)
-    if candidate.save
-      candidate_url = "#{base_url}/api/v1/candidates/#{candidate.uid}"
-      response.headers['Location'] = candidate_url
-      status 201
-    else
-      status 422
-      body CandidateSerializer.new(candidate).to_json
-    end
+    halt 422, serialize(candidate) unless candidate.save
+
+    response.headers['Location'] = "#{base_url}/api/v1/books/#{candidate.id}"
+    status 201
   end
 
-  # update
+  # UPDATE
   patch '/candidates/:uid' do |uid|
-    candidate = Candidate.where(uid: uid).first
-    unless candidate
-      halt(404, { message: 'Кандидата с таким UID не существует!' }.to_json)
-    end
-    if candidate.update_attributes(json_params)
-      CandidateSerializer.new(candidate).to_json
-    else
-      status 422
-      body CandidateSerializer.new(candidate).to_json
-    end
+    candidate_not_found!
+    halt 422, serialize(candidate) unless candidate.update_attributes(json_params)
+    serialize(candidate)
   end
 
-  # delete
+  # DELETE
   delete '/candidates/:uid' do |uid|
-    candidate = Candidate.where(uid: uid).first
     candidate&.destroy
     status 204
   end
