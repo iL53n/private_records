@@ -37,7 +37,7 @@ class CandidateSerializer
 
   def as_json(*)
     data = {
-      id: @candidate.id.to_s,
+      # id: @candidate.id.to_s,
       uid: @candidate.uid,
       first_name: @candidate.first_name,
       last_name: @candidate.last_name,
@@ -55,15 +55,33 @@ get '/' do
 end
 
 namespace '/api/v1' do
+  # before
   before do
     content_type 'application/json'
+  end
+
+  # helpers
+  helpers do
+    def base_url
+      @base_url ||= "
+      #{request.env['rack.url_scheme']}://{request.env['HTTP_HOST']}
+                    "
+    end
+
+    def json_params
+      begin
+        JSON.parse(request.body.read)
+      rescue
+        halt 400, { message: 'Invalid JSON' }.to_json
+      end
+    end
   end
 
   # index
   get '/candidates' do
     candidates = Candidate.all
 
-    # we can add more params in array
+    # we can add more filtering params in array
     # example: /api/v1/candidates?uid=123
     [:id, :uid].each do |filter|
       candidates = candidates.send(filter, params[filter]) if params[filter]
@@ -80,4 +98,12 @@ namespace '/api/v1' do
     end
     CandidateSerializer.new(candidate).to_json
   end
+
+  # create
+
+
+  # update
+
+
+  # delete
 end
