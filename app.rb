@@ -7,6 +7,8 @@ require 'mongoid'
 # DB Setup
 Mongoid.load!(File.join(File.dirname(__FILE__), 'config', 'mongoid.yml'))
 
+set :public_folder, __dir__ + '/public'
+
 # Models
 class Candidate
   include Mongoid::Document

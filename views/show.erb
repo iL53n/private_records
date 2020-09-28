@@ -1,28 +1,54 @@
-<h1>ТЕСТ_создание электронного личного дела_форма для заполнения кндидатом</h1>
-<h2>Мы будем рады видеть тебя в команде ЗАО "ЕКТ групп"</h2>
-<h3>Номер кандидата: `uniq_id`</h3>
+<h1></h1>
+<div class="jumbotron">
+	<img src="/img/logo.png" class="rounded mx-auto d-block" alt="EKT group" width="100">
+  <div class="container d-flex flex-column align-items-center">
+  	<div class="alert alert-danger" role="alert">
+  		ТЕСТ
+		</div>
+	  <h4 class="display-4">АНКЕТА КАНДИДАТА</h4>
+	  <p class="lead">№ fsladf89asjdfl34429fsdfl</p>
+	</div>
+  <!-- <hr class="my-4"> -->
+<!-- 	<p>
+		<button class="btn btn-outline-success" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+		  Узнать больше о компании ЗАО "ЕКТ групп"
+		</button>
+	</p>
+	<div class="collapse" id="collapseExample">
+	  <div class="card card-body">
+	  	<h6>Наша команда – наша основная ценность и потенциал развития!</h6>
+	    <p>Залог успеха нашего предприятия – это наши сотрудники, их знания, опыт, потенциал и желание развиваться.</p>
+			<p>Мы предлагаем широкий спектр интересных задач, конкурентную заработную плату, возможности для профессионального роста и развития.</p>
+			<p>Мы ожидаем от всех сотрудников мобильности и готовности к слаженной работе. Мы непримиримы к проявлениям необязательности и бездействию.</p>
+			<p>Профессионализм, стремление к развитию, уважение к людям, преданность корпоративным ценностям – это то, что нас объединяет.</p>
+			<p class="lead">
+				Мы будем рады видеть тебя в команде ЗАО "ЕКТ групп"
+			</p>
+	  </div>
+	</div>   -->	
+</div>
 
-<p>-----</p>
+<form>
+	<div class="form-group">	
+		<label for="inputFirstname">Фамилия</label>
+		<input class="form-control" type="text">
+		<label for="inputLastname">Имя</label>
+		<input class="form-control" type="text">
+		<label for="inputSurname">Отчество</label>
+		<input class="form-control" type="text">
+	</div>
 
-<p>Форма</p>
-<p>Форма</p>
-<p>Форма</p>
-<p>Форма</p>
-<p>Форма</p>
-<p>Форма</p>
-<p>Форма</p>
-<p>Форма</p>
-<p>Форма</p>
-<p>Форма</p>
-<p>Форма</p>
-<p>Форма</p>
-<p>Форма</p>
-<p>Форма</p>
-<p>Форма</p>
-<p>Форма</p>
-<p>Форма</p>
-<p>Форма</p>
+	<div class="form-row">
+		<div class="form-group col-md-6">
+			<label for="inputDate">Дата рождения</label>
+			<input class="form-control" type="date">
+		</div>
+		<div class="form-group col-md-6">
+	    <label for="inputCity">Город проживания</label>
+	    <input class="form-control" type="text">
+	  </div>
 
-<p>-----</p>
 
-<%= Time.now %>
+
+  <button type="submit" class="btn btn-primary btn-lg btn-block">Отправить данные</button>
+</form>
