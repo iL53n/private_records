@@ -11,23 +11,23 @@ Mongoid.load!(File.join(File.dirname(__FILE__), 'config', 'mongoid.yml'))
 class Candidate
   include Mongoid::Document
 
-  field :uid,        type: String
+  field :guid,       type: String
   field :first_name, type: String
   field :last_name,  type: String
   field :email,      type: String
   field :phone,      type: String
 
-  validates :uid,
+  validates :guid,
             # :first_name,
             # :last_name,
             # :email,
             # :phone,
             presence: true
 
-  index({ uid: 1 }, { unique: true, name: 'uid_index' })
+  index({ guid: 1 }, { unique: true, name: 'guid_index' })
 
-  scope :id,  ->(id)  { where(id: id) }
-  scope :uid, ->(uid) { where(uid: uid) }
+  scope :id,   ->(id)   { where(id: id) }
+  scope :guid, ->(guid) { where(guid: guid) }
 end
 
 # Serializers
@@ -39,7 +39,7 @@ class CandidateSerializer
   def as_json(*)
     data = {
       # id: @candidate.id.to_s,
-      uid: @candidate.uid,
+      guid: @candidate.guid,
       first_name: @candidate.first_name,
       last_name: @candidate.last_name,
       email: @candidate.email,
@@ -51,6 +51,8 @@ class CandidateSerializer
 end
 
 # Endpoints
+
+# test page
 get '/' do
   erb :show
 end
@@ -78,12 +80,12 @@ namespace '/api/v1' do
     end
 
     def candidate
-      @candidate ||= Candidate.where(uid: params[:uid]).first
+      @candidate ||= Candidate.where(guid: params[:guid]).first
     end
 
     def candidate_not_found!
       unless candidate
-        halt(404, { message: 'Кандидата с таким UID не существует!' }.to_json)
+        halt(404, { message: 'Кандидата с таким GUID не существует!' }.to_json)
       end
     end
 
@@ -97,8 +99,8 @@ namespace '/api/v1' do
     candidates = Candidate.all
 
     # we can add more filtering params in array
-    # example: /api/v1/candidates?uid=123
-    [:id, :uid].each do |filter|
+    # example: /api/v1/candidates?guid=123
+    [:id, :guid].each do |filter|
       candidates = candidates.send(filter, params[filter]) if params[filter]
     end
 
@@ -106,7 +108,7 @@ namespace '/api/v1' do
   end
 
   # SHOW
-  get '/candidates/:uid' do |uid|
+  get '/candidates/:guid' do |guid|
     candidate_not_found!
     serialize(candidate)
   end
@@ -121,14 +123,14 @@ namespace '/api/v1' do
   end
 
   # UPDATE
-  patch '/candidates/:uid' do |uid|
+  patch '/candidates/:guid' do |guid|
     candidate_not_found!
     halt 422, serialize(candidate) unless candidate.update_attributes(json_params)
     serialize(candidate)
   end
 
   # DELETE
-  delete '/candidates/:uid' do |uid|
+  delete '/candidates/:guid' do |guid|
     candidate&.destroy
     status 204
   end
