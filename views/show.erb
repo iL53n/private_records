@@ -2,53 +2,119 @@
 <div class="jumbotron">
 	<img src="/img/logo.png" class="rounded mx-auto d-block" alt="EKT group" width="100">
   <div class="container d-flex flex-column align-items-center">
-  	<div class="alert alert-danger" role="alert">
-  		ТЕСТ
-		</div>
+<!--  	<div class="alert alert-danger" role="alert">-->
+<!--  		ТЕСТ-->
+<!--		</div>-->
 	  <h4 class="display-4">АНКЕТА КАНДИДАТА</h4>
 	  <p class="lead">№ fsladf89asjdfl34429fsdfl</p>
 	</div>
-  <!-- <hr class="my-4"> -->
-<!-- 	<p>
-		<button class="btn btn-outline-success" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-		  Узнать больше о компании ЗАО "ЕКТ групп"
-		</button>
-	</p>
-	<div class="collapse" id="collapseExample">
-	  <div class="card card-body">
-	  	<h6>Наша команда – наша основная ценность и потенциал развития!</h6>
-	    <p>Залог успеха нашего предприятия – это наши сотрудники, их знания, опыт, потенциал и желание развиваться.</p>
-			<p>Мы предлагаем широкий спектр интересных задач, конкурентную заработную плату, возможности для профессионального роста и развития.</p>
-			<p>Мы ожидаем от всех сотрудников мобильности и готовности к слаженной работе. Мы непримиримы к проявлениям необязательности и бездействию.</p>
-			<p>Профессионализм, стремление к развитию, уважение к людям, преданность корпоративным ценностям – это то, что нас объединяет.</p>
-			<p class="lead">
-				Мы будем рады видеть тебя в команде ЗАО "ЕКТ групп"
-			</p>
-	  </div>
-	</div>   -->	
+<!--   <hr class="my-4">-->
+<!-- 	<p>-->
+<!--		<button class="btn btn-outline-success" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">-->
+<!--		  Узнать больше о компании ЗАО "ЕКТ групп"-->
+<!--		</button>-->
+<!--	</p>-->
+<!--	<div class="collapse" id="collapseExample">-->
+<!--	  <div class="card card-body">-->
+<!--	  	<h6>Наша команда – наша основная ценность и потенциал развития!</h6>-->
+<!--	    <p>Залог успеха нашего предприятия – это наши сотрудники, их знания, опыт, потенциал и желание развиваться.</p>-->
+<!--			<p>Мы предлагаем широкий спектр интересных задач, конкурентную заработную плату, возможности для профессионального роста и развития.</p>-->
+<!--			<p>Мы ожидаем от всех сотрудников мобильности и готовности к слаженной работе. Мы непримиримы к проявлениям необязательности и бездействию.</p>-->
+<!--			<p>Профессионализм, стремление к развитию, уважение к людям, преданность корпоративным ценностям – это то, что нас объединяет.</p>-->
+<!--			<p class="lead">-->
+<!--				Мы будем рады видеть тебя в команде ЗАО "ЕКТ групп"-->
+<!--			</p>-->
+<!--	  </div>-->
+<!--	</div>	-->
 </div>
 
 <form>
-	<div class="form-group">	
-		<label for="inputFirstname">Фамилия</label>
-		<input class="form-control" type="text">
-		<label for="inputLastname">Имя</label>
-		<input class="form-control" type="text">
-		<label for="inputSurname">Отчество</label>
-		<input class="form-control" type="text">
+<!--	https://getbootstrap.com/docs/4.5/components/forms/-->
+
+	<div class="card">
+		<div class="card-header h5">
+			ДОЛЖНОСТЬ
+		</div>
+		<div class="card-body">
+			<input class="form-control" type="text">
+		</div>
 	</div>
 
-	<div class="form-row">
-		<div class="form-group col-md-6">
-			<label for="inputDate">Дата рождения</label>
-			<input class="form-control" type="date">
+	<br>
+
+	<div class="card">
+		<div class="card-header h5">
+			ОБЩИЕ СВЕДЕНИЯ
 		</div>
-		<div class="form-group col-md-6">
-	    <label for="inputCity">Город проживания</label>
-	    <input class="form-control" type="text">
-	  </div>
+		<div class="card-body">
+			<label for="inputFirstname">Фамилия</label>
+			<input class="form-control" type="text">
+			<label for="inputLastname">Имя</label>
+			<input class="form-control" type="text">
+			<label for="inputSurname">Отчество</label>
+			<input class="form-control" type="text">
 
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="inputDate">Дата рождения</label>
+					<input class="form-control" type="date">
+				</div>
+				<div class="form-group col-md-6">
+					<label for="inputCity">Место рождения</label>
+					<input class="form-control" type="text">
+				</div>
+				<div class="form-group col-md-6">
+					<label for="inputMaritalStatus">Семеной положение</label>
+					<select class="form-control" id="inputMaritalStatus">
+						<option>Не замужем, не женат</option>
+						<option>Замужем, женат</option>
+						<option>Разведён, разведена</option>
+						<option>Вдова, вдовец</option>
+					</select>
+				</div>
+				<div class="form-group col-md-6">
+					<label for="inputLivingConditions">Жилищные условия</label>
+					<select class="form-control" id="inputMaritalStatus">
+						<option>Аренда</option>
+						<option>В собственности</option>
+						<option>С родственниками</option>
+					</select>
+				</div>
+			</div>
+			<label for="inputChildren">Наличие и возраст детей</label>
+			<textarea class="form-control" id="inputChildren" rows="3"></textarea><br>
 
+			<h6>Паспортные данные</h6>
 
-  <button type="submit" class="btn btn-primary btn-lg btn-block">Отправить данные</button>
+			<div class="form-row">
+				<div class="form-group col-md-1">
+					<label for="inputPassportSerial">Серия</label>
+					<input class="form-control" type="text">
+				</div>
+				<div class="form-group col-md-4">
+					<label for="inputPassportNumber">Номер</label>
+					<input class="form-control" type="text">
+				</div>
+				<div class="form-group col-md-7">
+					<label for="inputPassportNationality">Гражданство</label>
+					<input class="form-control" type="text">
+				</div>
+				<div class="form-group col-md-12">
+					<label for="inputPassportNumber">Идентификационный(личный) номер</label>
+					<input class="form-control" type="text">
+				</div>
+				<div class="form-group col-md-9">
+					<label for="inputPassportDep">Наименование органа, выдавшего паспорт</label>
+					<input class="form-control" type="text">
+				</div>
+				<div class="form-group col-md-3">
+					<label for="inputPassportDate">Дата выдачи</label>
+					<input class="form-control" type="date">
+				</div>
+			</div>
+		</div>
+	</div>
+	<br>
+  	<button type="submit" class="btn btn-primary btn-lg btn-block">Отправить данные</button>
+	<br>
 </form>
