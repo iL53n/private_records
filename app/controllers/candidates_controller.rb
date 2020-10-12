@@ -1,62 +1,11 @@
-# frozen_string_literal: true
+# require 'sinatra'
+# require 'sinatra/namespace'
+# include ControllerHelper
 
-require 'sinatra'
-require 'sinatra/namespace'
-require 'mongoid'
-
-# DB Setup
-Mongoid.load!(File.join(File.dirname(__FILE__), 'config', 'mongoid.yml'))
-
-set :public_folder, __dir__ + '/public'
-
-# Models
-class Candidate
-  include Mongoid::Document
-
-  field :guid,       type: String
-  field :first_name, type: String
-  field :last_name,  type: String
-  field :email,      type: String
-  field :phone,      type: String
-
-  validates :guid,
-            # :first_name,
-            # :last_name,
-            # :email,
-            # :phone,
-            presence: true
-
-  index({ guid: 1 }, { unique: true, name: 'guid_index' })
-
-  scope :id,   ->(id)   { where(id: id) }
-  scope :guid, ->(guid) { where(guid: guid) }
-end
-
-# Serializers
-class CandidateSerializer
-  def initialize(candidate)
-    @candidate = candidate
+class CandidatesController < ApplicationController
+  get '/' do
+    erb :show
   end
-
-  def as_json(*)
-    data = {
-      # id: @candidate.id.to_s,
-      guid: @candidate.guid,
-      first_name: @candidate.first_name,
-      last_name: @candidate.last_name,
-      email: @candidate.email,
-      phone: @candidate.phone
-    }
-    data[:errors] = @candidate.errors if @candidate.errors.any?
-    data
-  end
-end
-
-# Endpoints
-
-# test page
-get '/' do
-  erb :show
 end
 
 namespace '/api/v1' do
@@ -120,7 +69,7 @@ namespace '/api/v1' do
     candidate = Candidate.new(json_params)
     halt 422, serialize(candidate) unless candidate.save
 
-    response.headers['Location'] = "#{base_url}/api/v1/books/#{candidate.id}"
+    response.headers['Location'] = "#{base_url}/api/v1/#{candidate.id}"
     status 201
   end
 
