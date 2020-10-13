@@ -1,8 +1,5 @@
-# require 'sinatra'
-# require 'sinatra/namespace'
-
 class ApplicationController < Sinatra::Base
-  # helpers ApplicationHelpers
+  register Sinatra::Namespace
 
   configure do
     set :views, 'app/views'
