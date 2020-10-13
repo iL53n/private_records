@@ -1,0 +1,27 @@
+<h1></h1>
+<div class="jumbotron">
+	<img src="/img/logo.png" class="rounded mx-auto d-block" alt="EKT group" width="100">
+  <div class="container d-flex flex-column align-items-center">
+	  <h4 class="display-4">Test POST new candidate's data</h4>
+	</div>
+</div>
+
+<form action="/candidates" method="POST">
+	<div class="card">
+		<div class="card-header h5">
+			GUID
+		</div>
+		<div class="card-body">
+			<input class="form-control" type="text" name="candidate[guid]" id="candidate_guid">
+		</div>
+	</div>
+
+	<br>
+  	<button type="submit" class="btn btn-primary btn-lg btn-block">Отправить данные</button>
+	<br>
+</form>
+
+<h5>Candidates list</h5>
+<% @candidates.each do |candidate| %>
+	<p><%= candidate.guid %></p>
+<% end %>

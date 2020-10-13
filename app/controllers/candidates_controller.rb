@@ -1,8 +1,35 @@
 class CandidatesController < ApplicationController
+
+  # index
+  # TODO: add access restriction
   get '/' do
+    @candidates = Candidate.all
+    erb :new
+  end
+
+  # new
+  get '/candidates/new' do
+    erb :new
+  end
+
+  # create
+  post '/candidates' do
+    @candidate = Candidate.new(params[:candidate])
+
+    if @candidate.save!
+      redirect "/show/#{@candidate.id}"
+    else
+      # ToDo: add show errors
+    end
+  end
+
+  # show --> view after add new candidate's data
+  get '/show/:id' do
+    @candidate = Candidate.find(params[:id])
     erb :show
   end
 
+  ####### API v1 #######
   namespace '/api/v1' do
     # before
     before do
