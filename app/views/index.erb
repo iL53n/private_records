@@ -1,0 +1,5 @@
+<h5>Candidates list</h5>
+<br>
+<% @candidates.map do |candidate| %>
+  <p><%= candidate.to_json %></p>
+<% end %>
