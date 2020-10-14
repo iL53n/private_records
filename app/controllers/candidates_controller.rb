@@ -4,7 +4,7 @@ class CandidatesController < ApplicationController
   # TODO: add access restriction
   get '/' do
     @candidates = Candidate.all
-    erb :new
+    erb :index
   end
 
   # new
@@ -16,7 +16,7 @@ class CandidatesController < ApplicationController
   post '/candidates' do
     @candidate = Candidate.new(params[:candidate])
 
-    if @candidate.save!
+    if @candidate.save! # ToDo: remove bang method in production
       redirect "/show/#{@candidate.id}"
     else
       # ToDo: add show errors

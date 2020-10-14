@@ -4,11 +4,24 @@
 class Candidate
   include Mongoid::Document
 
-  field :guid,       type: String
-  field :first_name, type: String
-  field :last_name,  type: String
-  field :email,      type: String
-  field :phone,      type: String
+  field :guid,                  type: String
+  field :position,              type: String
+  field :first_name,            type: String
+  field :last_name,             type: String
+  field :sur_name,              type: String
+  field :date,                  type: Date
+  field :city,                  type: String
+  field :material_status,       type: String
+  field :conditions,            type: String
+  field :children,              type: String
+  field :passport_serial,       type: String
+  field :passport_number,       type: String
+  field :nationality,           type: String
+  field :private_number,        type: String
+  field :passport_dep,          type: String
+  field :passport_date,         type: Date
+  field :email,                 type: String
+  field :phone,                 type: String
 
   validates :guid,
             # :first_name,
