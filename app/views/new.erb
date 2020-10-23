@@ -1,27 +1,128 @@
 <h1></h1>
 <div class="jumbotron">
 	<img src="/img/logo.png" class="rounded mx-auto d-block" alt="EKT group" width="100">
-  <div class="container d-flex flex-column align-items-center">
-	  <h4 class="display-4">Test POST new candidate's data</h4>
+	<div class="container d-flex flex-column align-items-center">
+		<!--  	<div class="alert alert-danger" role="alert">-->
+		<!--  		ТЕСТ-->
+		<!--		</div>-->
+		<h4 class="display-4">АНКЕТА КАНДИДАТА</h4>
+		<p class="lead">№ fsladf89asjdfl34429fsdfl</p>
 	</div>
+	<!--   <hr class="my-4">-->
+	<!-- 	<p>-->
+	<!--		<button class="btn btn-outline-success" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">-->
+	<!--		  Узнать больше о компании ЗАО "ЕКТ групп"-->
+	<!--		</button>-->
+	<!--	</p>-->
+	<!--	<div class="collapse" id="collapseExample">-->
+	<!--	  <div class="card card-body">-->
+	<!--	  	<h6>Наша команда – наша основная ценность и потенциал развития!</h6>-->
+	<!--	    <p>Залог успеха нашего предприятия – это наши сотрудники, их знания, опыт, потенциал и желание развиваться.</p>-->
+	<!--			<p>Мы предлагаем широкий спектр интересных задач, конкурентную заработную плату, возможности для профессионального роста и развития.</p>-->
+	<!--			<p>Мы ожидаем от всех сотрудников мобильности и готовности к слаженной работе. Мы непримиримы к проявлениям необязательности и бездействию.</p>-->
+	<!--			<p>Профессионализм, стремление к развитию, уважение к людям, преданность корпоративным ценностям – это то, что нас объединяет.</p>-->
+	<!--			<p class="lead">-->
+	<!--				Мы будем рады видеть тебя в команде ЗАО "ЕКТ групп"-->
+	<!--			</p>-->
+	<!--	  </div>-->
+	<!--	</div>	-->
 </div>
 
 <form action="/candidates" method="POST">
+	<!--	https://getbootstrap.com/docs/4.5/components/forms/-->
 	<div class="card">
 		<div class="card-header h5">
-			GUID
+			GUID(autoset in production)
 		</div>
 		<div class="card-body">
-			<input class="form-control" type="text" name="candidate[guid]" id="candidate_guid">
+			<input class="form-control" type="text"  name="candidate[guid]" id="candidate_guid">
+		</div>
+	</div>
+
+	<div class="card">
+		<div class="card-header h5">
+			ДОЛЖНОСТЬ
+		</div>
+		<div class="card-body">
+			<input class="form-control" type="text"  name="candidate[position]" id="candidate_position">
 		</div>
 	</div>
 
 	<br>
-  	<button type="submit" class="btn btn-primary btn-lg btn-block">Отправить данные</button>
+
+	<div class="card">
+		<div class="card-header h5">
+			ОБЩИЕ СВЕДЕНИЯ
+		</div>
+		<div class="card-body">
+			<label for="inputFirstname">Фамилия</label>
+			<input class="form-control" type="text" name="candidate[first_name]" id="candidate_first_name">
+			<label for="inputLastname">Имя</label>
+			<input class="form-control" type="text" name="candidate[last_name]" id="candidate_last_name">
+			<label for="inputSurname">Отчество</label>
+			<input class="form-control" type="text" name="candidate[sur_name]" id="candidate_sur_name">
+
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="inputDate">Дата рождения</label>
+					<input class="form-control" type="date" name="candidate[date]" id="candidate_date">
+				</div>
+				<div class="form-group col-md-6">
+					<label for="inputCity">Место рождения</label>
+					<input class="form-control" type="text" name="candidate[city]" id="candidate_city">
+				</div>
+				<div class="form-group col-md-6">
+					<label for="inputMaritalStatus">Семеной положение</label>
+					<select class="form-control" id="inputMaritalStatus" name="candidate[material_status]" id="candidate_material_status">
+						<option>Не замужем, не женат</option>
+						<option>Замужем, женат</option>
+						<option>Разведён, разведена</option>
+						<option>Вдова, вдовец</option>
+					</select>
+				</div>
+				<div class="form-group col-md-6">
+					<label for="inputLivingConditions">Жилищные условия</label>
+					<select class="form-control" id="inputMaritalStatus" name="candidate[conditions]" id="candidate_conditions">
+						<option>Аренда</option>
+						<option>В собственности</option>
+						<option>С родственниками</option>
+					</select>
+				</div>
+			</div>
+			<label for="inputChildren">Наличие и возраст детей</label>
+			<input class="form-control" type="textarea" name="candidate[children]" id="candidate_children"><br>
+
+			<h6>Паспортные данные</h6>
+
+			<div class="form-row">
+				<div class="form-group col-md-1">
+					<label for="inputPassportSerial">Серия</label>
+					<input class="form-control" type="text" name="candidate[passport_serial]" id="candidate_passport_serial">
+				</div>
+				<div class="form-group col-md-4">
+					<label for="inputPassportNumber">Номер</label>
+					<input class="form-control" type="text" name="candidate[passport_number]" id="candidate_passport_number">
+				</div>
+				<div class="form-group col-md-7">
+					<label for="inputPassportNationality">Гражданство</label>
+					<input class="form-control" type="text" name="candidate[nationality]" id="candidate_nationality">
+				</div>
+				<div class="form-group col-md-12">
+					<label for="inputPrivateNumber">Идентификационный(личный) номер</label>
+					<input class="form-control" type="text" name="candidate[private_number]" id="candidate_private_number">
+				</div>
+				<div class="form-group col-md-9">
+					<label for="inputPassportDep">Наименование органа, выдавшего паспорт</label>
+					<input class="form-control" type="text" name="candidate[passport_dep]" id="candidate_passport_dep">
+				</div>
+				<div class="form-group col-md-3">
+					<label for="inputPassportDate">Дата выдачи</label>
+					<input class="form-control" type="date" name="candidate[passport_date]" id="candidate_passport_date">
+				</div>
+			</div>
+		</div>
+	</div>
+	<br>
+	<button type="submit" class="btn btn-primary btn-lg btn-block">Отправить данные</button>
 	<br>
 </form>
-
-<h5>Candidates list</h5>
-<% @candidates.each do |candidate| %>
-	<p><%= candidate.guid %></p>
-<% end %>

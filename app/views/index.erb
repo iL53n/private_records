@@ -1,0 +1,9 @@
+<h5>Candidates list</h5>
+
+<a href="/candidates/new" class="btn btn-primary" role="button" aria-pressed="true">Новый кандидат</a>
+
+<% @candidates.map do |candidate| %>
+  <div class="card">
+    <%= candidate.to_json %>
+  </div>
+<% end %>
