@@ -9,6 +9,7 @@ class CandidatesController < ApplicationController
 
   # new
   get '/candidates/new' do
+    @candidate = Candidate.new( guid: SecureRandom.uuid , created_at: Time.new )  
     erb :new
   end
 
@@ -16,10 +17,12 @@ class CandidatesController < ApplicationController
   post '/candidates' do
     @candidate = Candidate.new(params[:candidate])
 
-    if @candidate.save! # ToDo: remove bang method in production
+    if @candidate.valid?
+      @candidate.save!
       redirect "/show/#{@candidate.id}"
     else
-      # ToDo: add show errors
+      @error = @candidate.errors.full_messages.first
+      erb :new
     end
   end
 
