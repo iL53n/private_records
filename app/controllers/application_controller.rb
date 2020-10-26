@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# App controller Class
 class ApplicationController < Sinatra::Base
   register Sinatra::Namespace
 

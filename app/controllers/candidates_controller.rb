@@ -1,5 +1,7 @@
-class CandidatesController < ApplicationController
+# frozen_string_literal: true
 
+# Candidates controller class
+class CandidatesController < ApplicationController
   # index
   # TODO: add access restriction
   get '/' do
@@ -9,7 +11,7 @@ class CandidatesController < ApplicationController
 
   # new
   get '/candidates/new' do
-    @candidate = Candidate.new(new_candidate_params)  
+    @candidate = Candidate.new(new_candidate_params)
     erb :new
   end
 
@@ -36,7 +38,7 @@ class CandidatesController < ApplicationController
     def new_candidate_params
       { guid: SecureRandom.uuid, created_at: Time.new }
     end
-  
+
     def error(object)
       object.errors.full_messages.first
     end
@@ -53,11 +55,9 @@ class CandidatesController < ApplicationController
     get '/candidates/:date?' do
       candidates = Candidate.all
 
-      puts params['date'] ? params['date'] : 'all'
-
       # we can add more filtering params in array
       # example: /api/v1/candidates?guid=123
-      [:id, :guid].each do |filter|
+      %i[id guid].each do |filter|
         candidates = candidates.send(filter, params[filter]) if params[filter]
       end
 
@@ -101,11 +101,9 @@ class CandidatesController < ApplicationController
       end
 
       def json_params
-        begin
-          JSON.parse(request.body.read)
-        rescue
-          halt 400, { message: 'Invalid JSON' }.to_json
-        end
+        JSON.parse(request.body.read)
+      rescue StandardError => e
+        halt(400, { message: 'Invalid JSON' }.to_json)
       end
 
       def candidate
@@ -113,9 +111,7 @@ class CandidatesController < ApplicationController
       end
 
       def candidate_not_found!
-        unless candidate
-          halt(404, { message: 'Кандидата с таким GUID не существует!' }.to_json)
-        end
+        halt(404, { message: 'Кандидата с таким GUID не существует!' }.to_json) unless candidate
       end
 
       def serialize(candidate)
@@ -124,5 +120,3 @@ class CandidatesController < ApplicationController
     end
   end
 end
-
-
