@@ -9,17 +9,19 @@ class CandidatesController < ApplicationController
 
   # new
   get '/candidates/new' do
+    @candidate = Candidate.new(new_candidate_params)  
     erb :new
   end
 
   # create
-  post '/candidates' do
+  post '/candidates/' do
     @candidate = Candidate.new(params[:candidate])
 
-    if @candidate.save! # ToDo: remove bang method in production
+    if @candidate.save
       redirect "/show/#{@candidate.id}"
     else
-      # ToDo: add show errors
+      @error = error(@candidate)
+      erb :new
     end
   end
 
@@ -27,6 +29,17 @@ class CandidatesController < ApplicationController
   get '/show/:id' do
     @candidate = Candidate.find(params[:id])
     erb :show
+  end
+
+  # Controller helpers
+  helpers do
+    def new_candidate_params
+      { guid: SecureRandom.uuid, created_at: Time.new }
+    end
+  
+    def error(object)
+      object.errors.full_messages.first
+    end
   end
 
   ####### API v1 #######
@@ -37,8 +50,10 @@ class CandidatesController < ApplicationController
     end
 
     # INDEX
-    get '/candidates' do
+    get '/candidates/:date?' do
       candidates = Candidate.all
+
+      puts params['date'] ? params['date'] : 'all'
 
       # we can add more filtering params in array
       # example: /api/v1/candidates?guid=123

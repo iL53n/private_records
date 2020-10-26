@@ -22,12 +22,13 @@ class Candidate
   field :passport_date,         type: Date
   field :email,                 type: String
   field :phone,                 type: String
+  field :created_at,            type: DateTime
 
   validates :guid,
-            # :first_name,
-            # :last_name,
+            :first_name, 
+            :last_name,
             # :email,
-            # :phone,
+            # :phone, 
             presence: true
 
   index({ guid: 1 }, { unique: true, name: 'guid_index' })
