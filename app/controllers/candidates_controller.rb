@@ -20,7 +20,7 @@ class CandidatesController < ApplicationController
     if @candidate.save
       redirect "/show/#{@candidate.id}"
     else
-      @error = @candidate.errors.full_messages.first
+      @error = error(@candidate)
       erb :new
     end
   end
