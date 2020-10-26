@@ -9,16 +9,15 @@ class CandidatesController < ApplicationController
 
   # new
   get '/candidates/new' do
-    @candidate = Candidate.new( guid: SecureRandom.uuid , created_at: Time.new )  
+    @candidate = Candidate.new(new_candidate_params)  
     erb :new
   end
 
   # create
-  post '/candidates' do
+  post '/candidates/' do
     @candidate = Candidate.new(params[:candidate])
 
-    if @candidate.valid?
-      @candidate.save!
+    if @candidate.save
       redirect "/show/#{@candidate.id}"
     else
       @error = @candidate.errors.full_messages.first
@@ -32,6 +31,17 @@ class CandidatesController < ApplicationController
     erb :show
   end
 
+  # Controller helpers
+  helpers do
+    def new_candidate_params
+      { guid: SecureRandom.uuid, created_at: Time.new }
+    end
+  
+    def error(object)
+      object.errors.full_messages.first
+    end
+  end
+
   ####### API v1 #######
   namespace '/api/v1' do
     # before
@@ -40,8 +50,10 @@ class CandidatesController < ApplicationController
     end
 
     # INDEX
-    get '/candidates' do
+    get '/candidates/:date?' do
       candidates = Candidate.all
+
+      puts params['date'] ? params['date'] : 'all'
 
       # we can add more filtering params in array
       # example: /api/v1/candidates?guid=123

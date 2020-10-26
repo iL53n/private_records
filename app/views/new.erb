@@ -6,7 +6,7 @@
 		<!--  		ТЕСТ-->
 		<!--		</div>-->
 		<h4 class="display-4">АНКЕТА КАНДИДАТА</h4>
-		<p class="lead">№ 1</p>
+		<p class="lead">№ <%= @candidate.guid %></p>
 	</div>
 	<!--   <hr class="my-4">-->
 	<!-- 	<p>-->
@@ -30,13 +30,13 @@
 
 <form action="/candidates" method="POST">
 	<!--	https://getbootstrap.com/docs/4.5/components/forms/-->
-	<div class="card">
-	<div class="card-header h5" hidden="true">
+	<div class="card" hidden="true">
+	<div class="card-header h5">
 		GUID(autoset in production)
 	</div>
-		<div class="card-body" hidden="true">
-			<input class="form-control" type="text"  name="candidate[guid]" id="candidate_guid" hidden="true" value=<%= @candidate.guid %>>
-			<input class="form-control" type="text"  name="candidate[created_at]" id="candidate_created_at" hidden="true" value=<%= @candidate.created_at %>>
+		<div class="card-body">
+			<input class="form-control" type="text"  name="candidate[guid]" id="candidate_guid" value=<%= @candidate.guid %>>
+			<input class="form-control" type="text"  name="candidate[created_at]" id="candidate_created_at" value=<%= @candidate.created_at %>>
 		</div>
 	</div>
 
