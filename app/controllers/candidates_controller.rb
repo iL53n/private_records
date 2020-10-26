@@ -11,7 +11,7 @@ class CandidatesController < ApplicationController
 
   # new
   get '/candidates/new' do
-    @candidate = Candidate.new(new_candidate_params)  
+    @candidate = Candidate.new(new_candidate_params)
     erb :new
   end
 

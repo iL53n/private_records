@@ -23,6 +23,7 @@ class Candidate
   field :email,                 type: String
   field :phone,                 type: String
   field :created_at,            type: DateTime
+  field :relatives,             type: Array
 
   validates :guid,
             :first_name,
