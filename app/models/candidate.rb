@@ -1,6 +1,6 @@
-# DB Setup
-# Mongoid.load!(File.join(File.dirname(__FILE__), 'config', 'mongoid.yml'))
+# frozen_string_literal: true
 
+# Candidate Class
 class Candidate
   include Mongoid::Document
 
@@ -25,10 +25,10 @@ class Candidate
   field :created_at,            type: DateTime
 
   validates :guid,
-            :first_name, 
+            :first_name,
             :last_name,
             # :email,
-            # :phone, 
+            # :phone,
             presence: true
 
   index({ guid: 1 }, { unique: true, name: 'guid_index' })
