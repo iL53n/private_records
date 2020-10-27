@@ -25,7 +25,7 @@ class Candidate
   field :created_at,                   type: DateTime
   field :registration_city,            type: String
   field :military_registration,        type: String
-  field :relatives,                    type: Array # {type:'',f_name:'',l_name:'',s_name:'',date:'',pl:'',job:'',adr:''}
+  field :relatives,                    type: Array # {type:'',f_name:'',l_name:'',s_name:'',date:'',pl:'',job:'',adr:{}}
   field :registration_city,            type: String
   field :registration_street,          type: String
   field :registration_house,           type: String
@@ -34,16 +34,6 @@ class Candidate
   field :residence_street,             type: String
   field :residence_house,              type: String
   field :residence_apartment,          type: String
-  field :relative_surname,             type: String
-  field :relative_name,                type: String
-  field :relative_patronymic,          type: String
-  field :relative_place_of_birth,      type: String
-  field :relative_place_of_work,       type: String
-  field :relative_position,            type: String
-  field :relative_city,                type: String
-  field :relative_street,              type: String
-  field :relative_house,               type: String
-  field :relative_apartment,           type: String
   field :drivers_license,              type: String
   field :driving_experience,           type: String
   field :having_a_car,                 type: String
@@ -54,11 +44,8 @@ class Candidate
   field :year_of_admission,            type: Date
   field :year_of_ending,               type: Date
   field :form_of_education,            type: String
-  field :extra_year_of_study,          type: Date
-  field :extra_institution,            type: String
-  field :extra_course_name,            type: String
-  field :extra_duration,               type: String
-  field :extra_specialty,              type: String
+  field :education,                    type: Array # {begin:'',end:'',inst:'',name:'',spec:'',form:''}
+  field :extra,                        type: Array # {year:0,inst:'',name:'',duration:0,spec:''}
   field :language,                     type: String
   field :language_level_orally,        type: String
   field :language_level_writing,       type: String
@@ -68,11 +55,6 @@ class Candidate
   field :_1c_level,                    type: String
   field :other_skills_level,           type: String
   field :extra_skills,                 type: String
-  field :experience_company_name,      type: String
-  field :experience_position,          type: String
-  field :experience_position,          type: Date
-  field :receipt_date,                 type: Date
-  field :dismissal_data,               type: String
   field :experience,                   type: Array # {conds:'',dism:'',begin:'',end:'',workers:0,subords:0,duties:0}
   field :reccomenders,                 type: Array # {f_name:'',l_name:'',s_name:'',job:'',pos:'',phone:''}
   field :last_job_like_dislike,        type: Array # [:LS,:UPCT,:LLBO,:DRWM,:NCP,:EMR,:OW,:SO]
@@ -106,6 +88,7 @@ class Candidate
   field :job_disciplinary_penalties,   type: String
   field :job_data_source,              type: String
   field :data_verification,            type: Boolean
+  field :photo_path,                   type: String
 
   validates :guid,
             :first_name,

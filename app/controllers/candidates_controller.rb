@@ -33,14 +33,39 @@ class CandidatesController < ApplicationController
     erb :show
   end
 
-  # Controller helpers
   helpers do
+    # Controller
     def new_candidate_params
       { guid: SecureRandom.uuid, created_at: Time.new }
     end
 
     def error(object)
       object.errors.full_messages.first
+    end
+
+    # API
+    def base_url
+      url_scheme = request.env['rack.url_scheme']
+      http_host = request.env['HTTP_HOST']
+      @base_url ||= "#{url_scheme}://#{http_host}"
+    end
+
+    def json_params
+      JSON.parse(request.body.read)
+    rescue StandardError => e
+      halt(400, { message: 'Invalid JSON' }.to_json)
+    end
+
+    def candidate
+      @candidate ||= Candidate.where(guid: params[:guid]).first
+    end
+
+    def candidate_not_found!
+      halt(404, { message: 'Кандидата с таким GUID не существует!' }.to_json) unless candidate
+    end
+
+    def serialize(candidate)
+      CandidateSerializer.new(candidate).to_json
     end
   end
 
@@ -90,33 +115,6 @@ class CandidatesController < ApplicationController
     delete '/candidates/:guid' do
       candidate&.destroy
       status 204
-    end
-
-    # helpers
-    helpers do
-      def base_url
-        url_scheme = request.env['rack.url_scheme']
-        http_host = request.env['HTTP_HOST']
-        @base_url ||= "#{url_scheme}://#{http_host}"
-      end
-
-      def json_params
-        JSON.parse(request.body.read)
-      rescue StandardError => e
-        halt(400, { message: 'Invalid JSON' }.to_json)
-      end
-
-      def candidate
-        @candidate ||= Candidate.where(guid: params[:guid]).first
-      end
-
-      def candidate_not_found!
-        halt(404, { message: 'Кандидата с таким GUID не существует!' }.to_json) unless candidate
-      end
-
-      def serialize(candidate)
-        CandidateSerializer.new(candidate).to_json
-      end
     end
   end
 end
