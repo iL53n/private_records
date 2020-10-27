@@ -16,7 +16,7 @@ class CandidatesController < ApplicationController
   end
 
   # create
-  post '/candidates/' do
+  post '/candidates' do
     @candidate = Candidate.new(params[:candidate])
 
     if @candidate.save
