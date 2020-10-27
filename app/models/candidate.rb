@@ -4,7 +4,6 @@
 class Candidate
   include Mongoid::Document
 
-  # Common fields
   field :guid,                         type: String
   field :position,                     type: String
   field :first_name,                   type: String
