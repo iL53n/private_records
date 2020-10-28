@@ -66,8 +66,12 @@
 					<input class="form-control" type="text" name="candidate[sur_name]" id="candidate_sur_name" value=<%= @candidate.sur_name %>>
 				</div>
 				<div class="form-group col-md-6">
-					<!--<label for="inputImage">Фотография</label>-->
-					<input type="file" name="image" id="image" accept=".jpg, .jpeg, .png">
+					<div class="form-row">
+						<label for="inputImage">Загрузите фотографию...</label>
+					</div>
+					<div class="form-row">
+						<input type="file" name="image" id="image" accept=".jpg, .jpeg, .png">
+					</div>
 				</div>
 			</div>
 
@@ -136,3 +140,9 @@
 		<button type="submit" class="btn btn-success btn-lg btn-block">Отправить данные</button>
 	<br>
 </form>
+
+<script type="text/javascript">
+    $(function(){
+      $("#phone").mask("+375 (99) 999-99-99");
+    });   
+</script>
