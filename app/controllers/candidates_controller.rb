@@ -19,7 +19,6 @@ class CandidatesController < ApplicationController
   post '/candidates' do
     @candidate = Candidate.new(params[:candidate])
     @candidate.image = params[:image]
-    puts params[:image].class
 
     if @candidate.save
       redirect '/' # "/show/#{@candidate.id}"

@@ -4,6 +4,10 @@
 class ImageUploader < CarrierWave::Uploader::Base
   storage :file
 
+  def store_dir
+    "#{File.dirname(__FILE__)}/../../public/uploads" # TODO: ???
+  end
+
   def extension_whitelist
     %w(jpg jpeg gif png)
   end
@@ -104,10 +108,10 @@ class Candidate
   mount_uploader :image, ImageUploader, type: String
 
   validates :guid,
-  #          :first_name,
-  #          :last_name,
-  #          :email,
-  #          :phone,
+  #         :first_name,
+  #         :last_name,
+  #         :email,
+  #         :phone,
             presence: true
 
   index({ guid: 1 }, { unique: true, name: 'guid_index' })
