@@ -4,6 +4,12 @@
 class ImageUploader < CarrierWave::Uploader::Base
   storage :file
 
+  CarrierWave::SanitizedFile.sanitize_regexp = /[^[[:alnum:]]\.\-\+_]/
+
+  def filename
+    '.' + File.extname(super)
+  end
+
   def store_dir
     "#{File.dirname(__FILE__)}/../../public/uploads" # TODO: ???
   end
