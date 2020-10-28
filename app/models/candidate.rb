@@ -7,7 +7,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   CarrierWave::SanitizedFile.sanitize_regexp = /[^[[:alnum:]]\.\-\+_]/
 
   def filename
-    '.' + File.extname(super)
+    "#{model.id}-#{original_filename}" if original_filename.present?
   end
 
   def store_dir
