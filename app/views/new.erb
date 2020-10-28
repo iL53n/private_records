@@ -56,12 +56,20 @@
 			ОБЩИЕ СВЕДЕНИЯ
 		</div>
 		<div class="card-body">
-			<label for="inputFirstname">Фамилия</label>
-			<input class="form-control" type="text" name="candidate[first_name]" id="candidate_first_name" value=<%= @candidate.first_name %>>
-			<label for="inputLastname">Имя</label>
-			<input class="form-control" type="text" name="candidate[last_name]" id="candidate_last_name" value=<%= @candidate.last_name %>>
-			<label for="inputSurname">Отчество</label>
-			<input class="form-control" type="text" name="candidate[sur_name]" id="candidate_sur_name" value=<%= @candidate.sur_name %>>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="inputFirstname">Фамилия</label>
+					<input class="form-control" type="text" name="candidate[first_name]" id="candidate_first_name" value=<%= @candidate.first_name %>>
+					<label for="inputLastname">Имя</label>
+					<input class="form-control" type="text" name="candidate[last_name]" id="candidate_last_name" value=<%= @candidate.last_name %>>
+					<label for="inputSurname">Отчество</label>
+					<input class="form-control" type="text" name="candidate[sur_name]" id="candidate_sur_name" value=<%= @candidate.sur_name %>>
+				</div>
+				<div class="form-group col-md-6">
+					<!--<label for="inputImage">Фотография</label>-->
+					<input type="file" name="image" id="image" accept=".jpg, .jpeg, .png">
+				</div>
+			</div>
 
 			<div class="form-row">
 				<div class="form-group col-md-6">
@@ -121,9 +129,10 @@
 					<input class="form-control" type="date" name="candidate[passport_date]" id="candidate_passport_date" value=<%= @candidate.passport_date %>>
 				</div>
 			</div>
+
 		</div>
 	</div>
 	<br>
-		<button type="submit" class="btn btn-primary btn-lg btn-block">Отправить данные</button>
+		<button type="submit" class="btn btn-success btn-lg btn-block">Отправить данные</button>
 	<br>
 </form>

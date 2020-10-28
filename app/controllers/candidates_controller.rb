@@ -5,7 +5,7 @@ class CandidatesController < ApplicationController
   # index
   # TODO: add access restriction
   get '/' do
-    @candidates = Candidate.all
+    @candidates = [Candidate.last]
     erb :index
   end
 
@@ -18,9 +18,11 @@ class CandidatesController < ApplicationController
   # create
   post '/candidates' do
     @candidate = Candidate.new(params[:candidate])
+    @candidate.image = params[:image]
+    puts params[:image].class
 
     if @candidate.save
-      redirect "/show/#{@candidate.id}"
+      redirect '/' # "/show/#{@candidate.id}"
     else
       @error = error(@candidate)
       erb :new

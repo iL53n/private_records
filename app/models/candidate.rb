@@ -1,5 +1,18 @@
 # frozen_string_literal: true
 
+# CarrierWave image uploader
+class ImageUploader < CarrierWave::Uploader::Base
+  storage :file
+
+  def extension_whitelist
+    %w(jpg jpeg gif png)
+  end
+
+  def content_type_whitelist
+    /image\//
+  end
+end
+
 # Candidate Class
 class Candidate
   include Mongoid::Document
@@ -87,13 +100,14 @@ class Candidate
   field :job_disciplinary_penalties,   type: String
   field :job_data_source,              type: String
   field :data_verification,            type: Boolean
-  field :photo_path,                   type: String
+
+  mount_uploader :image, ImageUploader, type: String
 
   validates :guid,
-            :first_name,
-            :last_name,
-            :email,
-            :phone,
+  #          :first_name,
+  #          :last_name,
+  #          :email,
+  #          :phone,
             presence: true
 
   index({ guid: 1 }, { unique: true, name: 'guid_index' })
