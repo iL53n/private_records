@@ -5,7 +5,7 @@ module Attachments
   class ImageUploader < CarrierWave::Uploader::Base
     storage :file
 
-    CarrierWave::SanitizedFile.sanitize_regexp = /[^[[:alnum:]]\\.\\-\\+_]/
+    CarrierWave::SanitizedFile.sanitize_regexp = /[^[[:alnum:]]\.\-\+_]/
 
     def filename
       "#{model.id}-#{original_filename}" if original_filename.present?
@@ -20,7 +20,7 @@ module Attachments
     end
 
     def content_type_whitelist
-      %r{image\\/}
+      %r{image/}
     end
   end
 end
