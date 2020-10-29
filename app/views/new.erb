@@ -67,7 +67,7 @@
 					<label for="InputPhone">Телефон</label>
 					<input class="form-control" type="text" name="candidate[phone]" id="candidate_phone" value=<%= @candidate.phone %>>
 					<label for="InputPhone">E-mail</label>
-					<input class="form-control" type="text" name="candidate[email]" id="candidate_phone" onblur="ValidateEmail(this.value)" value=<%= @candidate.email %>>
+					<input class="form-control" type="text" name="candidate[email]" id="candidate_email" onblur="validateEmail(this.value)" value=<%= @candidate.email %>>
 					<div class="alert alert-danger" id="email_error" hidden="true">Не верный адрес электронной почты!</div>
 				</div>
 
@@ -111,7 +111,7 @@
 				</div>
 			</div>
 			<label for="inputChildren" hidden="true">Наличие и возраст детей</label>
-			<input class="form-control" type="textarea" name="children" id="children" value=><br>
+			<input class="form-control" hidden="true" type="textarea" name="children" id="children" value=><br>
 
 			<h6>Паспортные данные</h6>
 
@@ -139,6 +139,56 @@
 				<div class="form-group col-md-3">
 					<label for="inputPassportDate">Дата выдачи</label>
 					<input class="form-control" type="date" name="candidate[passport_date]" id="candidate_passport_date" value=<%= @candidate.passport_date %>>
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div class="form-group col-md-12">
+					<div class="form-row">
+						<div class="form-group col-md-2">
+							<label>Адрес регистрации</label>
+						</div>
+						<div class="form-group col-md-2">
+							<input class="form-control" type="text" name="candidate[registration_city]" id="candidate_registration_city" placeholder="Город" value=<%= @candidate.registration_city%>>
+						</div>
+						<div class="form-group col-md-3">
+							<input class="form-control" type="text" name="candidate[registration_street]" id="candidate_registration_street" placeholder="Улица" value=<%= @candidate.registration_street%>>
+						</div>	
+						<div class="form-group col-md-2">
+							<input class="form-control" type="text" name="candidate[registration_house]" id="candidate_registration_house" placeholder="Дом" value=<%= @candidate.registration_house%>>
+						</div>
+						<div class="form-group col-md-2">
+							<input class="form-control" type="text" name="candidate[registration_apartment]" id="candidate_registration_apartment" placeholder="Квартира" value=<%= @candidate.registration_apartment%>>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-2">
+							<label>Адрес проживания</label>
+						</div>
+						<div class="form-group col-md-2">
+							<input class="form-control" type="text" name="candidate[residence_city]" id="candidate_residence_city" placeholder="Город" value=<%= @candidate.residence_city%>>
+						</div>
+						<div class="form-group col-md-3">
+							<input class="form-control" type="text" name="candidate[residence_street]" id="candidate_residence_street" placeholder="Улица" value=<%= @candidate.residence_street%>>
+						</div>	
+						<div class="form-group col-md-2">
+							<input class="form-control" type="text" name="candidate[residence_house]" id="candidate_rresidence_house" placeholder="Дом" value=<%= @candidate.residence_house%>>
+						</div>
+						<div class="form-group col-md-2">
+							<input class="form-control" type="text" name="candidate[residence_apartment]" id="candidate_residence_apartment" placeholder="Квартира" value=<%= @candidate.residence_apartment%>>
+						</div>
+						<div class="form-group col-md-1">
+							<button class="btn btn-success btn-sm btn-block" onclick="return fill_residence_adr()">Заполн.</button>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-2">
+							<label>Сведения о воинском учете</label>
+						</div>
+						<div class="form-group col-md-10">
+							<input class="form-control" type="text" name="candidate[military_registration]" id="candidate_military_registration" value=<%= @candidate.military_registration%>>
+						</div>	
+					</div>
 				</div>
 			</div>
 

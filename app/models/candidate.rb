@@ -23,7 +23,6 @@ class Candidate
   field :email,                        type: String
   field :phone,                        type: String
   field :created_at,                   type: DateTime
-  field :registration_city,            type: String
   field :military_registration,        type: String
   field :relatives,                    type: Array # {type:'',f_name:'',l_name:'',s_name:'',date:'',pl:'',job:'',adr:{}}
   field :registration_city,            type: String
