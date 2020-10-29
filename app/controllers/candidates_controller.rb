@@ -5,7 +5,7 @@ class CandidatesController < ApplicationController
   # index
   # TODO: add access restriction
   get '/' do
-    @candidates = [Candidate.last]
+    @candidates = [Candidate.last] # TODO: Select all candidates in Prod
     erb :index
   end
 

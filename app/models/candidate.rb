@@ -1,31 +1,9 @@
 # frozen_string_literal: true
 
-# CarrierWave image uploader
-class ImageUploader < CarrierWave::Uploader::Base
-  storage :file
-
-  CarrierWave::SanitizedFile.sanitize_regexp = /[^[[:alnum:]]\.\-\+_]/
-
-  def filename
-    "#{model.id}-#{original_filename}" if original_filename.present?
-  end
-
-  def store_dir
-    "#{File.dirname(__FILE__)}/../../public/uploads" # TODO: ???
-  end
-
-  def extension_whitelist
-    %w(jpg jpeg gif png)
-  end
-
-  def content_type_whitelist
-    /image\//
-  end
-end
-
 # Candidate Class
 class Candidate
   include Mongoid::Document
+  include Attachments
 
   field :guid,                         type: String
   field :position,                     type: String

@@ -66,9 +66,12 @@
 					<input class="form-control" type="text" name="candidate[sur_name]" id="candidate_sur_name" value=<%= @candidate.sur_name %>>
 					<label for="InputPhone">Телефон</label>
 					<input class="form-control" type="text" name="candidate[phone]" id="candidate_phone" value=<%= @candidate.phone %>>
+					<label for="InputPhone">E-mail</label>
+					<input class="form-control" type="text" name="candidate[email]" id="candidate_phone" onblur="ValidateEmail(this.value)" value=<%= @candidate.email %>>
+					<div class="alert alert-danger" id="email_error" hidden="true">Не верный адрес электронной почты!</div>
 				</div>
 
-				<div class="form-group col-md-6">
+				<div class="form-group col-md-4">
 					<div class="form-row">
 						<label for="inputImage">Загрузите фотографию...</label>
 					</div>
@@ -145,9 +148,3 @@
 		<button type="submit" class="btn btn-success btn-lg btn-block">Отправить данные</button>
 	<br>
 </form>
-
-<script type="text/javascript">
-    $(function(){
-      $("#candidate_phone").mask("+375 (99) 999-99-99");
-    });   
-</script>
