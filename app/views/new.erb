@@ -28,7 +28,7 @@
 	<!--	</div>	-->
 </div>
 
-<form action="/candidates" method="POST">
+<form action="/candidates" method="POST" enctype="multipart/form-data">
 	<!--	https://getbootstrap.com/docs/4.5/components/forms/-->
 	<div class="card" hidden="true">
 	<div class="card-header h5">
@@ -56,12 +56,32 @@
 			ОБЩИЕ СВЕДЕНИЯ
 		</div>
 		<div class="card-body">
-			<label for="inputFirstname">Фамилия</label>
-			<input class="form-control" type="text" name="candidate[first_name]" id="candidate_first_name" value=<%= @candidate.first_name %>>
-			<label for="inputLastname">Имя</label>
-			<input class="form-control" type="text" name="candidate[last_name]" id="candidate_last_name" value=<%= @candidate.last_name %>>
-			<label for="inputSurname">Отчество</label>
-			<input class="form-control" type="text" name="candidate[sur_name]" id="candidate_sur_name" value=<%= @candidate.sur_name %>>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="inputFirstname">Фамилия</label>
+					<input class="form-control" type="text" name="candidate[first_name]" id="candidate_first_name" value=<%= @candidate.first_name %>>
+					<label for="inputLastname">Имя</label>
+					<input class="form-control" type="text" name="candidate[last_name]" id="candidate_last_name" value=<%= @candidate.last_name %>>
+					<label for="inputSurname">Отчество</label>
+					<input class="form-control" type="text" name="candidate[sur_name]" id="candidate_sur_name" value=<%= @candidate.sur_name %>>
+					<label for="InputPhone">Телефон</label>
+					<input class="form-control" type="text" name="candidate[phone]" id="candidate_phone" value=<%= @candidate.phone %>>
+					<label for="InputPhone">E-mail</label>
+					<input class="form-control" type="text" name="candidate[email]" id="candidate_phone" onblur="ValidateEmail(this.value)" value=<%= @candidate.email %>>
+					<div class="alert alert-danger" id="email_error" hidden="true">Не верный адрес электронной почты!</div>
+				</div>
+
+				<div class="form-group col-md-4">
+					<div class="form-row">
+						<label for="inputImage">Загрузите фотографию...</label>
+					</div>
+					<div class="form-row">
+						<input type="file" name="image" id="image" accept=".jpg, .jpeg, .png" onchange="handleFiles(this.files)">
+					</div>
+					<div id="preview">
+					</div>
+				</div>
+			</div>
 
 			<div class="form-row">
 				<div class="form-group col-md-6">
@@ -90,7 +110,7 @@
 					</select>
 				</div>
 			</div>
-			<label for="inputChildren">Наличие и возраст детей</label>
+			<label for="inputChildren" hidden="true">Наличие и возраст детей</label>
 			<input class="form-control" type="textarea" name="children" id="children" value=><br>
 
 			<h6>Паспортные данные</h6>
@@ -121,9 +141,10 @@
 					<input class="form-control" type="date" name="candidate[passport_date]" id="candidate_passport_date" value=<%= @candidate.passport_date %>>
 				</div>
 			</div>
+
 		</div>
 	</div>
 	<br>
-		<button type="submit" class="btn btn-primary btn-lg btn-block">Отправить данные</button>
+		<button type="submit" class="btn btn-success btn-lg btn-block">Отправить данные</button>
 	<br>
 </form>

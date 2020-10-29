@@ -3,6 +3,7 @@
 # Candidate Class
 class Candidate
   include Mongoid::Document
+  include Attachments
 
   field :guid,                         type: String
   field :position,                     type: String
@@ -87,7 +88,8 @@ class Candidate
   field :job_disciplinary_penalties,   type: String
   field :job_data_source,              type: String
   field :data_verification,            type: Boolean
-  field :photo_path,                   type: String
+
+  mount_uploader :image, ImageUploader, type: String
 
   validates :guid,
             :first_name,
