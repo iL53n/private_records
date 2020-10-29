@@ -20,6 +20,10 @@ class CandidatesController < ApplicationController
     @candidate = Candidate.new(params[:candidate])
     @candidate.image = params[:image]
 
+    add_relatives_to_candidate(@candidate, params)
+
+    puts params
+
     if @candidate.save
       redirect '/' # "/show/#{@candidate.id}"
     else
@@ -42,6 +46,15 @@ class CandidatesController < ApplicationController
 
     def error(object)
       object.errors.full_messages.first
+    end
+
+    # fill by params
+    def add_relatives_to_candidate(candidate, params)
+      relatives = []
+      params.select { |key| key[0..8] == 'relatives' }.each_value do |rel_row|
+        relatives << rel_row unless rel_row[:name] == ''
+      end
+      candidate.relatives = relatives
     end
 
     # API

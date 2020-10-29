@@ -192,9 +192,29 @@
 				</div>
 			</div>
 
+			<h6>Близкие родственники (жена, муж, отец, мать, братья, сестры, дети)</h6>
+
+			<div class="bs-example" data-example-id="contextual-table">
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Степень родства</th>
+							<th>Фамилия, Имя, Отчетство</th>
+							<th>Год, место рождения</th>
+							<th>Место работы, должность</th>
+							<th>Адрес места жительства</th>
+						</tr>
+					</thead>
+					<tbody id="relatives_rows">
+						<div class="form-group col-md-2">
+							<button class="btn btn-success btn-sm btn-block" onclick="return add_relatives_table_new_row()">Добавить</button>
+						</div>
+					</tbody>
+				</table>
+			</div>
 		</div>
 	</div>
 	<br>
-		<button type="submit" class="btn btn-success btn-lg btn-block">Отправить данные</button>
+		<button type="submit" class="btn btn-success btn-lg btn-block" width="20px">Отправить данные</button>
 	<br>
 </form>

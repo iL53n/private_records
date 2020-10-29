@@ -24,7 +24,7 @@ class Candidate
   field :phone,                        type: String
   field :created_at,                   type: DateTime
   field :military_registration,        type: String
-  field :relatives,                    type: Array # {type:'',f_name:'',l_name:'',s_name:'',date:'',pl:'',job:'',adr:{}}
+  field :relatives,                    type: Array # {type:'',name:'',date:'',job:'',adr:''}
   field :registration_city,            type: String
   field :registration_street,          type: String
   field :registration_house,           type: String
@@ -91,10 +91,10 @@ class Candidate
   mount_uploader :image, ImageUploader, type: String
 
   validates :guid,
-            :first_name,
-            :last_name,
-            :email,
-            :phone,
+  #          :first_name,
+  #          :last_name,
+  #          :email,
+  #          :phone,
             presence: true
 
   index({ guid: 1 }, { unique: true, name: 'guid_index' })
