@@ -1,4 +1,4 @@
- 
+  
 // Images
 
 function handleFiles(files) {    
@@ -120,17 +120,107 @@ function add_extra_table_new_row(){
 }
 
 function add_language_table_new_row(){
-    tableBody = document.getElementById("language_rows")
+    tableBody = document.getElementById("language_rows");
    
     var count = tableBody.childNodes.length;
 
-    rowElement = document.createElement("tr")
+    rowElement = document.createElement("tr");
     rowElement.innerHTML = 
-        '<td><input class="form-control" type="text" id="language_' + String(count-1)    + '_name" name="language[' + String(count-1)      + '][name]"></input></td>' +
-        '<td><input class="form-control" type="number" id="language_' + String(count-1)  + '_orally" name="language[' + String(count-1)    + '][orally]"></input></td>'+
-        '<td><input class="form-control" type="number" id="language_' + String(count-1)  + '_writing" name="language[' + String(count-1)   + '][writing]"></input></td>';
+        '<td><input class="form-control" type="text" id="language_' + String(count-1)                    + '_name" name="language[' + String(count-1) + '][name]"></input></td>' +
+        '<td><input class="form-control" type="number" min="1" max="5" id="language_' + String(count-1)  + '_orally" name="language[' + String(count-1)    + '][orally]"></input></td>'+
+        '<td><input class="form-control" type="number" min="1" max="5" id="language_' + String(count-1)  + '_writing" name="language[' + String(count-1)   + '][writing]"></input></td>';
     
     tableBody.appendChild(rowElement);
+
+    return (false)
+}
+
+function add_experience_table_row(){
+    tableBody = document.getElementById("experience_fields");
+
+    if (tableBody){
+        var count = tableBody.childNodes.length;
+
+        count = count - 1;
+        count = count / 5;
+
+        tableBody.appendChild(document.createElement("br"));
+
+        rowElement = document.createElement("div");
+        rowElement.classList.add("form-row");
+        rowElement.innerHTML = 
+            '<div class="form-group col-md-2">' +
+            '   <label for="expieience' + String(count) + 'Name">Название организации(' + String(count+1) + ')</label>' +
+            '</div>' +                
+            '<div class="form-group col-md-4">' +
+            '   <input class="form-control" type="text" id="experience_>' + String(count) + '_name name="experience['+ String(count) + '][name]">' +
+            '</div>' +
+            '<div class="form-group col-md-1">' +
+            '   <label for="expieience' + String(count) + 'Period">период работы</label>' +
+            '</div>' +  
+            '<div class="form-group col-md-1">' +
+            '   <input class="form-control" type="text" id="experience_>' + String(count) + '_period name="experience['+ String(count) + '][period]">' +
+            '</div>' +
+            '<div class="form-group col-md-1">' +
+            '   <label for="expieience' + String(count) + 'Workers">сотруд-\nников</label>' +
+            '</div>' +  
+            '<div class="form-group col-md-1">' +
+            '   <input class="form-control" type="number" id="experience_>' + String(count) + '_workers name="experience['+ String(count) + '][workers]">' +
+            '</div>' +
+            '<div class="form-group col-md-1">' +
+            '   <label for="expieience' + String(count) + 'Subords">подчи-\nненных</label>' +
+            '</div>' +  
+            '<div class="form-group col-md-1">' +
+            '   <input class="form-control" type="number" id="experience_>' + String(count) + '_subords name="experience['+ String(count) + '][subords]">' +
+            '</div>' +
+            '';    
+        tableBody.appendChild(rowElement);
+
+        rowElement = document.createElement("div");
+        rowElement.classList.add("form-row");
+        rowElement.innerHTML = 
+            '<div class="form-group col-md-2">' +
+            '   <label for="expieience' + String(count) + 'Field">Сфера деятельности</label>' +
+            '</div>' +                
+            '<div class="form-group col-md-4">' +
+            '   <input class="form-control" type="text" id="experience_>' + String(count) + '_field name="experience['+ String(count) + '][field]">' +
+            '</div>' +
+            '<div class="form-group col-md-2">' +
+            '   <label for="expieience' + String(count) + 'Pos">Должность</label>' +
+            '</div>' +                
+            '<div class="form-group col-md-4">' +
+            '   <input class="form-control" type="text" id="experience_>' + String(count) + '_pos name="experience['+ String(count) + '][pos]">' +
+            '</div>' +
+            '';    
+        tableBody.appendChild(rowElement);
+
+        rowElement = document.createElement("div");
+        rowElement.classList.add("form-row");
+        rowElement.innerHTML = 
+            '<div class="form-group col-md-2">' +
+            '   <label for="expieience' + String(count) + 'Cond">Зарплата</label>' +
+            '</div>' +                
+            '<div class="form-group col-md-4">' +
+            '   <input class="form-control" type="text" id="experience_>' + String(count) + '_cond name="experience['+ String(count) + '][cond]">' +
+            '</div>' +
+            '<div class="form-group col-md-2">' +
+            '   <label for="expieience' + String(count) + 'Dism">Причины увольнения</label>' +
+            '</div>' +                
+            '<div class="form-group col-md-4">' +
+            '   <input class="form-control" type="text" id="experience_>' + String(count) + '_dism name="experience['+ String(count) + '][dism]">' +
+            '</div>' +
+            '';    
+        tableBody.appendChild(rowElement);
+
+        rowElement = document.createElement("div");
+        rowElement.classList.add("form-row");
+        rowElement.innerHTML = 
+            '<label for="expieience' + String(count) + 'Duties">Основные должностные обязанности:</label>' +
+            '<textarea class="form-control" type="text" id="experience_>' + String(count) + '_duties name="experience['+ String(count) + '][duties]"></textarea>' +
+            '<br />';    
+        tableBody.appendChild(rowElement);
+
+    }
 
     return (false)
 }

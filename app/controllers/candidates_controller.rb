@@ -50,12 +50,12 @@ class CandidatesController < ApplicationController
 
     # fill by params
     def add_arrays_to_candidate(candidate, params)
-      filled_keys = { 'relatives' => :name, 'education' => :inst , 'language' => :name}
-      'relatives,education,language'.split(',').each do |table_name|
+      tables_names = { 'relatives' => :name, 'education' => :inst, 'extra' => :name, 'language' => :name }
+      tables_names.each do |table_name, ver_field|
         arr = []
         params.select { |key| key == table_name }.each_value do |table|
           table.each_value do |row|
-            arr << row unless row[filled_keys[table_name]] == ''
+            arr << row unless row[ver_field] == ''
           end
         end
         candidate[table_name] = arr
