@@ -20,7 +20,7 @@ class CandidatesController < ApplicationController
     @candidate = Candidate.new(params[:candidate])
     @candidate.image = params[:image]
 
-    add_relatives_to_candidate(@candidate, params)
+    add_arrays_to_candidate(@candidate, params)
 
     puts params
 
@@ -49,12 +49,17 @@ class CandidatesController < ApplicationController
     end
 
     # fill by params
-    def add_relatives_to_candidate(candidate, params)
-      relatives = []
-      params.select { |key| key[0..8] == 'relatives' }.each_value do |rel_row|
-        relatives << rel_row unless rel_row[:name] == ''
+    def add_arrays_to_candidate(candidate, params)
+      filled_keys = { 'relatives' => :name, 'education' => :inst }
+      'relatives,education'.split(',').each do |table_name|
+        arr = []
+        params.select { |key| key == table_name }.each_value do |table|
+          table.each_value do |row|
+            arr << row unless row[filled_keys[table_name]] == ''
+          end
+        end
+        candidate[table_name] = arr
       end
-      candidate.relatives = relatives
     end
 
     # API

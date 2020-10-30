@@ -198,16 +198,42 @@
 				<table class="table">
 					<thead>
 						<tr>
-							<th>Степень родства</th>
-							<th>Фамилия, Имя, Отчетство</th>
-							<th>Год, место рождения</th>
-							<th>Место работы, должность</th>
-							<th>Адрес места жительства</th>
+							<th style="width: 10%">Степень родства</th>
+							<th style="width: 30%">Фамилия, Имя, Отчетство</th>
+							<th style="width: 20%">Год, место рождения</th>
+							<th style="width: 20%">Место работы, должность</th>
+							<th style="width: 20%">Адрес места жительства</th>
 						</tr>
 					</thead>
 					<tbody id="relatives_rows">
 						<div class="form-group col-md-2">
 							<button class="btn btn-success btn-sm btn-block" onclick="return add_relatives_table_new_row()">Добавить</button>
+						</div>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<div class="card">
+		<div class="card-header h5">
+			ОБРАЗОВАНИЕ
+		</div>
+		<div class="card-body">
+			<div class="bs-example" data-example-id="contextual-table">
+				<table class="table">
+					<thead>
+						<tr>
+							<th style="width: 4%">Год поступления</th>
+							<th style="width: 4%">Год окончания</th>
+							<th style="width: 40%">Название учебного заведения</th>
+							<th style="width: 35%">Специальность по диплому</th>
+							<th style="width: 20%">Форма обучения</th>
+						</tr>
+					</thead>
+					<tbody id="education_rows">
+						<div class="form-group col-md-2">
+							<button class="btn btn-success btn-sm btn-block" onclick="return add_education_table_new_row()">Добавить</button>
 						</div>
 					</tbody>
 				</table>

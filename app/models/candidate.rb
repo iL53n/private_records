@@ -43,7 +43,7 @@ class Candidate
   field :year_of_admission,            type: Date
   field :year_of_ending,               type: Date
   field :form_of_education,            type: String
-  field :education,                    type: Array # {begin:'',end:'',inst:'',name:'',spec:'',form:''}
+  field :education,                    type: Array # {begin:'',end:'',inst:'',spec:'',form:''}
   field :extra,                        type: Array # {year:0,inst:'',name:'',duration:0,spec:''}
   field :language,                     type: String
   field :language_level_orally,        type: String
