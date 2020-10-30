@@ -212,6 +212,17 @@
 					</tbody>
 				</table>
 			</div>
+
+			<div class="form-row">
+				<label for="inputDriversLicense">Наличие водительского удостоверения, стаж вождения</label>
+				<input class="form-control" type="text" name="candidate[drivers_license]" id="candidate_drivers_license" value=<%= @candidate.drivers_license %>>
+				<label for="inputHavingACar">Наличие автомобиля (марка)</label>
+				<input class="form-control" type="text" name="candidate[having_a_car]" id="candidate_having_a_car" value=<%= @candidate.having_a_car %>>
+				<label for="inputPoliticalMembership">Принадлежность к политическим партиям, общественным объединениям  и т.п. (если да, то указать к каким именно)</label>
+				<input class="form-control" type="text" name="candidate[political_membership]" id="candidate_political_membership" value=<%= @candidate.political_membership %>>
+				<label for="inputConviction">Судимости, административные взыскания</label>
+				<input class="form-control" type="text" name="candidate[conviction]" id="candidate_conviction" value=<%= @candidate.conviction %>>
+			</div>
 		</div>
 	</div>
 
@@ -238,8 +249,107 @@
 					</tbody>
 				</table>
 			</div>
+
+			<br />
+			<h6>Дополнительное образование (специализированные курсы, курсы повышения квалификации)</h6>
+			<br />
+
+			<div class="bs-example" data-example-id="contextual-table">
+				<table class="table">
+					<thead>
+						<tr>
+							<th style="width: 4%">Год обучения</th>
+							<th style="width: 40%">Наименование учебного заведения</th>
+							<th style="width: 40%">Название курса</th>
+							<th style="width: 16%">Продолжительность (месяцев)</th>
+						</tr>
+					</thead>
+					<tbody id="extra_rows">
+						<div class="form-group col-md-2">
+							<button class="btn btn-success btn-sm btn-block" onclick="return add_extra_table_new_row()">Добавить</button>
+						</div>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="card">
+		<div class="card-header h5">
+			ВЛАДЕНИЕ ИНОСТРАННЫМИ ЯЗЫКАМИ, НАВЫКИ РАБОТЫ НА КОМПЬЮТЕРЕ
+		</div>
+		<div class="card-body">
+
+			<div class="bs-example" data-example-id="contextual-table">
+				<table class="table">
+					<thead>
+						<tr>
+							<th style="width: 60%">Укажите язык</th>
+							<th style="width: 20%">Уровень владения устно</th>
+							<th style="width: 20%">Уровень владения письменно</th>
+						</tr>
+					</thead>
+					<tbody id="language_rows">
+						<div class="form-group col-md-2">
+							<button class="btn btn-success btn-sm btn-block" onclick="return add_language_table_new_row()">Добавить</button>
+						</div>
+					</tbody>
+				</table>
+			</div>
+
+			<br />
+			<h6>Программные продукты. Уровень владения (от 1 до 5, где 5 самый высокий балл)</h6>
+			<br />
+			<div class="form-row">
+				<div class="form-group col-md-2">
+					<label>WORD</label>
+				</div>
+				<div class="form-group col-md-4">
+					<input class="form-control" type="text" name="candidate[word_level]" id="candidate_word_level" value=<%= @candidate.word_level%>>
+				</div>	
+				<div class="form-group col-md-2">
+					<label>Excel</label>
+				</div>
+				<div class="form-group col-md-4">
+					<input class="form-control" type="text" name="candidate[excel_level]" id="candidate_excel_level" value=<%= @candidate.excel_level%>>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-2">
+					<label>Aссess</label>
+				</div>
+				<div class="form-group col-md-4">
+					<input class="form-control" type="text" name="candidate[access_level]" id="candidate_access_level" value=<%= @candidate.access_level%>>
+				</div>
+				<div class="form-group col-md-2">
+					<label>1C</label>
+				</div>
+				<div class="form-group col-md-4">
+					<input class="form-control" type="text" name="candidate[_1c_level]" id="candidate__1c_level" value=<%= @candidate._1c_level%>>
+				</div>	
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-2">
+					<label>Другое</label>
+				</div>
+				<div class="form-group col-md-10">
+					<input class="form-control" type="text" name="candidate[other_skills_level]" id="candidate_other_skills_level" value=<%= @candidate.other_skills_level%>>
+				</div>	
+			</div>
+
+			<div class="form-row">
+				<div class="form-group col-md-2">
+					<label>Дополнительные навыки</label>
+				</div>
+				<div class="form-group col-md-10">
+					<input class="form-control" type="text" name="candidate[extra_skills]" id="candidate_extra_skills" value=<%= @candidate.extra_skills%>>
+				</div>	
+			</div>
+			
 		</div>
 	</div>
+
 	<br>
 		<button type="submit" class="btn btn-success btn-lg btn-block" width="20px">Отправить данные</button>
 	<br>

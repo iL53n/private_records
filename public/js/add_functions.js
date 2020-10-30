@@ -85,8 +85,8 @@ function add_education_table_new_row(){
 
     rowElement = document.createElement("tr")
     rowElement.innerHTML = 
-        '<td><input class="form-control" type="text" id="education_' + String(count-1)  + '_begin" name="education[' + String(count-1)  + '][begin]"></input></td>' +
-        '<td><input class="form-control" type="text" id="education_' + String(count-1)  + '_end" name="education[' + String(count-1)    + '][end]"></input></td>' +
+        '<td><input class="form-control" type="number" id="education_' + String(count-1)  + '_begin" name="education[' + String(count-1)  + '][begin]"></input></td>' +
+        '<td><input class="form-control" type="number" id="education_' + String(count-1)  + '_end" name="education[' + String(count-1)    + '][end]"></input></td>' +
         '<td><input class="form-control" type="text" id="education_' + String(count-1)  + '_inst" name="education[' + String(count-1)   + '][inst]"></input></td>' +
         '<td><input class="form-control" type="text" id="education_' + String(count-1)  + '_spec"  name="education[' + String(count-1)  + '][spec]"></input></td>' +
         '<td><select class="form-control" type="text" id="education_' + String(count-1) + '_form"  name="education[' + String(count-1)  + '][form]"></select></td>';
@@ -96,6 +96,39 @@ function add_education_table_new_row(){
     for (var ind in opts){
         rowElement.childNodes[4].childNodes[0].innerHTML = rowElement.childNodes[4].innerHTML + '<option>' + opts[ind] + '</option>';
     }
+    
+    tableBody.appendChild(rowElement);
+
+    return (false)
+}
+
+function add_extra_table_new_row(){
+    tableBody = document.getElementById("extra_rows")
+   
+    var count = tableBody.childNodes.length;
+
+    rowElement = document.createElement("tr")
+    rowElement.innerHTML = 
+        '<td><input class="form-control" type="number" id="extra_rows_' + String(count-1)  + '_year" name="extra_rows[' + String(count-1)         + '][year]"></input></td>' +
+        '<td><input class="form-control" type="text" id="extra_rows_' + String(count-1)  + '_inst" name="extra_rows[' + String(count-1)         + '][inst]"></input></td>' +
+        '<td><input class="form-control" type="text" id="extra_rows_' + String(count-1)  + '_name" name="extra_rows[' + String(count-1)         + '][name]"></input></td>' +
+        '<td><input class="form-control" type="number" id="extra_rows_' + String(count-1)  + '_duration" name="extra_rows[' + String(count-1)    + '][duration]"></input></td>';
+    
+    tableBody.appendChild(rowElement);
+
+    return (false)
+}
+
+function add_language_table_new_row(){
+    tableBody = document.getElementById("language_rows")
+   
+    var count = tableBody.childNodes.length;
+
+    rowElement = document.createElement("tr")
+    rowElement.innerHTML = 
+        '<td><input class="form-control" type="text" id="language_' + String(count-1)    + '_name" name="language[' + String(count-1)      + '][name]"></input></td>' +
+        '<td><input class="form-control" type="number" id="language_' + String(count-1)  + '_orally" name="language[' + String(count-1)    + '][orally]"></input></td>'+
+        '<td><input class="form-control" type="number" id="language_' + String(count-1)  + '_writing" name="language[' + String(count-1)   + '][writing]"></input></td>';
     
     tableBody.appendChild(rowElement);
 

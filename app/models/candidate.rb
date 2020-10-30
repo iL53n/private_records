@@ -34,7 +34,6 @@ class Candidate
   field :residence_house,              type: String
   field :residence_apartment,          type: String
   field :drivers_license,              type: String
-  field :driving_experience,           type: String
   field :having_a_car,                 type: String
   field :political_membership,         type: String
   field :conviction,                   type: String
@@ -44,10 +43,8 @@ class Candidate
   field :year_of_ending,               type: Date
   field :form_of_education,            type: String
   field :education,                    type: Array # {begin:'',end:'',inst:'',spec:'',form:''}
-  field :extra,                        type: Array # {year:0,inst:'',name:'',duration:0,spec:''}
-  field :language,                     type: String
-  field :language_level_orally,        type: String
-  field :language_level_writing,       type: String
+  field :extra,                        type: Array # {year:0,inst:'',name:'',duration:0}
+  field :language,                     type: Array # {name:'',orally:0,writing:0}
   field :word_level,                   type: String
   field :excel_level,                  type: String
   field :access_level,                 type: String
