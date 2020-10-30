@@ -153,25 +153,25 @@ function add_experience_table_row(){
             '   <label for="expieience' + String(count) + 'Name">Название организации(' + String(count+1) + ')</label>' +
             '</div>' +                
             '<div class="form-group col-md-4">' +
-            '   <input class="form-control" type="text" id="experience_>' + String(count) + '_name name="experience['+ String(count) + '][name]">' +
+            '   <input class="form-control" type="text" id="experience_>' + String(count) + '_name" name="experience['+ String(count) + '][name]">' +
             '</div>' +
             '<div class="form-group col-md-1">' +
             '   <label for="expieience' + String(count) + 'Period">период работы</label>' +
             '</div>' +  
             '<div class="form-group col-md-1">' +
-            '   <input class="form-control" type="text" id="experience_>' + String(count) + '_period name="experience['+ String(count) + '][period]">' +
+            '   <input class="form-control" type="text" id="experience_>' + String(count) + '_period" name="experience['+ String(count) + '][period]">' +
             '</div>' +
             '<div class="form-group col-md-1">' +
             '   <label for="expieience' + String(count) + 'Workers">сотруд-\nников</label>' +
             '</div>' +  
             '<div class="form-group col-md-1">' +
-            '   <input class="form-control" type="number" id="experience_>' + String(count) + '_workers name="experience['+ String(count) + '][workers]">' +
+            '   <input class="form-control" type="number" id="experience_>' + String(count) + '_workers" name="experience['+ String(count) + '][workers]">' +
             '</div>' +
             '<div class="form-group col-md-1">' +
             '   <label for="expieience' + String(count) + 'Subords">подчи-\nненных</label>' +
             '</div>' +  
             '<div class="form-group col-md-1">' +
-            '   <input class="form-control" type="number" id="experience_>' + String(count) + '_subords name="experience['+ String(count) + '][subords]">' +
+            '   <input class="form-control" type="number" id="experience_>' + String(count) + '_subords" name="experience['+ String(count) + '][subords]">' +
             '</div>' +
             '';    
         tableBody.appendChild(rowElement);
@@ -183,13 +183,13 @@ function add_experience_table_row(){
             '   <label for="expieience' + String(count) + 'Field">Сфера деятельности</label>' +
             '</div>' +                
             '<div class="form-group col-md-4">' +
-            '   <input class="form-control" type="text" id="experience_>' + String(count) + '_field name="experience['+ String(count) + '][field]">' +
+            '   <input class="form-control" type="text" id="experience_>' + String(count) + '_field" name="experience['+ String(count) + '][field]">' +
             '</div>' +
             '<div class="form-group col-md-2">' +
             '   <label for="expieience' + String(count) + 'Pos">Должность</label>' +
             '</div>' +                
             '<div class="form-group col-md-4">' +
-            '   <input class="form-control" type="text" id="experience_>' + String(count) + '_pos name="experience['+ String(count) + '][pos]">' +
+            '   <input class="form-control" type="text" id="experience_>' + String(count) + '_pos" name="experience['+ String(count) + '][pos]">' +
             '</div>' +
             '';    
         tableBody.appendChild(rowElement);
@@ -201,13 +201,13 @@ function add_experience_table_row(){
             '   <label for="expieience' + String(count) + 'Cond">Зарплата</label>' +
             '</div>' +                
             '<div class="form-group col-md-4">' +
-            '   <input class="form-control" type="text" id="experience_>' + String(count) + '_cond name="experience['+ String(count) + '][cond]">' +
+            '   <input class="form-control" type="text" id="experience_>' + String(count) + '_cond" name="experience['+ String(count) + '][cond]">' +
             '</div>' +
             '<div class="form-group col-md-2">' +
             '   <label for="expieience' + String(count) + 'Dism">Причины увольнения</label>' +
             '</div>' +                
             '<div class="form-group col-md-4">' +
-            '   <input class="form-control" type="text" id="experience_>' + String(count) + '_dism name="experience['+ String(count) + '][dism]">' +
+            '   <input class="form-control" type="text" id="experience_>' + String(count) + '_dism" name="experience['+ String(count) + '][dism]">' +
             '</div>' +
             '';    
         tableBody.appendChild(rowElement);
@@ -216,7 +216,7 @@ function add_experience_table_row(){
         rowElement.classList.add("form-row");
         rowElement.innerHTML = 
             '<label for="expieience' + String(count) + 'Duties">Основные должностные обязанности:</label>' +
-            '<textarea class="form-control" type="text" id="experience_>' + String(count) + '_duties name="experience['+ String(count) + '][duties]"></textarea>' +
+            '<textarea class="form-control" type="text" id="experience_>' + String(count) + '_duties" name="experience['+ String(count) + '][duties]"></textarea>' +
             '<br />';    
         tableBody.appendChild(rowElement);
 
