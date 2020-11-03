@@ -54,7 +54,7 @@ class CandidatesController < ApplicationController
   helpers do
     # Controller
     def new_candidate_params
-      { 
+      {
         guid: SecureRandom.uuid,
         date: Time.new,
         created_at: Time.new,
