@@ -12,6 +12,8 @@ class CandidatesController < ApplicationController
   # new
   get '/candidates/new' do
     @candidate = Candidate.new(new_candidate_params)
+    @last_job_like_dislike_params = last_job_like_dislike_params
+    @work_experience_areas = work_experience_areas
     erb :new
   end
 
@@ -41,7 +43,7 @@ class CandidatesController < ApplicationController
   helpers do
     # Controller
     def new_candidate_params
-      { guid: SecureRandom.uuid, created_at: Time.new }
+      { guid: SecureRandom.uuid, created_at: Time.new, last_job_like_dislike: [], work_experience_areas: [] }
     end
 
     def error(object)
@@ -49,8 +51,8 @@ class CandidatesController < ApplicationController
     end
 
     # fill by params
+    # TODO: need refactoring(we must use: https://mongomapper.com/documentation/plugins/associations.html#many-to-many)
     def add_arrays_to_candidate(candidate, params)
-      tables_names = { 'relatives' => :name, 'education' => :inst, 'extra' => :name, 'language' => :name, 'experience' => :name}
       tables_names.each do |table_name, ver_field|
         arr = []
         params.select { |key| key == table_name }.each_value do |table|
@@ -60,6 +62,44 @@ class CandidatesController < ApplicationController
         end
         candidate[table_name] = arr
       end
+    end
+
+    def tables_names
+      {
+        'relatives' => :name,
+        'education' => :inst,
+        'extra' => :name,
+        'language' => :name,
+        'experience' => :name,
+        'reccomenders' => :name
+      }
+    end
+
+    def last_job_like_dislike_params
+      {
+        'ls' => 'Низкая зарплата',
+        'upct' => 'Неудовлетворительный психологический климат в коллективе',
+        'llbo' => 'Невысокий уровень организации дела',
+        'drvm' => 'Сложные отношения с руководством',
+        'ncp' => 'Нет перспективы должностного роста',
+        'emr' => 'Чрезмерно высокие требования руководства',
+        'ow' => 'Сверхурочная работа',
+        'so' => 'Что-то другое'
+      }
+    end
+
+    def work_experience_areas
+      {
+        'prod' => 'Производство',
+        'serv' => 'Услуги',
+        'whsal' => 'Оптовая торговля',
+        'ret' => 'Розничная торговля',
+        'publ' => 'Издательство',
+        'pc' => 'Общепит',
+        'build' => 'Строительство',
+        'tr' => 'Транспорт',
+        'ent' => 'Индивидуальный предпрениматель'
+      }
     end
 
     # API

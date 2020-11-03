@@ -52,9 +52,9 @@ class Candidate
   field :other_skills_level,           type: String
   field :extra_skills,                 type: String
   field :experience,                   type: Array # {name:'',pos:'',field:'',conds:'',dism:'',period:'',workers:0,subords:0,duties:''}
-  field :reccomenders,                 type: Array # {f_name:'',l_name:'',s_name:'',job:'',pos:'',phone:''}
-  field :last_job_like_dislike,        type: Array # [:LS,:UPCT,:LLBO,:DRWM,:NCP,:EMR,:OW,:SO]
-  field :work_experience_areas,        type: Array # [:SO,:PROD,:SERV,:WHSAL,:RET,:PUBL,:PC,:BUILD,:TR,:ENT]
+  field :reccomenders,                 type: Array # {name:'',job:'',position:'',phone:''}
+  field :last_job_like_dislike,        type: Array # %w[ls upct llbo drwm ncp emr ow so]
+  field :work_experience_areas,        type: Array # %w[so prod serv whsal ret publ pc build tr ent]
   field :work_experience_areas_other,  type: String
   field :hobbies,                      type: String
   field :personality_strengths,        type: String
@@ -88,10 +88,10 @@ class Candidate
   mount_uploader :image, ImageUploader, type: String
 
   validates :guid,
-            :first_name,
-            :last_name,
-            :email,
-            :phone,
+#            :first_name,
+#            :last_name,
+#            :email,
+#            :phone,
             presence: true
 
   index({ guid: 1 }, { unique: true, name: 'guid_index' })

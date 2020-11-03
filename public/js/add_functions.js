@@ -126,9 +126,9 @@ function add_language_table_new_row(){
 
     rowElement = document.createElement("tr");
     rowElement.innerHTML = 
-        '<td><input class="form-control" type="text" id="language_' + String(count-1)                    + '_name" name="language[' + String(count-1) + '][name]"></input></td>' +
-        '<td><input class="form-control" type="number" min="1" max="5" id="language_' + String(count-1)  + '_orally" name="language[' + String(count-1)    + '][orally]"></input></td>'+
-        '<td><input class="form-control" type="number" min="1" max="5" id="language_' + String(count-1)  + '_writing" name="language[' + String(count-1)   + '][writing]"></input></td>';
+        '<td><input class="form-control" type="text" id="language_'                   + String(count-1)  + '_name" name="language['     + String(count-1) + '][name]"></input></td>' +
+        '<td><input class="form-control" type="number" min="1" max="5" id="language_' + String(count-1)  + '_orally" name="language['   + String(count-1) + '][orally]"></input></td>'+
+        '<td><input class="form-control" type="number" min="1" max="5" id="language_' + String(count-1)  + '_writing" name="language['  + String(count-1) + '][writing]"></input></td>';
     
     tableBody.appendChild(rowElement);
 
@@ -222,5 +222,24 @@ function add_experience_table_row(){
 
     }
 
+    return (false)
+}
+
+function add_reccomenders_table_row(){
+    tableBody = document.getElementById("reccomenders_rows");
+    
+    var count = tableBody.childNodes.length;
+
+    rowElement = document.createElement("tr")
+    rowElement.innerHTML = 
+        '<td><input class="form-control" type="text" id="reccomenders_' + String(count-1)  + '_name" name="reccomenders['     + String(count-1)  + '][name]"></input></td>' +
+        '<td><input class="form-control" type="text" id="reccomenders_' + String(count-1)  + '_job" name="reccomenders['      + String(count-1)  + '][job]"></input></td>' +
+        '<td><input class="form-control" type="text" id="reccomenders_' + String(count-1)  + '_position" name="reccomenders[' + String(count-1)  + '][position]"></input></td>' +
+        '<td><input class="form-control" type="text" id="reccomenders_' + String(count-1)  + '_phone"  name="reccomenders['   + String(count-1)  + '][phone]"></input></td>';
+
+    tableBody.appendChild(rowElement);
+        
+    $("#reccomenders_" + String(count-1) + "_phone").mask("+375 (99) 999-99-99");
+    
     return (false)
 }

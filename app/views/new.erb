@@ -363,6 +363,64 @@
 			</div>
 		</div>
 	</div>
+
+	<div class="card">
+		<div class="card-header h5">
+			РЕКОМЕНДАЦИИ РУКОВОДИТЕЛЕЙ
+		</div>
+		<div class="card-body">
+			<div class="bs-example" data-example-id="contextual-table">
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Ф.И.О.</th>
+							<th>Место работы</th>
+							<th>Должность</th>
+							<th>Телефон</th>
+						</tr>
+					</thead>
+					<tbody id="reccomenders_rows">
+						<div class="form-group col-md-2">
+							<button class="btn btn-success btn-sm btn-block" onclick="return add_reccomenders_table_row()">Добавить</button>
+						</div>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="card">
+		<div class="card-header h5">
+			ДОПОЛНИТЕЛЬНАЯ ИНФОРМАЦИЯ
+		</div>
+		<div class="card-body">
+
+			<br />
+			<h6>Отметьте, что Вам не нравилось (не нравится) на Вашем последнем месте  работе:</h6>
+			<br />
+
+			<% @last_job_like_dislike_params.each do |key, value| %>
+				<div class="form-check">
+					<input type="checkbox" class="form-check-input" id=<%= "candidate_last_job_like_dislike_#{key}" %>
+						name="candidate[last_job_like_dislike][]" value = <%= key %> <%='checked' if @candidate.last_job_like_dislike.include?(key) %>>
+					<label class="form-check-label" for="exampleCheck1"><%= value %></label>
+				</div>
+			<% end %>
+
+			<br />
+			<h6>Сферы деятельности, в которых Вы имеете опыт работы:</h6>
+			<br />
+			
+			<% @work_experience_areas.each do |key, value| %>
+				<div class="form-check">
+					<input type="checkbox" class="form-check-input" id=<%= "candidate_work_experience_areas_#{key}" %>
+						name="candidate[work_experience_areas][]" value = <%= key %> <%='checked' if @candidate.work_experience_areas.include?(key) %>>
+					<label class="form-check-label" for="exampleCheck1"><%= value %></label>
+				</div>
+			<% end %>
+		</div>
+	</div>
 	<br>
 		<button type="submit" class="btn btn-success btn-lg btn-block" width="20px">Отправить данные</button>
 	<br>
