@@ -33,6 +33,14 @@ class CandidatesController < ApplicationController
       redirect '/' # "/show/#{@candidate.id}"
     else
       @error = error(@candidate)
+
+      @candidate.last_job_like_dislike = [] if @candidate.last_job_like_dislike.nil?
+      @candidate.work_experience_areas = [] if @candidate.work_experience_areas.nil?
+
+      @last_job_like_dislike_params = last_job_like_dislike_params
+      @work_experience_areas        = work_experience_areas
+      @desired_pay_system           = desired_pay_system
+
       erb :new
     end
   end
@@ -46,7 +54,13 @@ class CandidatesController < ApplicationController
   helpers do
     # Controller
     def new_candidate_params
-      { guid: SecureRandom.uuid, date: Time.new, created_at: Time.new, last_job_like_dislike: [], work_experience_areas: [] }
+      { 
+        guid: SecureRandom.uuid,
+        date: Time.new,
+        created_at: Time.new,
+        last_job_like_dislike: [],
+        work_experience_areas: []
+      }
     end
 
     def error(object)
