@@ -12,8 +12,11 @@ class CandidatesController < ApplicationController
   # new
   get '/candidates/new' do
     @candidate = Candidate.new(new_candidate_params)
+
     @last_job_like_dislike_params = last_job_like_dislike_params
-    @work_experience_areas = work_experience_areas
+    @work_experience_areas        = work_experience_areas
+    @desired_pay_system           = desired_pay_system
+
     erb :new
   end
 
@@ -43,7 +46,7 @@ class CandidatesController < ApplicationController
   helpers do
     # Controller
     def new_candidate_params
-      { guid: SecureRandom.uuid, created_at: Time.new, last_job_like_dislike: [], work_experience_areas: [] }
+      { guid: SecureRandom.uuid, date: Time.new, created_at: Time.new, last_job_like_dislike: [], work_experience_areas: [] }
     end
 
     def error(object)
@@ -98,7 +101,16 @@ class CandidatesController < ApplicationController
         'pc' => 'Общепит',
         'build' => 'Строительство',
         'tr' => 'Транспорт',
-        'ent' => 'Индивидуальный предпрениматель'
+        'ent' => 'Индивидуальный предприниматель'
+      }
+    end
+
+    def desired_pay_system
+      {
+        sal: 'Оклад',
+        salbon: 'Оклад+премия',
+        int: 'Процент',
+        salint: 'Оклад+процент'
       }
     end
 

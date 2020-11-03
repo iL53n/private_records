@@ -63,10 +63,10 @@ class Candidate
   field :work_debufs,                  type: String
   field :trial_period_salaries,        type: Integer
   field :post_trial_salaries,          type: Integer
-  field :SAL,                          type: Boolean
-  field :SALBON,                       type: Boolean
-  field :INT,                          type: Boolean
-  field :SALINT,                       type: Boolean
+  field :sal,                          type: Boolean
+  field :salbon,                       type: Boolean
+  field :int,                          type: Boolean
+  field :salint,                       type: Boolean
   field :additional_income,            type: String
   field :overtime_work,                type: Integer
   field :business_trips,               type: Integer
