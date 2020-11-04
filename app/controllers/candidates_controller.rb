@@ -92,6 +92,7 @@ class CandidatesController < ApplicationController
       }
     end
 
+    # Abbreviations
     def last_job_like_dislike_params
       {
         'ls' => 'Низкая зарплата',
