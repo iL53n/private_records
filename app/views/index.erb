@@ -3,15 +3,18 @@
 <a href="/candidates/new" class="btn btn-primary" role="button" aria-pressed="true">Новый кандидат</a>
 
 <% @candidates.map do |candidate| %>
-  <div class="card">
-    <div class="form-row">
-      <div class="form-group col-md-4">
-          <img class="img-fluid" src= <%="/uploads/#{candidate.image_identifier}" %> /> 
-        </div>
+  <% if candidate %>
+    <div class="card">
+      <div class="form-row">
+        <%if candidate[:image] %>
+          <div class="form-group col-md-4">
+            <img class="img-fluid" src= <%="/uploads/#{candidate.image_identifier}" %> /> 
+          </div>
+        <% end %>
         <div class="form-group col-md-8">
           <%= candidate.to_json %>
         </div>
       </div>
     </div>
-  </div>
+  <% end %>
 <% end %>
