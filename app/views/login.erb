@@ -1,0 +1,23 @@
+<h5>Войдите</h5>
+
+<form action="/login" method="POST" enctype="multipart/form-data">
+    <div class="card">
+        <div class="card-body">
+            <label for="userUsername">Логин</label>
+			<input class="form-control" type="text"      name="user[username]" id="user_username">
+            <label for="userPassword">Пароль</label>
+			<input class="form-control" type="password"  name="user[password]" id="user_password">
+        </div>
+    </div>
+
+    <br>
+    <div class="form-row">
+        <div class="form-group col-md-2">
+		    <button type="submit" class="btn btn-success btn-lg btn-block" width="20px">Войти</button>
+        </div>
+    </div>
+</form>
+
+<form action="/users/new" method="GET" enctype="multipart/form-data">
+    <button type="submit" class="btn btn-success btn btn-light" width="20px">Зарегистироваться</button>
+</form>

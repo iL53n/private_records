@@ -14,6 +14,26 @@
 
   <body>
     <div class="container">
+      <nav class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+          <ul class="nav navbar-nav">
+            <li><a class="navbar-brand" href="/">Анкета кандадата</a></li>
+            <% if user_signed_in? %>
+              <li><a href="/candidates/new" class="btn btn-primary" role="button" aria-pressed="true">Новый кандидат</a></li>
+            <% end %>
+          </ul>
+        </div>
+        <div>
+          <ul class="nav navbar-nav">
+            <% if user_signed_in? %>
+              <li><%= current_user.username %></li> 
+              <li><a href="/logout">Выйти</a></li>
+            <% else %>
+              <li><a href="/login">Войти</a></li>
+            <% end %> 
+          </ul>
+        </div>  
+      </nav>
       <% if @error && @error.length > 0 %>
           <div class="alert alert-danger"><%= @error %></div>
       <% end %>      

@@ -51,7 +51,30 @@ class CandidatesController < ApplicationController
     erb :show
   end
 
+  # User controller class
+  # TODO: move to separate module
+  get '/login' do
+    erb :login
+  end
+
   helpers do
+    # Authentification
+    def current_user
+      USERS.find { |u| u.id == session[:user_id] } if session[:user_id]
+    end
+
+    def user_signed_in?
+      !current_user.nil?
+    end
+
+    def hash_password(password)
+      BCrypt::Password.create(password).to_s
+    end
+
+    def test_password(password, hash)
+      BCrypt::Password.new(hash) == password
+    end
+
     # Controller
     def new_candidate_params
       {
@@ -202,5 +225,12 @@ class CandidatesController < ApplicationController
       candidate&.destroy
       status 204
     end
+  end
+end
+
+# Users Controller class
+class UsersController < ApplicationController
+  get '/candidates/new' do
+
   end
 end
