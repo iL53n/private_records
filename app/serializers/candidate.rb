@@ -5,7 +5,7 @@ class CandidateSerializer
 
   def as_json(*)
     data = {
-      # id: @candidate.id.to_s,
+      # id: @candidates.id.to_s,
       guid: @candidate.guid,
       first_name: @candidate.first_name,
       last_name: @candidate.last_name,

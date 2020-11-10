@@ -1,0 +1,46 @@
+<div class="card">
+  <div class="card-header h5">
+    ОБРАЗОВАНИЕ
+  </div>
+  <div class="card-body">
+    <div class="bs-example" data-example-id="contextual-table">
+      <table class="table">
+        <thead>
+        <tr>
+          <th style="width: 4%">Год поступления</th>
+          <th style="width: 4%">Год окончания</th>
+          <th style="width: 40%">Название учебного заведения</th>
+          <th style="width: 35%">Специальность по диплому</th>
+          <th style="width: 20%">Форма обучения</th>
+        </tr>
+        </thead>
+        <tbody id="education_rows">
+        <div class="form-group col-md-2">
+          <button class="btn btn-success btn-sm btn-block" onclick="return add_education_table_new_row()">Добавить</button>
+        </div>
+        </tbody>
+      </table>
+    </div>
+
+    <br />
+    <h6>Дополнительное образование (специализированные курсы, курсы повышения квалификации)</h6>
+
+    <div class="bs-example" data-example-id="contextual-table">
+      <table class="table">
+        <thead>
+        <tr>
+          <th style="width: 4%">Год обучения</th>
+          <th style="width: 40%">Наименование учебного заведения</th>
+          <th style="width: 40%">Название курса</th>
+          <th style="width: 16%">Продолжительность (месяцев)</th>
+        </tr>
+        </thead>
+        <tbody id="extra_rows">
+        <div class="form-group col-md-2">
+          <button class="btn btn-success btn-sm btn-block" onclick="return add_extra_table_new_row()">Добавить</button>
+        </div>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
