@@ -10,9 +10,6 @@
 <form action="/candidates" method="POST" enctype="multipart/form-data">
 	<!--	https://getbootstrap.com/docs/4.5/components/forms/-->
 	<div class="card" hidden="true">
-	<div class="card-header h5">
-		GUID(autoset in production)
-	</div>
 		<div class="card-body">
 			<input class="form-control" type="text"  name="candidate[guid]" id="candidate_guid" value=<%= @candidate.guid %>>
 			<input class="form-control" type="text"  name="candidate[created_at]" id="candidate_created_at" value=<%= @candidate.created_at %>>
@@ -28,5 +25,4 @@
 	<%= erb :'candidates/_additional_information' %><br>
 
 	<button type="submit" class="btn btn-success btn-lg btn-block" width="20px">Отправить данные</button><br>
-	<!-- ToDo: add footer	-->
 </form>
