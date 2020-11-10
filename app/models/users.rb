@@ -4,10 +4,15 @@
 class User
   include Mongoid::Document
 
-  field :id,       type: Integer
-  field :username, type: String
-  field :password, type: String
+  field :id,              type: Integer
+  field :username,        type: String
+  field :email,           type: String
+  field :password_digest, type: String
+  field :active,          type: Boolean
+  field :is_admin,        type: Boolean
 
   validates :username, presence: true
   validates :username, uniqueness: true
+  validates :email, presence: true
+  validates :email, uniqueness: true
 end

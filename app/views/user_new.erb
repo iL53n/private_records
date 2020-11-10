@@ -1,0 +1,24 @@
+<h5>Регистрация:</h5>
+
+<form action="/users" method="POST" enctype="multipart/form-data">
+    <div class="card">
+        <div class="card-body">
+            <label for="userUsername">Логин</label>
+			<input class="form-control" type="text" name="user[username]" id="user_username">
+            <label for="userEmail">Почта</label>
+			<input class="form-control" type="text" name="user[email]" id="user_email" onblur="validateEmail(this.value)" value=<%= @user.email %>>
+			<div class="alert alert-danger" id="email_error" hidden="true">Не верный адрес электронной почты!</div>
+            <label for="password">Пароль</label>
+			<input class="form-control" type="password" name="password" id="password">
+            <label for="passwordConfirm">Повторите пароль</label>
+			<input class="form-control" type="password" name="password_confirm" id="password_confirm">
+        </div>
+    </div>
+
+    <br>
+    <div class="form-row">
+        <div class="form-group col-md-3">
+		    <button type="submit" class="btn btn-success btn-lg btn-block" width="20px">Зарегистрироватсья</button>
+        </div>
+    </div>
+</form>

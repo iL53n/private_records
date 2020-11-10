@@ -230,7 +230,27 @@ end
 
 # Users Controller class
 class UsersController < ApplicationController
-  get '/candidates/new' do
+  get '/users/new' do
+    @user = User.new({ id: 0, username: '', email: '', password_digest: '', active: false, is_admin: false})
+    erb :user_new
+  end
 
+  helpers do
+    # Authentification
+    def current_user
+      USERS.find { |u| u.id == session[:user_id] } if session[:user_id]
+    end
+
+    def user_signed_in?
+      !current_user.nil?
+    end
+
+    def hash_password(password)
+      BCrypt::Password.create(password).to_s
+    end
+
+    def test_password(password, hash)
+      BCrypt::Password.new(hash) == password
+    end
   end
 end
