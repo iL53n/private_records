@@ -2,7 +2,10 @@
 
 # Candidates controller class
 class CandidatesController < ApplicationController
-  # index
+  require './app/lib/helpers'
+  include Helpers
+  
+    # index
   # TODO: add access restriction
   get '/' do
     @candidates = [Candidate.last] # TODO: Select all candidates in Prod
@@ -11,13 +14,19 @@ class CandidatesController < ApplicationController
 
   # new
   get '/candidates/new' do
-    @candidate = Candidate.new(new_candidate_params)
+    if user_signed_in?
+      @candidate = Candidate.new(new_candidate_params)
 
-    @last_job_like_dislike_params = last_job_like_dislike_params
-    @work_experience_areas        = work_experience_areas
-    @desired_pay_system           = desired_pay_system
+      @last_job_like_dislike_params = last_job_like_dislike_params
+      @work_experience_areas        = work_experience_areas
+      @desired_pay_system           = desired_pay_system
 
-    erb :new
+      erb :new
+    else
+      @error = 'Добавление анкет доступно авторизированным пользователям!'
+      @candidates = [Candidate.last] # TODO: Select all candidates in Prod
+      erb :index
+    end
   end
 
   # create
@@ -58,23 +67,6 @@ class CandidatesController < ApplicationController
   end
 
   helpers do
-    # Authentification
-    def current_user
-      USERS.find { |u| u.id == session[:user_id] } if session[:user_id]
-    end
-
-    def user_signed_in?
-      !current_user.nil?
-    end
-
-    def hash_password(password)
-      BCrypt::Password.create(password).to_s
-    end
-
-    def test_password(password, hash)
-      BCrypt::Password.new(hash) == password
-    end
-
     # Controller
     def new_candidate_params
       {
@@ -151,31 +143,6 @@ class CandidatesController < ApplicationController
         salint: 'Оклад+процент'
       }
     end
-
-    # API
-    def base_url
-      url_scheme = request.env['rack.url_scheme']
-      http_host = request.env['HTTP_HOST']
-      @base_url ||= "#{url_scheme}://#{http_host}"
-    end
-
-    def json_params
-      JSON.parse(request.body.read)
-    rescue StandardError => e
-      halt(400, { message: 'Invalid JSON' }.to_json)
-    end
-
-    def candidate
-      @candidate ||= Candidate.where(guid: params[:guid]).first
-    end
-
-    def candidate_not_found!
-      halt(404, { message: 'Кандидата с таким GUID не существует!' }.to_json) unless candidate
-    end
-
-    def serialize(candidate)
-      CandidateSerializer.new(candidate).to_json
-    end
   end
 
   ####### API v1 #######
@@ -225,16 +192,5 @@ class CandidatesController < ApplicationController
       candidate&.destroy
       status 204
     end
-  end
-end
-
-# Users Controller class
-class UsersController < ApplicationController
-  require './app/lib/helpers'
-  include Helpers
-
-  get '/users/new' do
-    @user = User.new({ id: 0, username: '', email: '', password_digest: '', active: false, is_admin: false })
-    erb :user_new
   end
 end
