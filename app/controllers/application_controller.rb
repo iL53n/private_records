@@ -8,6 +8,8 @@ class ApplicationController < Sinatra::Base
   enable :sessions
 
   configure do
+    require './app/lib/helpers'
+
     set :views, 'app/views'
     set :public_folder, '/public'
   end
