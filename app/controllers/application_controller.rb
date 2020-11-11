@@ -5,7 +5,12 @@ class ApplicationController < Sinatra::Base
   register Sinatra::Namespace
 
   enable :inline_templates
-  enable :sessions
+  # enable :sessions
+  use Rack::Session::Cookie, {
+    key: 'rack.session',
+    path: '/',
+    secret: 'your_secret'
+  }
 
   configure do
     require './app/lib/helpers'

@@ -4,7 +4,6 @@
 class User
   include Mongoid::Document
 
-  field :id,              type: Integer
   field :username,        type: String
   field :email,           type: String
   field :password_digest, type: String

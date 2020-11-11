@@ -7,12 +7,17 @@ class CandidatesController < ApplicationController
   # index
   # TODO: add access restriction
   get '/' do
-    @candidates = [Candidate.last] # TODO: Select all candidates in Prod
-    erb :index
+    if user_signed_in?
+      @candidates = [Candidate.last] # TODO: Select all candidates in Prod
+      erb :index
+    else
+      erb :login
+    end
   end
 
   # new
   get '/candidates/new' do
+    puts session[:user_id]
     if user_signed_in?
       @candidate = Candidate.new(new_candidate_params)
 
@@ -23,8 +28,7 @@ class CandidatesController < ApplicationController
       erb :new
     else
       @error = 'Добавление анкет доступно авторизированным пользователям!'
-      @candidates = [Candidate.last] # TODO: Select all candidates in Prod
-      erb :index
+      erb :login
     end
   end
 

@@ -4,7 +4,7 @@
 module Helpers
   # Authentification
   def current_user
-    Users.find { |u| u.id == session[:user_id] } if session[:user_id]
+    User.find(session[:user_id]) if session[:user_id]
   end
 
   def user_signed_in?
