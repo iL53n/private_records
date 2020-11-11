@@ -5,7 +5,6 @@ class CandidatesController < ApplicationController
   include Helpers
 
   # index
-  # TODO: add access restriction
   get '/' do
     if user_signed_in?
       @candidates = [Candidate.last] # TODO: Select all candidates in Prod
@@ -32,6 +31,24 @@ class CandidatesController < ApplicationController
     end
   end
 
+  # edit
+  get '/candidates/:guid' do
+    @candidate = Candidate.where(guid: params[:guid]).first
+
+    if @candidate
+      @last_job_like_dislike_params = last_job_like_dislike_params
+      @work_experience_areas        = work_experience_areas
+      @desired_pay_system           = desired_pay_system
+
+      @candidate.last_job_like_dislike = [] if @candidate.last_job_like_dislike.nil?
+      @candidate.work_experience_areas = [] if @candidate.work_experience_areas.nil?
+
+      erb :edit
+    else
+      erb '<h5>Не найдена анкета или срок жизни истек</h5>'
+    end
+  end
+
   # create
   post '/candidates' do
     @candidate = Candidate.new(params[:candidate])
@@ -42,7 +59,8 @@ class CandidatesController < ApplicationController
     puts params
 
     if @candidate.save
-      redirect '/' # "/show/#{@candidates.id}"
+      erb :mailto
+      # redirect "/show/#{@candidates.id}"
     else
       @error = error(@candidate)
 
