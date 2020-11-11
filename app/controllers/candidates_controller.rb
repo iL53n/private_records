@@ -39,7 +39,7 @@ class CandidatesController < ApplicationController
     puts params
 
     if @candidate.save
-      redirect '/' # "/show/#{@candidate.id}"
+      redirect '/' # "/show/#{@candidates.id}"
     else
       @error = error(@candidate)
 
@@ -54,7 +54,7 @@ class CandidatesController < ApplicationController
     end
   end
 
-  # show --> view after add new candidate's data
+  # show --> view after add new candidates's data
   get '/show/:id' do
     @candidate = Candidate.find(params[:id])
     erb :show
