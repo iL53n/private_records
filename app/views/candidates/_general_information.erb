@@ -1,0 +1,174 @@
+<div class="card">
+  <div class="card-header h5">
+    ОБЩИЕ СВЕДЕНИЯ
+  </div>
+  <div class="card-body">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputFirstname">Фамилия</label>
+        <input class="form-control" type="text" name="candidate[first_name]" id="candidate_first_name" value=<%= @candidate.first_name %>>
+        <label for="inputLastname">Имя</label>
+        <input class="form-control" type="text" name="candidate[last_name]" id="candidate_last_name" value=<%= @candidate.last_name %>>
+        <label for="inputSurname">Отчество</label>
+        <input class="form-control" type="text" name="candidate[sur_name]" id="candidate_sur_name" value=<%= @candidate.sur_name %>>
+        <label for="InputPhone">Телефон</label>
+        <input class="form-control" type="text" name="candidate[phone]" id="candidate_phone" value=<%= @candidate.phone %>>
+        <label for="InputPhone">E-mail</label>
+        <input class="form-control" type="text" name="candidate[email]" id="candidate_email" onblur="validateEmail(this.value)" value=<%= @candidate.email %>>
+        <div class="alert alert-danger" id="email_error" hidden="true">Не верный адрес электронной почты!</div>
+      </div>
+
+      <div class="form-group col-md-4">
+        <div class="form-row">
+          <label for="inputImage">Загрузите фотографию...</label>
+        </div>
+        <div class="form-row">
+          <input type="file" name="image" id="image" accept=".jpg, .jpeg, .png" onchange="handleFiles(this.files)">
+        </div>
+        <div id="preview">
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputDate">Дата рождения</label>
+        <input class="form-control" type="date" name="candidate[date]" id="candidate_date" value=<%= @candidate.date %>>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="inputCity">Место рождения</label>
+        <input class="form-control" type="text" name="candidate[city]" id="candidate_city" value=<%= @candidate.city %>>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="inputMaritalStatus">Семеной положение</label>
+        <select class="form-control" id="inputMaritalStatus" name="candidate[material_status]" id="candidate_material_status" value=<%= @candidate.material_status %>>
+          <option>Не замужем, не женат</option>
+          <option>Замужем, женат</option>
+          <option>Разведён, разведена</option>
+          <option>Вдова, вдовец</option>
+        </select>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="inputLivingConditions">Жилищные условия</label>
+        <select class="form-control" id="inputMaritalStatus" name="candidate[conditions]" id="candidate_conditions" value=<%= @candidate.conditions %>>
+          <option>Аренда</option>
+          <option>В собственности</option>
+          <option>С родственниками</option>
+        </select>
+      </div>
+    </div>
+    <label for="inputChildren" hidden="true">Наличие и возраст детей</label>
+    <input class="form-control" hidden="true" type="textarea" name="children" id="children" value=><br>
+
+    <h6>Паспортные данные</h6>
+
+    <div class="form-row">
+      <div class="form-group col-md-1">
+        <label for="inputPassportSerial">Серия</label>
+        <input class="form-control" type="text" name="candidate[passport_serial]" id="candidate_passport_serial" value=<%= @candidate.passport_serial %>>
+      </div>
+      <div class="form-group col-md-4">
+        <label for="inputPassportNumber">Номер</label>
+        <input class="form-control" type="text" name="candidate[passport_number]" id="candidate_passport_number" value=<%= @candidate.passport_number %>>
+      </div>
+      <div class="form-group col-md-7">
+        <label for="inputPassportNationality">Гражданство</label>
+        <input class="form-control" type="text" name="candidate[nationality]" id="candidate_nationality" value=<%= @candidate.nationality %>>
+      </div>
+      <div class="form-group col-md-12">
+        <label for="inputPrivateNumber">Идентификационный(личный) номер</label>
+        <input class="form-control" type="text" name="candidate[private_number]" id="candidate_private_number" value=<%= @candidate.private_number %>>
+      </div>
+      <div class="form-group col-md-9">
+        <label for="inputPassportDep">Наименование органа, выдавшего паспорт</label>
+        <input class="form-control" type="text" name="candidate[passport_dep]" id="candidate_passport_dep" value=<%= @candidate.passport_dep %>>
+      </div>
+      <div class="form-group col-md-3">
+        <label for="inputPassportDate">Дата выдачи</label>
+        <input class="form-control" type="date" name="candidate[passport_date]" id="candidate_passport_date" value=<%= @candidate.passport_date %>>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-12">
+        <div class="form-row">
+          <div class="form-group col-md-2">
+            <label>Адрес регистрации</label>
+          </div>
+          <div class="form-group col-md-2">
+            <input class="form-control" type="text" name="candidate[registration_city]" id="candidate_registration_city" placeholder="Город" value=<%= @candidate.registration_city%>>
+          </div>
+          <div class="form-group col-md-3">
+            <input class="form-control" type="text" name="candidate[registration_street]" id="candidate_registration_street" placeholder="Улица" value=<%= @candidate.registration_street%>>
+          </div>
+          <div class="form-group col-md-2">
+            <input class="form-control" type="text" name="candidate[registration_house]" id="candidate_registration_house" placeholder="Дом" value=<%= @candidate.registration_house%>>
+          </div>
+          <div class="form-group col-md-2">
+            <input class="form-control" type="text" name="candidate[registration_apartment]" id="candidate_registration_apartment" placeholder="Квартира" value=<%= @candidate.registration_apartment%>>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-2">
+            <label>Адрес проживания</label>
+          </div>
+          <div class="form-group col-md-2">
+            <input class="form-control" type="text" name="candidate[residence_city]" id="candidate_residence_city" placeholder="Город" value=<%= @candidate.residence_city%>>
+          </div>
+          <div class="form-group col-md-3">
+            <input class="form-control" type="text" name="candidate[residence_street]" id="candidate_residence_street" placeholder="Улица" value=<%= @candidate.residence_street%>>
+          </div>
+          <div class="form-group col-md-2">
+            <input class="form-control" type="text" name="candidate[residence_house]" id="candidate_rresidence_house" placeholder="Дом" value=<%= @candidate.residence_house%>>
+          </div>
+          <div class="form-group col-md-2">
+            <input class="form-control" type="text" name="candidate[residence_apartment]" id="candidate_residence_apartment" placeholder="Квартира" value=<%= @candidate.residence_apartment%>>
+          </div>
+          <div class="form-group col-md-1">
+            <button class="btn btn-success btn-sm btn-block" onclick="return fill_residence_adr()">Заполн.</button>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-2">
+            <label>Сведения о воинском учете</label>
+          </div>
+          <div class="form-group col-md-10">
+            <input class="form-control" type="text" name="candidate[military_registration]" id="candidate_military_registration" value=<%= @candidate.military_registration%>>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h6>Близкие родственники (жена, муж, отец, мать, братья, сестры, дети)</h6>
+
+    <div class="bs-example" data-example-id="contextual-table">
+      <table class="table">
+        <thead>
+        <tr>
+          <th style="width: 10%">Степень родства</th>
+          <th style="width: 30%">Фамилия, Имя, Отчетство</th>
+          <th style="width: 20%">Год, место рождения</th>
+          <th style="width: 20%">Место работы, должность</th>
+          <th style="width: 20%">Адрес места жительства</th>
+        </tr>
+        </thead>
+        <tbody id="relatives_rows">
+        <div class="form-group col-md-2">
+          <button class="btn btn-success btn-sm btn-block" onclick="return add_relatives_table_new_row()">Добавить</button>
+        </div>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="form-row">
+      <label for="inputDriversLicense">Наличие водительского удостоверения, стаж вождения</label>
+      <input class="form-control" type="text" name="candidate[drivers_license]" id="candidate_drivers_license" value=<%= @candidate.drivers_license %>>
+      <label for="inputHavingACar">Наличие автомобиля (марка)</label>
+      <input class="form-control" type="text" name="candidate[having_a_car]" id="candidate_having_a_car" value=<%= @candidate.having_a_car %>>
+      <label for="inputPoliticalMembership">Принадлежность к политическим партиям, общественным объединениям  и т.п. (если да, то указать к каким именно)</label>
+      <input class="form-control" type="text" name="candidate[political_membership]" id="candidate_political_membership" value=<%= @candidate.political_membership %>>
+      <label for="inputConviction">Судимости, административные взыскания</label>
+      <input class="form-control" type="text" name="candidate[conviction]" id="candidate_conviction" value=<%= @candidate.conviction %>>
+    </div>
+  </div>
+</div>
