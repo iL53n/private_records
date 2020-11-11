@@ -56,8 +56,6 @@ class CandidatesController < ApplicationController
 
     add_arrays_to_candidate(@candidate, params)
 
-    puts params
-
     if @candidate.save
       erb :mailto
       # redirect "/show/#{@candidates.id}"
@@ -72,6 +70,28 @@ class CandidatesController < ApplicationController
       @desired_pay_system           = desired_pay_system
 
       erb :new
+    end
+  end
+
+  # update
+  post '/candidates/:guid' do
+    erb '<h5>Не верный запрос!</h5>' unless params[:_method] && params[:_method] == 'patch'
+
+    @candidate = Candidate.where(guid: params[:guid]).first
+    @candidate.update(params[:candidate])
+    if @candidate.save
+      erb '<h5>Спасибо, что заполнили анкету!</h5>'
+    else
+      @error = error(@candidate)
+
+      @candidate.last_job_like_dislike = [] if @candidate.last_job_like_dislike.nil?
+      @candidate.work_experience_areas = [] if @candidate.work_experience_areas.nil?
+
+      @last_job_like_dislike_params = last_job_like_dislike_params
+      @work_experience_areas        = work_experience_areas
+      @desired_pay_system           = desired_pay_system
+
+      erb :edit
     end
   end
 
