@@ -40,20 +40,20 @@
         <input class="form-control" type="text" name="candidate[city]" id="candidate_city" value="<%= @candidate.city %>">
       </div>
       <div class="form-group col-md-6">
-        <label for="inputMaritalStatus">Семеной положение</label>
-        <select class="form-control" id="inputMaritalStatus" name="candidate[material_status]" id="candidate_material_status" value="<%= @candidate.material_status %>">
-          <option>Не замужем, не женат</option>
-          <option>Замужем, женат</option>
-          <option>Разведён, разведена</option>
-          <option>Вдова, вдовец</option>
+        <label for="candidateMaterialStatus">Семеной положение</label>
+        <select class="form-control" name="candidate[material_status]" id="candidate_material_status" value="<%= @candidate.material_status %>">
+          <option <%= "selected" if @candidate[:material_status] && @candidate.material_status == "Не замужем, не женат" %>>Не замужем, не женат</option>
+          <option <%= "selected" if @candidate[:material_status] && @candidate.material_status == "Замужем, женат" %>>Замужем, женат</option>
+          <option <%= "selected" if @candidate[:material_status] && @candidate.material_status == "Разведён, разведена" %>>Разведён, разведена</option>
+          <option <%= "selected" if @candidate[:material_status] && @candidate.material_status == "Вдова, вдовец" %>>Вдова, вдовец</option>
         </select>
       </div>
       <div class="form-group col-md-6">
-        <label for="inputLivingConditions">Жилищные условия</label>
-        <select class="form-control" id="inputMaritalStatus" name="candidate[conditions]" id="candidate_conditions" value="<%= @candidate.conditions %>">
-          <option>Аренда</option>
-          <option>В собственности</option>
-          <option>С родственниками</option>
+        <label for="candidateConditions">Жилищные условия</label>
+        <select class="form-control" name="candidate[conditions]" id="candidate_conditions" value="<%= @candidate.conditions %>">
+          <option <%= "selected" if @candidate[:conditions] && @candidate.conditions == "Аренда" %>>Аренда</option>
+          <option <%= "selected" if @candidate[:conditions] && @candidate.conditions == "В собственности" %>>В собственности</option>
+          <option <%= "selected" if @candidate[:conditions] && @candidate.conditions == "С родственниками" %>>С родственниками</option>
         </select>
       </div>
     </div>
