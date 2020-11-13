@@ -20,12 +20,13 @@
 
       <div class="form-group col-md-4">
         <div class="form-row">
-          <label for="inputImage">Загрузите фотографию...</label>
+          <label for="inputImage" <%= "hidden" if @candidate.image_identifier %>>Загрузите фотографию...</label>
         </div>
         <div class="form-row">
-          <input type="file" name="image" id="image" accept=".jpg, .jpeg, .png" onchange="handleFiles(this.files)">
+          <input type="file" name="image" id="image" accept=".jpg, .jpeg, .png" onchange="handleFiles(this.files)" <%= "hidden" if @candidate.image_identifier %>>
         </div>
         <div id="preview">
+          <img class="img-fluid" style="max-width:300px" src= "<%="/uploads/#{@candidate.image_identifier}" %>" <%= "hidden" unless @candidate.image_identifier %>/>
         </div>
       </div>
     </div>

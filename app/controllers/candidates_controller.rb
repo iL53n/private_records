@@ -40,7 +40,7 @@ class CandidatesController < ApplicationController
   # create
   post '/candidates' do
     @candidate = Candidate.new(params[:candidate])
-    @candidate.image = params[:image]
+    @candidate.image = params[:image] if !candidate[:image_identifier] && params[:image]
 
     add_arrays_to_candidate(@candidate, params)
 
@@ -58,7 +58,7 @@ class CandidatesController < ApplicationController
 
     @candidate = Candidate.where(guid: params[:guid]).first
     @candidate.update(params[:candidate])
-    @candidate.image = params[:image]
+    @candidate.image = params[:image] if !candidate[:image_identifier] && params[:image]
 
     add_arrays_to_candidate(@candidate, params)
 

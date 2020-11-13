@@ -75,6 +75,8 @@ module Helpers
     @work_experience_areas        = work_experience_areas
     @desired_pay_system           = desired_pay_system
 
+    @image = @candidate.image
+
     erb page_id
   end
 

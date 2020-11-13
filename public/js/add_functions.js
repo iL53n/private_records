@@ -4,9 +4,7 @@
 function handleFiles(files) {    
     var preview = document.getElementById("preview");
 
-    for (n = 0; n < preview.childNodes.length; n++) {
-        preview.removeChild(preview.childNodes[n]);
-    }
+    preview.innerHTML = ""
     
     for (var i = 0; i < files.length; i++) {
         var file = files[i];
