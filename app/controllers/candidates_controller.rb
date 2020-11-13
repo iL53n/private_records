@@ -19,7 +19,7 @@ class CandidatesController < ApplicationController
     puts session[:user_id]
     if user_signed_in?
       @candidate = Candidate.new(new_candidate_params)
-      open_candidate_form(@candidate, :new)
+      open_candidate_form(@candidate, :new, false)
     else
       @error = 'Добавление анкет доступно авторизированным пользователям!'
       erb :login
@@ -31,7 +31,7 @@ class CandidatesController < ApplicationController
     @candidate = Candidate.where(guid: params[:guid]).first
 
     if @candidate
-      open_candidate_form(@candidate, :edit)
+      open_candidate_form(@candidate, :edit, false)
     else
       erb '<h5>Не найдена анкета или срок жизни истек</h5>'
     end
@@ -48,7 +48,7 @@ class CandidatesController < ApplicationController
       erb :mailto
       # redirect "/show/#{@candidates.id}"
     else
-      open_candidate_form(@candidate, :new)
+      open_candidate_form(@candidate, :new, true)
     end
   end
 
@@ -65,7 +65,7 @@ class CandidatesController < ApplicationController
     if @candidate.save
       erb '<h5>Спасибо, что заполнили анкету!</h5>'
     else
-      open_candidate_form(@candidate, :edit)
+      open_candidate_form(@candidate, :edit, true)
     end
   end
 

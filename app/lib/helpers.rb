@@ -64,7 +64,7 @@ module Helpers
   end
 
   # Form-s helpers
-  def open_candidate_form(candidate, page_id, is_error: false)
+  def open_candidate_form(candidate, page_id, is_error)
     @candidate = candidate
     @error = error(@candidate) if is_error
 
