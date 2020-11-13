@@ -92,6 +92,8 @@ class Candidate
             :last_name,
             :email,
             :phone,
+            :date,
+            :position,
             presence: true
 
   index({ guid: 1 }, { unique: true, name: 'guid_index' })

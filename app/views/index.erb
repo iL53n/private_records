@@ -10,7 +10,8 @@
           </div>
         <% end %>
         <div class="form-group col-md-8">
-          <%= candidate.to_json %>
+          <% @candidate = candidate %>
+          <%= erb :'candidates/_candidate_info' %>
         </div>
       </div>
     </div>

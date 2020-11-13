@@ -63,6 +63,21 @@ module Helpers
     end
   end
 
+  # Form-s helpers
+  def open_candidate_form(candidate, page_id, is_error: false)
+    @candidate = candidate
+    @error = error(@candidate) if is_error
+
+    @candidate.last_job_like_dislike = [] if @candidate.last_job_like_dislike.nil?
+    @candidate.work_experience_areas = [] if @candidate.work_experience_areas.nil?
+
+    @last_job_like_dislike_params = last_job_like_dislike_params
+    @work_experience_areas        = work_experience_areas
+    @desired_pay_system           = desired_pay_system
+
+    erb page_id
+  end
+
   def tables_names
     {
       'relatives' => :name,

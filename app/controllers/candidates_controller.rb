@@ -19,12 +19,7 @@ class CandidatesController < ApplicationController
     puts session[:user_id]
     if user_signed_in?
       @candidate = Candidate.new(new_candidate_params)
-
-      @last_job_like_dislike_params = last_job_like_dislike_params
-      @work_experience_areas        = work_experience_areas
-      @desired_pay_system           = desired_pay_system
-
-      erb :new
+      open_candidate_form(@candidate, :new)
     else
       @error = 'Добавление анкет доступно авторизированным пользователям!'
       erb :login
@@ -36,14 +31,7 @@ class CandidatesController < ApplicationController
     @candidate = Candidate.where(guid: params[:guid]).first
 
     if @candidate
-      @last_job_like_dislike_params = last_job_like_dislike_params
-      @work_experience_areas        = work_experience_areas
-      @desired_pay_system           = desired_pay_system
-
-      @candidate.last_job_like_dislike = [] if @candidate.last_job_like_dislike.nil?
-      @candidate.work_experience_areas = [] if @candidate.work_experience_areas.nil?
-
-      erb :edit
+      open_candidate_form(@candidate, :edit)
     else
       erb '<h5>Не найдена анкета или срок жизни истек</h5>'
     end
@@ -60,16 +48,7 @@ class CandidatesController < ApplicationController
       erb :mailto
       # redirect "/show/#{@candidates.id}"
     else
-      @error = error(@candidate)
-
-      @candidate.last_job_like_dislike = [] if @candidate.last_job_like_dislike.nil?
-      @candidate.work_experience_areas = [] if @candidate.work_experience_areas.nil?
-
-      @last_job_like_dislike_params = last_job_like_dislike_params
-      @work_experience_areas        = work_experience_areas
-      @desired_pay_system           = desired_pay_system
-
-      erb :new
+      open_candidate_form(@candidate, :new)
     end
   end
 
@@ -79,19 +58,14 @@ class CandidatesController < ApplicationController
 
     @candidate = Candidate.where(guid: params[:guid]).first
     @candidate.update(params[:candidate])
+    @candidate.image = params[:image]
+
+    add_arrays_to_candidate(@candidate, params)
+
     if @candidate.save
       erb '<h5>Спасибо, что заполнили анкету!</h5>'
     else
-      @error = error(@candidate)
-
-      @candidate.last_job_like_dislike = [] if @candidate.last_job_like_dislike.nil?
-      @candidate.work_experience_areas = [] if @candidate.work_experience_areas.nil?
-
-      @last_job_like_dislike_params = last_job_like_dislike_params
-      @work_experience_areas        = work_experience_areas
-      @desired_pay_system           = desired_pay_system
-
-      erb :edit
+      open_candidate_form(@candidate, :edit)
     end
   end
 
@@ -106,7 +80,6 @@ class CandidatesController < ApplicationController
     def new_candidate_params
       {
         guid: SecureRandom.uuid,
-        date: Time.new,
         created_at: Time.new,
         last_job_like_dislike: [],
         work_experience_areas: []

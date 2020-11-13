@@ -1,0 +1,14 @@
+<h5><%= candidate.position %></h5>
+<br />
+<label>Фамилия: </label> <%= candidate.first_name %><br />
+<label>Имя: </label> <%= candidate.last_name %><br />
+<label>Отчество: </label> <%= candidate.sur_name %><br />
+<br />
+<label>Дата рождения: </label> <%= candidate.date %><br />
+<br />
+<label>Телефон: </label> <%= candidate.phone %><br />
+<label>E-mail: </label> <%= candidate.email %><br />
+
+<a href="<%= "/candidates/#{@candidate.guid}" %>">Перейти</a>
+
+
