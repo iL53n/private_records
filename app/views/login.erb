@@ -1,23 +1,27 @@
-<h5>Войдите</h5>
+<div class="container d-flex flex-column align-items-center">
+  <br><img src="/img/logo.png" class="rounded mx-auto d-block" alt="EKT group" width="100">
+  <h1 class='display-4'>Вход</h1>
+  <blockquote class="blockquote">
+    <p class="mb-0">для администраторов</p>
+  </blockquote>
 
-<form action="/login" method="POST" enctype="multipart/form-data">
+  <form action="/login" method="POST" enctype="multipart/form-data">
     <div class="card">
-        <div class="card-body">
-            <label for="username">Логин</label>
-			<input class="form-control" type="text"      name="username" id="username">
-            <label for="password">Пароль</label>
-			<input class="form-control" type="password"  name="password" id="password">
-        </div>
+      <div class="card-body">
+        <label for="username">Логин</label>
+        <input class="form-control" type="text"      name="username" id="username">
+        <label for="password">Пароль</label>
+        <input class="form-control" type="password"  name="password" id="password">
+      </div>
     </div>
 
-    <br>
-    <div class="form-row">
-        <div class="form-group col-md-2">
-		    <button type="submit" class="btn btn-success btn-lg btn-block" width="20px">Войти</button>
-        </div>
+    <div class="actions">
+      <br><button type="submit" class="btn btn-success btn-lg btn-block" width="20px">Войти</button>
     </div>
-</form>
-
-<form action="/users/new" method="GET" enctype="multipart/form-data">
-    <button type="submit" class="btn btn-success btn btn-light" width="20px">Зарегистироваться</button>
-</form>
+    <div class="actions">
+      <form action="/users/new" method="GET" enctype="multipart/form-data">
+        <button type="submit" class="btn btn-block btn-link">Зарегистироваться</button>
+      </form>
+    </div>
+  </form>
+</div>
