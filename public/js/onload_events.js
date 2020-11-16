@@ -10,4 +10,7 @@ $(function(){
     if (imageElement && imageElement.files.length > 0){
         handleFiles(imageElement.files)
     }
+
+    contentElement = document.getElementById('relatives_content')
+    if (contentElement){ fill_relatives_content(contentElement) }  
 });  

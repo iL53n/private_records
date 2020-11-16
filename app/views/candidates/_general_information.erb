@@ -143,6 +143,7 @@
     <h6>Близкие родственники (жена, муж, отец, мать, братья, сестры, дети)</h6>
 
     <div class="bs-example" data-example-id="contextual-table">
+      <div class="table_content" id="relatives_content" hidden><%= @candidate[:relatives].to_json %></div>
       <table class="table">
         <thead>
         <tr>
@@ -155,21 +156,8 @@
         </thead>
         <tbody id="relatives_rows">
           <div class="form-group col-md-2">
-            <button class="btn btn-success btn-sm btn-block" <%= "hidden" if @candidate[:relatives] %> onclick="return add_relatives_table_new_row()">Добавить</button>
+            <button class="btn btn-success btn-sm btn-block" onclick="return add_relatives_table_new_row()">Добавить</button>
           </div>
-          <% if @candidate[:relatives] %>
-            <% row_number = 0 %>
-            <% @candidate[:relatives].each do |row| %>
-              <tr>
-                <td <%= "id=\"relatives_#{row_number}_type\" name=\"relatives['#{row_number}'][type]\""%>><%= row[:type] %></td>
-                <td <%= "id=\"relatives_#{row_number}_name\" name=\"relatives['#{row_number}'][name]\""%>><%= row[:name] %></td>
-                <td <%= "id=\"relatives_#{row_number}_date\" name=\"relatives['#{row_number}'][date]\""%>><%= row[:date] %></td>
-                <td <%= "id=\"relatives_#{row_number}_job\" name=\"relatives['#{row_number}'][job]\""%>><%= row[:job] %></td>
-                <td <%= "id=\"relatives_#{row_number}_adr\" name=\"relatives['#{row_number}'][adr]\""%>><%= row[:adr] %></td>
-              </tr>
-              <% row_number += row_number %>
-            <% end %>
-          <% end %>
         </tbody>
       </table>
     </div>
