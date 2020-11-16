@@ -6,7 +6,7 @@ class CandidatesController < ApplicationController
 
   # index
   get '/' do
-    @candidates = Candidate.all
+    @candidates = Candidate.all # ToDo: don't use `all` in production
     erb :index
 
     # if user_signed_in?
@@ -19,33 +19,37 @@ class CandidatesController < ApplicationController
 
   # new
   get '/candidates/new' do
-    puts session[:user_id]
-    if user_signed_in?
-      @candidate = Candidate.new(new_candidate_params)
-      open_candidate_form(@candidate, :new, false)
-    else
-      @error = 'Добавление анкет доступно авторизированным пользователям!'
-      erb :login
-    end
+    @candidate = Candidate.new(new_candidate_params)
+    erb :new
+
+    # if user_signed_in?
+    #   @candidate = Candidate.new(new_candidate_params)
+    #   open_candidate_form(@candidate, :new, false)
+    # else
+    #   @error = 'Добавление анкет доступно авторизированным пользователям!'
+    #   erb :login
+    # end
   end
 
   # edit
-  get '/candidates/:guid' do
-    @candidate = Candidate.where(guid: params[:guid]).first
+  get '/candidates/:guid/edit' do
+    # @candidate = Candidate.where(guid: params[:guid]).first
+    candidate
+    erb :edit
 
-    if @candidate
-      open_candidate_form(@candidate, :edit, false)
-    else
-      erb '<h5>Не найдена анкета или срок жизни истек</h5>'
-    end
+    # if @candidate
+    #   open_candidate_form(@candidate, :edit, false)
+    # else
+    #   erb '<h5>Не найдена анкета или срок жизни истек</h5>'
+    # end
   end
 
   # create
   post '/candidates' do
     @candidate = Candidate.new(params[:candidate])
-    @candidate.image = params[:image] if !candidate[:image_identifier] && params[:image]
+    # @candidate.image = params[:image] if !candidate[:image_identifier] && params[:image]
 
-    add_arrays_to_candidate(@candidate, params)
+    # add_arrays_to_candidate(@candidate, params)
 
     if @candidate.save
       erb :mailto
@@ -84,8 +88,8 @@ class CandidatesController < ApplicationController
       {
         guid: SecureRandom.uuid,
         created_at: Time.new,
-        last_job_like_dislike: [],
-        work_experience_areas: []
+        # last_job_like_dislike: [],
+        # work_experience_areas: []
       }
     end
   end

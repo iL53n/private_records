@@ -1,23 +1,21 @@
 <h1></h1>
 <div class="jumbotron">
-	<img src="/img/logo.png" class="rounded mx-auto d-block" alt="EKT group" width="100">
 	<div class="container d-flex flex-column align-items-center">
-		<h4 class="display-4">АНКЕТА КАНДИДАТА</h4>
-		<p class="lead">№ <%= @candidate.guid %></p>
+		<h4 class="display-4">Новый кандидат</h4>
 	</div>
 </div>
 
 <form action="/candidates" method="POST" enctype="multipart/form-data">
-	<!--	https://getbootstrap.com/docs/4.5/components/forms/-->
-	<div class="card" hidden="true">
+	<div class="card">
 		<div class="card-body">
-			<input class="form-control" type="text"  name="candidate[guid]" id="candidate_guid" value=<%= @candidate.guid %>>
-			<input class="form-control" type="text"  name="candidate[created_at]" id="candidate_created_at" value=<%= @candidate.created_at %>>
+			<label for="inputFirstname">Дата/время создания:</label>
+			<input disabled class="form-control" type="text"  name="candidate[created_at]" id="candidate_created_at" value=<%= @candidate.created_at %>>
+			<label for="inputFirstname">Будет присвоин GUID:</label>
+			<input disabled class="form-control" type="text"  name="candidate[guid]" id="candidate_guid" value=<%= @candidate.guid %>>
 		</div>
-	</div>
+	</div><br>
 
 	<%= erb :'candidates/_position' %><br>
 	<%= erb :'candidates/_general_information_min' %><br>
-
-	<button type="submit" class="btn btn-success btn-lg btn-block" width="20px">Отправить данные</button><br>
+	<button type="submit" class="btn btn-success btn-lg btn-block" width="20px">Создать</button><br>
 </form>
