@@ -71,13 +71,18 @@ module Helpers
     @candidate.last_job_like_dislike = [] if @candidate.last_job_like_dislike.nil?
     @candidate.work_experience_areas = [] if @candidate.work_experience_areas.nil?
 
-    @last_job_like_dislike_params = last_job_like_dislike_params
-    @work_experience_areas        = work_experience_areas
-    @desired_pay_system           = desired_pay_system
+    intitalise_form_variables
 
     @image = @candidate.image
 
     erb page_id
+  end
+
+  def intitalise_form_variables
+    @last_job_like_dislike_params = last_job_like_dislike_params
+    @work_experience_areas        = work_experience_areas
+    @desired_pay_system           = desired_pay_system
+    @tables_names                 = tables_names
   end
 
   def tables_names

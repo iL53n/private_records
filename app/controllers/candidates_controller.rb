@@ -44,6 +44,8 @@ class CandidatesController < ApplicationController
 
     add_arrays_to_candidate(@candidate, params)
 
+    puts params
+
     if @candidate.save
       erb :mailto
       # redirect "/show/#{@candidates.id}"
