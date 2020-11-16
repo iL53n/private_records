@@ -1,7 +1,10 @@
  <nav class="navbar navbar-default" role="navigation" style="background-color: #F6FFFF">
     <div class="navbar-header">
       <ul class="nav navbar-nav">
-        <li><a class="navbar-brand" href="/">Анкета кандадата</a></li>
+        <a class="navbar-brand" href="/">
+<!--          <img src="/img/logo.png" width="30" class="d-inline-block align-top" alt="Главная" loading="lazy">-->
+          Кандидаты ЗАО "ЕКТ групп"
+        </a>
         <% if user_signed_in? %>
           <li><a href="/candidates/new" class="btn btn-primary" role="button" aria-pressed="true">Новый кандидат</a></li>
         <% end %>
