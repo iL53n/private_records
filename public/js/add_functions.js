@@ -1,12 +1,9 @@
-  
 // Images
 
 function handleFiles(files) {    
     var preview = document.getElementById("preview");
 
-    for (n = 0; n < preview.childNodes.length; n++) {
-        preview.removeChild(preview.childNodes[n]);
-    }
+    preview.innerHTML = ""
     
     for (var i = 0; i < files.length; i++) {
         var file = files[i];
@@ -242,4 +239,31 @@ function add_reccomenders_table_row(){
     $("#reccomenders_" + String(count-1) + "_phone").mask("+375 (99) 999-99-99");
     
     return (false)
+}
+
+// Fill tables
+
+function fill_relatives_content(contentElement){
+    tableContent = JSON.parse(contentElement.innerHTML)
+
+    rowsElement = document.getElementById("relatives_rows")
+
+    for (i=0;i<tableContent.length; i++){
+        add_relatives_table_new_row()
+
+        rowData = tableContent[i]
+        
+        rowElement = rowsElement.childNodes[rowsElement.childNodes.length-1]
+        typeOptions = rowElement.childNodes[0].childNodes[0] 
+
+        for (n=0;n<typeOptions.childNodes.length-1;n++){
+            option = typeOptions.childNodes[n]
+            option.selected = (option.value == rowData["type"])  
+        }
+            
+        rowElement.childNodes[1].childNodes[0].value = rowData["name"]
+        rowElement.childNodes[2].childNodes[0].value = rowData["date"]
+        rowElement.childNodes[3].childNodes[0].value = rowData["job"]
+        rowElement.childNodes[4].childNodes[0].value = rowData["adr"]
+    }
 }

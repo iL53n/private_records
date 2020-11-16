@@ -7,8 +7,9 @@
 	</div>
 </div>
 
-<form action="/candidates" method="POST" enctype="multipart/form-data">
+<form action="<%= "/candidates/#{@candidate.guid}" %>" method="POST" enctype="multipart/form-data">
 	<!--	https://getbootstrap.com/docs/4.5/components/forms/-->
+	<input name="_method" type="hidden" value="patch" />
 	<div class="card" hidden="true">
 		<div class="card-body">
 			<input class="form-control" type="text"  name="candidate[guid]" id="candidate_guid" value=<%= @candidate.guid %>>
@@ -17,7 +18,12 @@
 	</div>
 
 	<%= erb :'candidates/_position' %><br>
-	<%= erb :'candidates/_general_information_min' %><br>
+	<%= erb :'candidates/_general_information' %><br>
+	<%= erb :'candidates/_education' %><br>
+	<%= erb :'candidates/_skills' %><br>
+	<%= erb :'candidates/_experience' %><br>
+	<%= erb :'candidates/_recommendations' %><br>
+	<%= erb :'candidates/_additional_information' %><br>
 
 	<button type="submit" class="btn btn-success btn-lg btn-block" width="20px">Отправить данные</button><br>
 </form>

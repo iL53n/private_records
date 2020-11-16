@@ -2,46 +2,70 @@
 
 # Candidates controller class
 class CandidatesController < ApplicationController
+  include Helpers
+
   # index
-  # TODO: add access restriction
   get '/' do
-    @candidates = [Candidate.last] # TODO: Select all candidates in Prod
-    erb :index
+    if user_signed_in?
+      @candidates = [Candidate.last] # TODO: Select all candidates in Prod
+      erb :index
+    else
+      erb :login
+    end
   end
 
   # new
   get '/candidates/new' do
-    @candidate = Candidate.new(new_candidate_params)
+    puts session[:user_id]
+    if user_signed_in?
+      @candidate = Candidate.new(new_candidate_params)
+      open_candidate_form(@candidate, :new, false)
+    else
+      @error = 'Добавление анкет доступно авторизированным пользователям!'
+      erb :login
+    end
+  end
 
-    @last_job_like_dislike_params = last_job_like_dislike_params
-    @work_experience_areas        = work_experience_areas
-    @desired_pay_system           = desired_pay_system
+  # edit
+  get '/candidates/:guid' do
+    @candidate = Candidate.where(guid: params[:guid]).first
 
-    erb :new
+    if @candidate
+      open_candidate_form(@candidate, :edit, false)
+    else
+      erb '<h5>Не найдена анкета или срок жизни истек</h5>'
+    end
   end
 
   # create
   post '/candidates' do
     @candidate = Candidate.new(params[:candidate])
-    @candidate.image = params[:image]
+    @candidate.image = params[:image] if !candidate[:image_identifier] && params[:image]
 
     add_arrays_to_candidate(@candidate, params)
 
-    puts params
+    if @candidate.save
+      erb :mailto
+      # redirect "/show/#{@candidates.id}"
+    else
+      open_candidate_form(@candidate, :new, true)
+    end
+  end
+
+  # update
+  post '/candidates/:guid' do
+    erb '<h5>Не верный запрос!</h5>' unless params[:_method] && params[:_method] == 'patch'
+
+    @candidate = Candidate.where(guid: params[:guid]).first
+    @candidate.update(params[:candidate])
+    @candidate.image = params[:image] if !candidate[:image_identifier] && params[:image]
+
+    add_arrays_to_candidate(@candidate, params)
 
     if @candidate.save
-      redirect '/' # "/show/#{@candidates.id}"
+      erb '<h5>Спасибо, что заполнили анкету!</h5>'
     else
-      @error = error(@candidate)
-
-      @candidate.last_job_like_dislike = [] if @candidate.last_job_like_dislike.nil?
-      @candidate.work_experience_areas = [] if @candidate.work_experience_areas.nil?
-
-      @last_job_like_dislike_params = last_job_like_dislike_params
-      @work_experience_areas        = work_experience_areas
-      @desired_pay_system           = desired_pay_system
-
-      erb :new
+      open_candidate_form(@candidate, :edit, true)
     end
   end
 
@@ -56,102 +80,10 @@ class CandidatesController < ApplicationController
     def new_candidate_params
       {
         guid: SecureRandom.uuid,
-        date: Time.new,
         created_at: Time.new,
         last_job_like_dislike: [],
         work_experience_areas: []
       }
-    end
-
-    def error(object)
-      object.errors.full_messages.first
-    end
-
-    # fill by params
-    # TODO: need refactoring(we must use: https://mongomapper.com/documentation/plugins/associations.html#many-to-many)
-    def add_arrays_to_candidate(candidate, params)
-      tables_names.each do |table_name, ver_field|
-        arr = []
-        params.select { |key| key == table_name }.each_value do |table|
-          table.each_value do |row|
-            arr << row unless row[ver_field] == ''
-          end
-        end
-        candidate[table_name] = arr
-      end
-    end
-
-    def tables_names
-      {
-        'relatives' => :name,
-        'education' => :inst,
-        'extra' => :name,
-        'language' => :name,
-        'experience' => :name,
-        'reccomenders' => :name
-      }
-    end
-
-    # Abbreviations
-    def last_job_like_dislike_params
-      {
-        'ls' => 'Низкая зарплата',
-        'upct' => 'Неудовлетворительный психологический климат в коллективе',
-        'llbo' => 'Невысокий уровень организации дела',
-        'drvm' => 'Сложные отношения с руководством',
-        'ncp' => 'Нет перспективы должностного роста',
-        'emr' => 'Чрезмерно высокие требования руководства',
-        'ow' => 'Сверхурочная работа',
-        'so' => 'Что-то другое'
-      }
-    end
-
-    def work_experience_areas
-      {
-        'prod' => 'Производство',
-        'serv' => 'Услуги',
-        'whsal' => 'Оптовая торговля',
-        'ret' => 'Розничная торговля',
-        'publ' => 'Издательство',
-        'pc' => 'Общепит',
-        'build' => 'Строительство',
-        'tr' => 'Транспорт',
-        'ent' => 'Индивидуальный предприниматель'
-      }
-    end
-
-    def desired_pay_system
-      {
-        sal: 'Оклад',
-        salbon: 'Оклад+премия',
-        int: 'Процент',
-        salint: 'Оклад+процент'
-      }
-    end
-
-    # API
-    def base_url
-      url_scheme = request.env['rack.url_scheme']
-      http_host = request.env['HTTP_HOST']
-      @base_url ||= "#{url_scheme}://#{http_host}"
-    end
-
-    def json_params
-      JSON.parse(request.body.read)
-    rescue StandardError => e
-      halt(400, { message: 'Invalid JSON' }.to_json)
-    end
-
-    def candidate
-      @candidate ||= Candidate.where(guid: params[:guid]).first
-    end
-
-    def candidate_not_found!
-      halt(404, { message: 'Кандидата с таким GUID не существует!' }.to_json) unless candidate
-    end
-
-    def serialize(candidate)
-      CandidateSerializer.new(candidate).to_json
     end
   end
 

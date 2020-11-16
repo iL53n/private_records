@@ -1,7 +1,5 @@
 <h5>Candidates list (last)</h5>
 
-<a href="/candidates/new" class="btn btn-primary" role="button" aria-pressed="true">Новый кандидат</a>
-
 <% @candidates.map do |candidate| %>
   <% if candidate %>
     <div class="card">
@@ -12,7 +10,8 @@
           </div>
         <% end %>
         <div class="form-group col-md-8">
-          <%= candidate.to_json %>
+          <% @candidate = candidate %>
+          <%= erb :'candidates/_candidate_info' %>
         </div>
       </div>
     </div>
