@@ -6,12 +6,15 @@ class CandidatesController < ApplicationController
 
   # index
   get '/' do
-    if user_signed_in?
-      @candidates = [Candidate.last] # TODO: Select all candidates in Prod
-      erb :index
-    else
-      erb :login
-    end
+    @candidates = Candidate.all
+    erb :index
+
+    # if user_signed_in?
+    #   @candidates = [Candidate.last] # TODO: Select all candidates in Prod
+    #   erb :index
+    # else
+    #   erb :login
+    # end
   end
 
   # new
