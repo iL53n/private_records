@@ -88,12 +88,13 @@ class Candidate
   mount_uploader :image, ImageUploader, type: String
 
   validates :guid,
-  #           :first_name,
-  #           :last_name,
-  #           :email,
-  #           :phone,
-  #           :date,
-  #           :position,
+            :position,
+            :first_name,
+            :last_name,
+            :sur_name,
+            :date,
+            :phone,
+            :email,
             presence: true
 
   index({ guid: 1 }, { unique: true, name: 'guid_index' })

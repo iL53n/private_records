@@ -19,8 +19,18 @@ class CandidatesController < ApplicationController
 
   # new
   get '/candidates/new' do
+    # ToDo: destroy after dev
     @candidate = Candidate.new(new_candidate_params)
     erb :new
+
+
+    # if user_signed_in?
+    #   @candidate = Candidate.new(new_candidate_params)
+    #   erb :new
+    # else
+    #   @error = 'Добавление анкет доступно авторизированным пользователям!'
+    #   erb :login
+    # end
 
     # if user_signed_in?
     #   @candidate = Candidate.new(new_candidate_params)
@@ -55,7 +65,9 @@ class CandidatesController < ApplicationController
       erb :mailto
       # redirect "/show/#{@candidates.id}"
     else
-      open_candidate_form(@candidate, :new, true)
+      @candidate
+      @error = error(@candidate)
+      erb :new
     end
   end
 

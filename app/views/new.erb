@@ -8,10 +8,18 @@
 <form action="/candidates" method="POST" enctype="multipart/form-data">
 	<div class="card">
 		<div class="card-body">
-			<label for="inputFirstname">Дата/время создания:</label>
-			<input disabled class="form-control" type="text"  name="candidate[created_at]" id="candidate_created_at" value=<%= @candidate.created_at %>>
-			<label for="inputFirstname">Будет присвоин GUID:</label>
-			<input disabled class="form-control" type="text"  name="candidate[guid]" id="candidate_guid" value=<%= @candidate.guid %>>
+			<div class="input-group mb-2 mr-sm-2">
+				<div class="input-group-prepend">
+					<div class="input-group-text">Дата/время создания:</div>
+				</div>
+				<input readonly class="form-control" type="text" name="candidate[created_at]" id="candidate_created_at" value=<%= @candidate.created_at %>>
+			</div>
+			<div class="input-group mb-2 mr-sm-2">
+				<div class="input-group-prepend">
+					<div class="input-group-text">Будет присвоен GUID:</div>
+				</div>
+				<input readonly class="form-control" type="text" name="candidate[guid]" id="candidate_guid" value=<%= @candidate.guid %>>
+			</div>
 		</div>
 	</div><br>
 
