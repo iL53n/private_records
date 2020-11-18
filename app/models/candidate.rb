@@ -5,6 +5,12 @@ class Candidate
   include Mongoid::Document
   include Attachments
 
+  def initialize(params=nil)
+    super(params)
+    self.guid ||= SecureRandom.uuid
+    self.created_at ||= Time.new
+  end
+
   field :guid,                         type: String
   field :position,                     type: String
   field :first_name,                   type: String

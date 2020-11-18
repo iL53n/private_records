@@ -6,31 +6,23 @@ class CandidatesController < ApplicationController
 
   # index
   get '/' do
-    @candidates = Candidate.all # ToDo: don't use `all` in production
-    erb :index
-
-    # if user_signed_in?
-    #   @candidates = [Candidate.last] # TODO: Select all candidates in Prod
-    #   erb :index
-    # else
-    #   erb :login
-    # end
+    if user_signed_in?
+      @candidates = Candidate.all # ToDo: don't use `all` in production
+      erb :index
+    else
+      erb :login
+    end
   end
 
   # new
   get '/candidates/new' do
-    # ToDo: destroy after dev
-    @candidate = Candidate.new(new_candidate_params)
-    erb :new
-
-
-    # if user_signed_in?
-    #   @candidate = Candidate.new(new_candidate_params)
-    #   erb :new
-    # else
-    #   @error = 'Добавление анкет доступно авторизированным пользователям!'
-    #   erb :login
-    # end
+    if user_signed_in?
+      @candidate = Candidate.new
+      erb :new
+    else
+      @error = 'Добавление анкет доступно авторизированным пользователям!'
+      erb :login
+    end
 
     # if user_signed_in?
     #   @candidate = Candidate.new(new_candidate_params)
@@ -44,8 +36,12 @@ class CandidatesController < ApplicationController
   # edit
   get '/candidates/:guid/edit' do
     # @candidate = Candidate.where(guid: params[:guid]).first
-    candidate
-    erb :edit
+
+    if candidate
+      erb :edit
+    else
+      erb '<h5>Не найдена анкета или срок жизни истек!</h5>' # ToDo: need other way if we can problem
+    end
 
     # if @candidate
     #   open_candidate_form(@candidate, :edit, false)
@@ -65,26 +61,28 @@ class CandidatesController < ApplicationController
       erb :mailto
       # redirect "/show/#{@candidates.id}"
     else
-      @candidate
-      @error = error(@candidate)
+      # @candidate
+      @error = error(candidate)
       erb :new
     end
   end
 
   # update
   post '/candidates/:guid' do
-    erb '<h5>Не верный запрос!</h5>' unless params[:_method] && params[:_method] == 'patch'
+    erb '<h5>Не верный запрос!</h5>' unless params[:_method] && params[:_method] == 'patch' # ToDo: destroy in production
 
-    @candidate = Candidate.where(guid: params[:guid]).first
+    # @candidate = Candidate.where(guid: params[:guid]).first
+    @candidate = candidate
     @candidate.update(params[:candidate])
     @candidate.image = params[:image] if !candidate[:image_identifier] && params[:image]
-
-    add_arrays_to_candidate(@candidate, params)
+    # add_arrays_to_candidate(@candidate, params)
 
     if @candidate.save
-      erb '<h5>Спасибо, что заполнили анкету!</h5>'
+      erb :show
     else
-      open_candidate_form(@candidate, :edit, true)
+      @error = error(@candidate)
+      erb :edit
+      # open_candidate_form(@candidate, :edit, true)
     end
   end
 
@@ -94,17 +92,17 @@ class CandidatesController < ApplicationController
     erb :show
   end
 
-  helpers do
-    # Controller
-    def new_candidate_params
-      {
-        guid: SecureRandom.uuid,
-        created_at: Time.new,
-        # last_job_like_dislike: [],
-        # work_experience_areas: []
-      }
-    end
-  end
+  # helpers do
+  #   # Controller
+  #   def new_candidate_params
+  #     {
+  #       guid: SecureRandom.uuid,
+  #       created_at: Time.new,
+  #       # last_job_like_dislike: [],
+  #       # work_experience_areas: []
+  #     }
+  #   end
+  # end
 
   ####### API v1 #######
   namespace '/api/v1' do
