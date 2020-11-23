@@ -12,5 +12,5 @@ $(function(){
     }
 
     contentElement = document.getElementById('relatives_content')
-    if (contentElement){ fill_relatives_content(contentElement) }  
+    if (contentElement){ fill_relatives_content(contentElement) }
 });  

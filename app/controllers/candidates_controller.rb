@@ -75,9 +75,10 @@ class CandidatesController < ApplicationController
     @candidate = candidate
     @candidate.update(params[:candidate])
     @candidate.image = params[:image] if !candidate[:image_identifier] && params[:image]
-    # add_arrays_to_candidate(@candidate, params)
+    add_arrays_to_candidate(@candidate, params) # ToDo: need refactoring
 
     if @candidate.save
+      puts @candidate.inspect
       erb :show
     else
       @error = error(@candidate)
