@@ -21,7 +21,7 @@ table.table th i {
     cursor: pointer;
 }
 table.table th:last-child {
-    width: 50px;
+    width: 60px;
 }
 table.table td a {
     cursor: pointer;

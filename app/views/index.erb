@@ -13,6 +13,7 @@
       <th scope="col">ФИО</th>
       <th scope="col">Позиция</th>
       <th scope="col">Email</th>
+      <th scope="col"></th>
     </tr>
     </thead>
     <tbody>
@@ -29,6 +30,13 @@
           </td>
           <td><%= candidate.position %></td>
           <td><%= candidate.email %></td>
+          <td>
+            <form action="/candidates/<%= candidate.guid %>/delete" method="post">
+              <input type="hidden" name="_method" value="delete">
+<!--              <input type="submit" value=""><i class="material-icons">&#xE872;</i>-->
+              <button type="submit" class="btn btn-danger " style="border-radius: 20px"><i class="fa fa-trash"></i></button>
+            </form>
+          </td>
         </tr>
       <% end %>
     </tbody>
