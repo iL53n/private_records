@@ -7,7 +7,7 @@ class CandidatesController < ApplicationController
   # index
   get '/' do
     if user_signed_in?
-      @candidates = [Candidate.last] # TODO: Select all candidates in Prod
+      @candidates = Candidate.all # ToDo: don't use `all` in production
       erb :index
     else
       erb :login
@@ -16,10 +16,10 @@ class CandidatesController < ApplicationController
 
   # new
   get '/candidates/new' do
-    puts session[:user_id]
     if user_signed_in?
-      @candidate = Candidate.new(new_candidate_params)
-      open_candidate_form(@candidate, :new, false)
+      @candidate = Candidate.new
+      intitalise_form_variables
+      erb :new
     else
       @error = 'Добавление анкет доступно авторизированным пользователям!'
       erb :login
@@ -27,64 +27,55 @@ class CandidatesController < ApplicationController
   end
 
   # edit
-  get '/candidates/:guid' do
-    @candidate = Candidate.where(guid: params[:guid]).first
-
-    if @candidate
-      open_candidate_form(@candidate, :edit, false)
+  get '/candidates/:guid/edit' do
+    if candidate
+      intitalise_form_variables
+      erb :edit
     else
-      erb '<h5>Не найдена анкета или срок жизни истек</h5>'
+      erb '<h5>Не найдена анкета или срок жизни истек!</h5>' # ToDo: need other way if we can problem
     end
   end
 
   # create
   post '/candidates' do
     @candidate = Candidate.new(params[:candidate])
-    @candidate.image = params[:image] if !candidate[:image_identifier] && params[:image]
-
-    add_arrays_to_candidate(@candidate, params)
 
     if @candidate.save
       erb :mailto
-      # redirect "/show/#{@candidates.id}"
     else
-      open_candidate_form(@candidate, :new, true)
+      @error = error(candidate)
+      erb :new
     end
   end
 
   # update
   post '/candidates/:guid' do
-    erb '<h5>Не верный запрос!</h5>' unless params[:_method] && params[:_method] == 'patch'
+    erb '<h5>Не верный запрос!</h5>' unless params[:_method] && params[:_method] == 'patch' # ToDo: destroy in production
 
-    @candidate = Candidate.where(guid: params[:guid]).first
+    @candidate = candidate
     @candidate.update(params[:candidate])
     @candidate.image = params[:image] if !candidate[:image_identifier] && params[:image]
-
-    add_arrays_to_candidate(@candidate, params)
+    add_arrays_to_candidate(@candidate, params) # ToDo: need refactoring
 
     if @candidate.save
-      erb '<h5>Спасибо, что заполнили анкету!</h5>'
+      erb :show
     else
-      open_candidate_form(@candidate, :edit, true)
+      @error = error(@candidate)
+      intitalise_form_variables
+      erb :edit
     end
+  end
+
+  # delete
+  post '/candidates/:guid/delete' do
+    candidate&.destroy
+    redirect to '/'
   end
 
   # show --> view after add new candidates's data
   get '/show/:id' do
     @candidate = Candidate.find(params[:id])
     erb :show
-  end
-
-  helpers do
-    # Controller
-    def new_candidate_params
-      {
-        guid: SecureRandom.uuid,
-        created_at: Time.new,
-        last_job_like_dislike: [],
-        work_experience_areas: []
-      }
-    end
   end
 
   ####### API v1 #######

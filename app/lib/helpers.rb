@@ -64,20 +64,6 @@ module Helpers
   end
 
   # Form-s helpers
-  def open_candidate_form(candidate, page_id, is_error)
-    @candidate = candidate
-    @error = error(@candidate) if is_error
-
-    @candidate.last_job_like_dislike = [] if @candidate.last_job_like_dislike.nil?
-    @candidate.work_experience_areas = [] if @candidate.work_experience_areas.nil?
-
-    intitalise_form_variables
-
-    @image = @candidate.image
-
-    erb page_id
-  end
-
   def intitalise_form_variables
     @last_job_like_dislike_params = last_job_like_dislike_params
     @work_experience_areas        = work_experience_areas

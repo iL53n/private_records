@@ -5,6 +5,14 @@ class Candidate
   include Mongoid::Document
   include Attachments
 
+  def initialize(params=nil)
+    super(params)
+    self.guid ||= SecureRandom.uuid
+    self.created_at ||= Time.new
+    self.last_job_like_dislike ||= []
+    self.work_experience_areas ||= []
+  end
+
   field :guid,                         type: String
   field :position,                     type: String
   field :first_name,                   type: String
@@ -88,12 +96,13 @@ class Candidate
   mount_uploader :image, ImageUploader, type: String
 
   validates :guid,
+            :position,
             :first_name,
             :last_name,
-            :email,
-            :phone,
+            :sur_name,
             :date,
-            :position,
+            :phone,
+            :email,
             presence: true
 
   index({ guid: 1 }, { unique: true, name: 'guid_index' })

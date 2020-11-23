@@ -1,0 +1,28 @@
+<div class="table-responsive">
+  <div class="table-wrapper">
+    <div class="table-title">
+      <div class="row">
+        <div class="col-sm-11"><h5>Близкие <b>РОДСТВЕННИКИ</b></h5></div>
+        <div class="col-sm-1">
+          <button type="button" class="btn btn-success " style="border-radius: 20px"><i class="fa fa-plus" onclick="return add_relatives_table_new_row()"></i></button>
+        </div>
+      </div>
+    </div>
+    <div class="table_content" id="relatives_content" hidden><%= @candidate[:relatives].to_json %></div>
+    <table class="table table-bordered">
+      <thead>
+      <tr>
+        <th style="width: 10%">Степень родства</th>
+        <th style="width: 20%">Фамилия, Имя, Отчетство</th>
+        <th style="width: 20%">Год, место рождения</th>
+        <th style="width: 20%">Место работы, должность</th>
+        <th style="width: 20%">Адрес места жительства</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody id="relatives_rows">
+
+      </tbody>
+    </table>
+  </div>
+</div>

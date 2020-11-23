@@ -1,20 +1,24 @@
- <nav class="navbar navbar-default" role="navigation">
-        <div class="navbar-header">
-          <ul class="nav navbar-nav">
-            <li><a class="navbar-brand" href="/">Анкета кандадата</a></li>
-            <% if user_signed_in? %>
-              <li><a href="/candidates/new" class="btn btn-primary" role="button" aria-pressed="true">Новый кандидат</a></li>
-            <% end %>
-          </ul>
-        </div>
-        <div>
-          <ul class="nav navbar-nav">
-            <% if user_signed_in? %>
-              <li><%= current_user.email %></li> 
-              <li><a href="/logout">Выйти</a></li>
-            <% else %>
-              <li><a href="/login">Войти</a></li>
-            <% end %> 
-        </ul>
-    </div>  
+ <nav class="navbar navbar-default" role="navigation" style="background-color: #F6FFFF">
+    <div class="navbar-header">
+      <ul class="nav navbar-nav">
+        <a class="navbar-brand" href="/">
+<!--          <img src="/img/logo.png" width="30" class="d-inline-block align-top" alt="Главная" loading="lazy">-->
+          Кандидаты ЗАО "ЕКТ групп"
+        </a>
+
+        <% if user_signed_in? %>
+          <li><a href="/candidates/new" class="btn btn-primary" role="button" aria-pressed="true">Новый кандидат</a></li>
+        <% end %>
+      </ul>
+    </div>
+    <div>
+      <ul class="nav navbar-nav">
+        <% if user_signed_in? %>
+          <li><%= current_user.email %></li>
+          <li><a href="/logout">Выйти</a></li>
+        <% else %>
+          <li><a href="/login">Войти</a></li>
+        <% end %>
+    </ul>
+  </div>
 </nav>

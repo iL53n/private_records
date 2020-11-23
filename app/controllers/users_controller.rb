@@ -31,8 +31,6 @@ class UsersController < ApplicationController
       session.clear
       session[:user_id] = @user.id.to_s
       redirect '/'
-      # @candidates = [Candidate.last] # TODO: Select all candidates in Prod
-      # erb :index
     else
       @error = error(@user)
       erb :login
@@ -47,8 +45,6 @@ class UsersController < ApplicationController
       session.clear
       session[:user_id] = user.id.to_s
       redirect '/'
-      # @candidates = [Candidate.last] # TODO: Select all candidates in Prod
-      # erb :index
     else
       @error = 'Не верное имя пользователя или пароль'
       erb :login
