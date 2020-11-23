@@ -66,7 +66,7 @@ function add_relatives_table_new_row(){
         '<td><input class="form-control" type="text" id="relatives_' + String(count-1)  + '_adr"  name="relatives[' + String(count-1)  + '][adr]"></input></td>' +
         '<td><a class="delete" title="Удалить" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a></td>';
 
-    opts = "жена,муж,сын,дочь,мать,отец,брат,сестра".split(",");
+    opts = "Жена,Муж,Сын,Дочь,Мать,Отец,Брат,Сестра".split(",");
     for (var ind in opts){
         rowElement.childNodes[0].childNodes[0].innerHTML = rowElement.childNodes[0].innerHTML + '<option>' + opts[ind] + '</option>';
     }

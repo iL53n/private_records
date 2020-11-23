@@ -18,60 +18,40 @@ class CandidatesController < ApplicationController
   get '/candidates/new' do
     if user_signed_in?
       @candidate = Candidate.new
+      intitalise_form_variables
       erb :new
     else
       @error = 'Добавление анкет доступно авторизированным пользователям!'
       erb :login
     end
+  end
 
-    # if user_signed_in?
-    #   @candidate = Candidate.new(new_candidate_params)
-    #   open_candidate_form(@candidate, :new, false)
-    # else
-    #   @error = 'Добавление анкет доступно авторизированным пользователям!'
-    #   erb :login
-    # end
+  # edit
+  get '/candidates/:guid/edit' do
+    if candidate
+      intitalise_form_variables
+      erb :edit
+    else
+      erb '<h5>Не найдена анкета или срок жизни истек!</h5>' # ToDo: need other way if we can problem
+    end
   end
 
   # create
   post '/candidates' do
     @candidate = Candidate.new(params[:candidate])
-    # @candidate.image = params[:image] if !candidate[:image_identifier] && params[:image]
-
-    # add_arrays_to_candidate(@candidate, params)
 
     if @candidate.save
       erb :mailto
-      # redirect "/show/#{@candidates.id}"
     else
-      # @candidate
       @error = error(candidate)
       erb :new
     end
-  end
-
-  # edit
-  get '/candidates/:guid/edit' do
-    # @candidate = Candidate.where(guid: params[:guid]).first
-
-    if candidate
-      erb :edit
-    else
-      erb '<h5>Не найдена анкета или срок жизни истек!</h5>' # ToDo: need other way if we can problem
-    end
-
-    # if @candidate
-    #   open_candidate_form(@candidate, :edit, false)
-    # else
-    #   erb '<h5>Не найдена анкета или срок жизни истек</h5>'
-    # end
   end
 
   # update
   post '/candidates/:guid' do
     erb '<h5>Не верный запрос!</h5>' unless params[:_method] && params[:_method] == 'patch' # ToDo: destroy in production
 
-    # @candidate = Candidate.where(guid: params[:guid]).first
     @candidate = candidate
     @candidate.update(params[:candidate])
     @candidate.image = params[:image] if !candidate[:image_identifier] && params[:image]
@@ -81,8 +61,8 @@ class CandidatesController < ApplicationController
       erb :show
     else
       @error = error(@candidate)
+      intitalise_form_variables
       erb :edit
-      # open_candidate_form(@candidate, :edit, true)
     end
   end
 
@@ -97,18 +77,6 @@ class CandidatesController < ApplicationController
     @candidate = Candidate.find(params[:id])
     erb :show
   end
-
-  # helpers do
-  #   # Controller
-  #   def new_candidate_params
-  #     {
-  #       guid: SecureRandom.uuid,
-  #       created_at: Time.new,
-  #       # last_job_like_dislike: [],
-  #       # work_experience_areas: []
-  #     }
-  #   end
-  # end
 
   ####### API v1 #######
   namespace '/api/v1' do

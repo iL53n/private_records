@@ -9,6 +9,8 @@ class Candidate
     super(params)
     self.guid ||= SecureRandom.uuid
     self.created_at ||= Time.new
+    self.last_job_like_dislike ||= []
+    self.work_experience_areas ||= []
   end
 
   field :guid,                         type: String
