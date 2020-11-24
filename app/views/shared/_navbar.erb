@@ -7,7 +7,7 @@
         </a>
 
         <% if user_signed_in? %>
-          <li><a href="/candidates/new" class="btn btn-primary" role="button" aria-pressed="true">Новый кандидат</a></li>
+          <li><a href="/candidates/new" class="btn btn-success" role="button" aria-pressed="true">Новый кандидат</a></li>
         <% end %>
       </ul>
     </div>
@@ -15,9 +15,9 @@
       <ul class="nav navbar-nav">
         <% if user_signed_in? %>
           <li><%= current_user.email %></li>
-          <li><a href="/logout">Выйти</a></li>
+          <li><a class="nav-link" href="/logout">Выйти</a></li>
         <% else %>
-          <li><a href="/login">Войти</a></li>
+          <li><a class="nav-link" href="/login">Войти</a></li>
         <% end %>
     </ul>
   </div>
