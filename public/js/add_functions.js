@@ -91,9 +91,10 @@ function add_education_table_new_row(){
         '<td><input class="form-control" type="number" id="education_' + String(count-1)  + '_end" name="education[' + String(count-1)    + '][end]"></input></td>' +
         '<td><input class="form-control" type="text" id="education_' + String(count-1)  + '_inst" name="education[' + String(count-1)   + '][inst]"></input></td>' +
         '<td><input class="form-control" type="text" id="education_' + String(count-1)  + '_spec"  name="education[' + String(count-1)  + '][spec]"></input></td>' +
-        '<td><select class="form-control" type="text" id="education_' + String(count-1) + '_form"  name="education[' + String(count-1)  + '][form]"></select></td>';
+        '<td><select class="form-control" type="text" id="education_' + String(count-1) + '_form"  name="education[' + String(count-1)  + '][form]"></select></td>' +
+        '<td><a class="delete" title="Удалить" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a></td>';
 
-    opts = "очная,заочная,вечерняя,удаленная".split(",");
+    opts = "Очная,Заочная,Вечерняя,Удаленная".split(",");
 
     for (var ind in opts){
         rowElement.childNodes[4].childNodes[0].innerHTML = rowElement.childNodes[4].innerHTML + '<option>' + opts[ind] + '</option>';
@@ -111,10 +112,11 @@ function add_extra_table_new_row(){
 
     rowElement = document.createElement("tr")
     rowElement.innerHTML =
-        '<td><input class="form-control" type="number" id="extra_rows_' + String(count-1)  + '_year" name="extra_rows[' + String(count-1)         + '][year]"></input></td>' +
-        '<td><input class="form-control" type="text" id="extra_rows_' + String(count-1)  + '_inst" name="extra_rows[' + String(count-1)         + '][inst]"></input></td>' +
-        '<td><input class="form-control" type="text" id="extra_rows_' + String(count-1)  + '_name" name="extra_rows[' + String(count-1)         + '][name]"></input></td>' +
-        '<td><input class="form-control" type="number" id="extra_rows_' + String(count-1)  + '_duration" name="extra_rows[' + String(count-1)    + '][duration]"></input></td>';
+        '<td><input class="form-control" type="number" id="extra_' + String(count-1)  + '_year" name="extra[' + String(count-1)         + '][year]"></input></td>' +
+        '<td><input class="form-control" type="text" id="extra_' + String(count-1)  + '_inst" name="extra[' + String(count-1)         + '][inst]"></input></td>' +
+        '<td><input class="form-control" type="text" id="extra_' + String(count-1)  + '_name" name="extra[' + String(count-1)         + '][name]"></input></td>' +
+        '<td><input class="form-control" type="number" id="extra_' + String(count-1)  + '_duration" name="extra[' + String(count-1)    + '][duration]"></input></td>' +
+        '<td><a class="delete" title="Удалить" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a></td>';
 
     tableBody.appendChild(rowElement);
 
@@ -270,5 +272,49 @@ function fill_relatives_content(contentElement){
         rowElement.childNodes[2].childNodes[0].value = rowData["date"]
         rowElement.childNodes[3].childNodes[0].value = rowData["job"]
         rowElement.childNodes[4].childNodes[0].value = rowData["adr"]
+    }
+}
+
+function fill_education_content(contentElement){
+    tableContent = JSON.parse(contentElement.innerHTML)
+
+    rowsElement = document.getElementById("education_rows")
+
+    for (i=0;i<tableContent.length; i++){
+        add_education_table_new_row()
+
+        rowData = tableContent[i]
+
+        rowElement = rowsElement.childNodes[rowsElement.childNodes.length-1]
+        typeOptions = rowElement.childNodes[4].childNodes[0]
+
+        for (n=0;n<typeOptions.childNodes.length-1;n++){
+            option = typeOptions.childNodes[n]
+            option.selected = (option.value == rowData["form"])
+        }
+
+        rowElement.childNodes[0].childNodes[0].value = rowData["begin"]
+        rowElement.childNodes[1].childNodes[0].value = rowData["end"]
+        rowElement.childNodes[2].childNodes[0].value = rowData["inst"]
+        rowElement.childNodes[3].childNodes[0].value = rowData["spec"]
+    }
+}
+
+function fill_extra_content(contentElement){
+    tableContent = JSON.parse(contentElement.innerHTML)
+
+    rowsElement = document.getElementById("extra_rows")
+
+    for (i=0;i<tableContent.length; i++){
+        add_extra_table_new_row()
+
+        rowData = tableContent[i]
+
+        rowElement = rowsElement.childNodes[rowsElement.childNodes.length-1]
+
+        rowElement.childNodes[0].childNodes[0].value = rowData["year"]
+        rowElement.childNodes[1].childNodes[0].value = rowData["inst"]
+        rowElement.childNodes[2].childNodes[0].value = rowData["name"]
+        rowElement.childNodes[3].childNodes[0].value = rowData["duration"]
     }
 }
