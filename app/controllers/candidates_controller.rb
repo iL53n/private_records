@@ -50,12 +50,12 @@ class CandidatesController < ApplicationController
 
   # update
   post '/candidates/:guid' do
-    erb '<h5>Не верный запрос!</h5>' unless params[:_method] && params[:_method] == 'patch' # ToDo: destroy in production
+    erb '<h5>Не верный запрос!</h5>' unless params[:_method] && params[:_method] == 'patch' # TODO: destroy in prod.
 
     @candidate = candidate
     @candidate.update(params[:candidate])
     @candidate.image = params[:image] if !candidate[:image_identifier] && params[:image]
-    add_arrays_to_candidate(@candidate, params) # ToDo: need refactoring
+    add_arrays_to_candidate(@candidate, params) # TODO: need refactoring
 
     if @candidate.save
       erb :show

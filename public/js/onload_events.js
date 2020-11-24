@@ -13,4 +13,10 @@ $(function(){
 
     contentElement = document.getElementById('relatives_content')
     if (contentElement){ fill_relatives_content(contentElement) }
+
+    contentElement = document.getElementById('education_content')
+    if (contentElement){ fill_education_content(contentElement) }
+
+    contentElement = document.getElementById('extra_content')
+    if (contentElement){ fill_extra_content(contentElement) }
 });  
