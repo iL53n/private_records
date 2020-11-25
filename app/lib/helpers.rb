@@ -44,6 +44,18 @@ module Helpers
     CandidateSerializer.new(candidate).to_json
   end
 
+  def to_json_with_filters(params)
+    candidates = Candidate.all
+
+    # we can add more filtering params in array
+    # example: /api/v1/candidates?guid=123
+    %i[id guid].each do |filter|
+      candidates = candidates.send(filter, params[filter]) if params[filter]
+    end
+
+    candidates.map { |candidate| CandidateSerializer.new(candidate) }.to_json
+  end
+
   # Candidate write methods
   def error(object)
     object.errors.full_messages.first

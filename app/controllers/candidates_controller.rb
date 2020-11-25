@@ -7,7 +7,7 @@ class CandidatesController < ApplicationController
   # index
   get '/' do
     if user_signed_in?
-      @candidates = Candidate.all # ToDo: don't use `all` in production
+      @candidates = Candidate.all # TODO: don't use `all` in production
       erb :index
     else
       erb :login
@@ -32,7 +32,7 @@ class CandidatesController < ApplicationController
       intitalise_form_variables
       erb :edit
     else
-      erb '<h5>Не найдена анкета или срок жизни истек!</h5>' # ToDo: need other way if we can problem
+      erb '<h5>Не найдена анкета или срок жизни истек!</h5>' # TODO: need other way if we can problem
     end
   end
 
@@ -87,15 +87,7 @@ class CandidatesController < ApplicationController
 
     # INDEX
     get '/candidates/:date?' do
-      candidates = Candidate.all
-
-      # we can add more filtering params in array
-      # example: /api/v1/candidates?guid=123
-      %i[id guid].each do |filter|
-        candidates = candidates.send(filter, params[filter]) if params[filter]
-      end
-
-      candidates.map { |candidate| CandidateSerializer.new(candidate) }.to_json
+      to_json_with_filters(params)
     end
 
     # SHOW
