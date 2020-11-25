@@ -15,7 +15,7 @@
         <label for="InputPhone">Телефон</label>
         <input class="form-control" type="text" name="candidate[phone]" id="candidate_phone" value="<%= @candidate.phone %>">
         <label for="InputPhone">E-mail</label>
-        <input class="form-control" type="text" name="candidate[email]" id="candidate_email" onblur="validateEmail(this.value)" value=<%= @candidate.email %>>
+        <input class="form-control" type="text" name="candidate[email]" id="candidate_email" onblur="validateEmail(this.value)" value="<%= @candidate.email %>">
         <div class="alert alert-danger" id="email_error" hidden="true">Не верный адрес электронной почты!</div>
     </div>
   </div>
