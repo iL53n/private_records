@@ -14,6 +14,7 @@ class ApplicationController < Sinatra::Base
 
   configure do
     require './app/lib/helpers'
+    require './app/lib/abbreviations'
 
     set :views, 'app/views'
     set :public_folder, '/public'

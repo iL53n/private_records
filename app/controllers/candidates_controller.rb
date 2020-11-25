@@ -2,6 +2,7 @@
 
 # Candidates controller class
 class CandidatesController < ApplicationController
+  include Abbreviations
   include Helpers
 
   # index
