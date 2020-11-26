@@ -239,7 +239,8 @@ function add_reccomenders_table_row(){
         '<td><input class="form-control" type="text" id="reccomenders_' + String(count-1)  + '_name" name="reccomenders['     + String(count-1)  + '][name]"></input></td>' +
         '<td><input class="form-control" type="text" id="reccomenders_' + String(count-1)  + '_job" name="reccomenders['      + String(count-1)  + '][job]"></input></td>' +
         '<td><input class="form-control" type="text" id="reccomenders_' + String(count-1)  + '_position" name="reccomenders[' + String(count-1)  + '][position]"></input></td>' +
-        '<td><input class="form-control" type="text" id="reccomenders_' + String(count-1)  + '_phone"  name="reccomenders['   + String(count-1)  + '][phone]"></input></td>';
+        '<td><input class="form-control" type="text" id="reccomenders_' + String(count-1)  + '_phone"  name="reccomenders['   + String(count-1)  + '][phone]"></input></td>'+
+        '<td><a class="delete" title="Удалить" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a></td>';
 
     tableBody.appendChild(rowElement);
 
@@ -334,5 +335,24 @@ function fill_language_content(contentElement){
         rowElement.childNodes[0].childNodes[0].value = rowData["name"]
         rowElement.childNodes[1].childNodes[0].value = rowData["orally"]
         rowElement.childNodes[2].childNodes[0].value = rowData["writing"]
+    }
+}
+
+function fill_reccomenders_content(contentElement){
+    tableContent = JSON.parse(contentElement.innerHTML)
+
+    rowsElement = document.getElementById("reccomenders_rows")
+
+    for (i=0;i<tableContent.length; i++){
+        add_reccomenders_table_row()
+
+        rowData = tableContent[i]
+
+        rowElement = rowsElement.childNodes[rowsElement.childNodes.length-1]
+
+        rowElement.childNodes[0].childNodes[0].value = rowData["name"]
+        rowElement.childNodes[1].childNodes[0].value = rowData["job"]
+        rowElement.childNodes[2].childNodes[0].value = rowData["position"]
+        rowElement.childNodes[3].childNodes[0].value = rowData["phone"]
     }
 }
