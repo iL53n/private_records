@@ -76,9 +76,6 @@ function add_relatives_table_new_row(){
     return (false)
 }
 
-$(document).on("click", ".delete", function(){
-    $(this).parents("tr").remove();
-});
 
 function add_education_table_new_row(){
     tableBody = document.getElementById("education_rows")
@@ -132,7 +129,8 @@ function add_language_table_new_row(){
     rowElement.innerHTML =
         '<td><input class="form-control" type="text" id="language_'                   + String(count-1)  + '_name" name="language['     + String(count-1) + '][name]"></input></td>' +
         '<td><input class="form-control" type="number" min="1" max="5" id="language_' + String(count-1)  + '_orally" name="language['   + String(count-1) + '][orally]"></input></td>'+
-        '<td><input class="form-control" type="number" min="1" max="5" id="language_' + String(count-1)  + '_writing" name="language['  + String(count-1) + '][writing]"></input></td>';
+        '<td><input class="form-control" type="number" min="1" max="5" id="language_' + String(count-1)  + '_writing" name="language['  + String(count-1) + '][writing]"></input></td>'+
+        '<td><a class="delete" title="Удалить" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a></td>';
 
     tableBody.appendChild(rowElement);
 
@@ -156,7 +154,7 @@ function add_experience_table_row(){
             '<div class="form-group col-md-2">' +
             '   <label for="expieience' + String(count) + 'Name">Название организации(' + String(count+1) + ')</label>' +
             '</div>' +
-            '<div class="form-group col-md-4">' +
+            '<div class="form-group col-md-3">' +
             '   <input class="form-control" type="text" id="experience_>' + String(count) + '_name" name="experience['+ String(count) + '][name]">' +
             '</div>' +
             '<div class="form-group col-md-1">' +
@@ -186,7 +184,7 @@ function add_experience_table_row(){
             '<div class="form-group col-md-2">' +
             '   <label for="expieience' + String(count) + 'Field">Сфера деятельности</label>' +
             '</div>' +
-            '<div class="form-group col-md-4">' +
+            '<div class="form-group col-md-3">' +
             '   <input class="form-control" type="text" id="experience_>' + String(count) + '_field" name="experience['+ String(count) + '][field]">' +
             '</div>' +
             '<div class="form-group col-md-2">' +
@@ -204,7 +202,7 @@ function add_experience_table_row(){
             '<div class="form-group col-md-2">' +
             '   <label for="expieience' + String(count) + 'Cond">Зарплата</label>' +
             '</div>' +
-            '<div class="form-group col-md-4">' +
+            '<div class="form-group col-md-3">' +
             '   <input class="form-control" type="text" id="experience_>' + String(count) + '_cond" name="experience['+ String(count) + '][cond]">' +
             '</div>' +
             '<div class="form-group col-md-2">' +
@@ -219,8 +217,10 @@ function add_experience_table_row(){
         rowElement = document.createElement("div");
         rowElement.classList.add("form-row");
         rowElement.innerHTML =
+            '<div class="form-group col-md-11">' +
             '<label for="expieience' + String(count) + 'Duties">Основные должностные обязанности:</label>' +
             '<textarea class="form-control" type="text" id="experience_>' + String(count) + '_duties" name="experience['+ String(count) + '][duties]"></textarea>' +
+            '</div>'
             '<br />';
         tableBody.appendChild(rowElement);
 
@@ -316,5 +316,23 @@ function fill_extra_content(contentElement){
         rowElement.childNodes[1].childNodes[0].value = rowData["inst"]
         rowElement.childNodes[2].childNodes[0].value = rowData["name"]
         rowElement.childNodes[3].childNodes[0].value = rowData["duration"]
+    }
+}
+
+function fill_language_content(contentElement){
+    tableContent = JSON.parse(contentElement.innerHTML)
+
+    rowsElement = document.getElementById("language_rows")
+
+    for (i=0;i<tableContent.length; i++){
+        add_language_table_new_row()
+
+        rowData = tableContent[i]
+
+        rowElement = rowsElement.childNodes[rowsElement.childNodes.length-1]
+
+        rowElement.childNodes[0].childNodes[0].value = rowData["name"]
+        rowElement.childNodes[1].childNodes[0].value = rowData["orally"]
+        rowElement.childNodes[2].childNodes[0].value = rowData["writing"]
     }
 }
