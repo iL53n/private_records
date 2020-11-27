@@ -143,7 +143,6 @@ function add_experience_table_row(){
     if (tableBody){
         var count = tableBody.childNodes.length;
 
-        count = count - 1;
         count = count / 5;
 
         tableBody.appendChild(document.createElement("br"));
@@ -151,7 +150,7 @@ function add_experience_table_row(){
         rowElement = document.createElement("div");
         rowElement.classList.add("form-row");
         rowElement.innerHTML =
-            '<div class="form-group col-md-2">' +
+            '<div class="form-group col-md-3">' +
             '   <label for="expieience' + String(count) + 'Name">Название организации(' + String(count+1) + ')</label>' +
             '</div>' +
             '<div class="form-group col-md-3">' +
@@ -181,7 +180,7 @@ function add_experience_table_row(){
         rowElement = document.createElement("div");
         rowElement.classList.add("form-row");
         rowElement.innerHTML =
-            '<div class="form-group col-md-2">' +
+            '<div class="form-group col-md-3">' +
             '   <label for="expieience' + String(count) + 'Field">Сфера деятельности</label>' +
             '</div>' +
             '<div class="form-group col-md-3">' +
@@ -199,7 +198,7 @@ function add_experience_table_row(){
         rowElement = document.createElement("div");
         rowElement.classList.add("form-row");
         rowElement.innerHTML =
-            '<div class="form-group col-md-2">' +
+            '<div class="form-group col-md-3">' +
             '   <label for="expieience' + String(count) + 'Cond">Зарплата</label>' +
             '</div>' +
             '<div class="form-group col-md-3">' +
@@ -217,7 +216,7 @@ function add_experience_table_row(){
         rowElement = document.createElement("div");
         rowElement.classList.add("form-row");
         rowElement.innerHTML =
-            '<div class="form-group col-md-11">' +
+            '<div class="form-group col-md-12">' +
             '<label for="expieience' + String(count) + 'Duties">Основные должностные обязанности:</label>' +
             '<textarea class="form-control" type="text" id="experience_>' + String(count) + '_duties" name="experience['+ String(count) + '][duties]"></textarea>' +
             '</div>'
