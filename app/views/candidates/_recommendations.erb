@@ -2,23 +2,37 @@
   <div class="card-header h5">
     РЕКОМЕНДАЦИИ РУКОВОДИТЕЛЕЙ
   </div>
-  <div class="card-body">
-    <div class="bs-example" data-example-id="contextual-table">
-      <table class="table">
+  
+  <div class="table-responsive">
+    <div class="table-wrapper">
+      <div class="table-title">
+        <div class="row">
+          <div class="col-sm-11"><h5>Рекомендации с прошлых мест работы</h5></div>
+          <div class="col-sm-1">
+            <button type="button" class="btn btn-success " style="border-radius: 20px"><i class="fa fa-plus" onclick="return add_reccomenders_table_row()"></i></button>
+          </div>
+        </div>
+      </div>
+      <div class="table_content" id="reccomenders_content" hidden><%= @candidate[:reccomenders].to_json %></div>
+      <table class="table table-bordered">
         <thead>
         <tr>
-          <th>Ф.И.О.</th>
-          <th>Место работы</th>
-          <th>Должность</th>
-          <th>Телефон</th>
+            <th>Ф.И.О.</th>
+            <th>Место работы</th>
+            <th>Должность</th>
+            <th>Телефон</th>
+          <th></th>
         </tr>
         </thead>
         <tbody id="reccomenders_rows">
-        <div class="form-group col-md-2">
-          <button class="btn btn-success btn-sm btn-block" onclick="return add_reccomenders_table_row()">Добавить</button>
-        </div>
+
         </tbody>
       </table>
     </div>
+</div>
+
+
+  <div class="form-group col-md-2">
+    <a class="nav-link btn-outline-success" href="#" onclick="$('#pills-tab li:nth-child(6) a').tab('show')">Далее</a>
   </div>
 </div>

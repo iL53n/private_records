@@ -2,12 +2,13 @@
 
 # Candidates controller class
 class CandidatesController < ApplicationController
+  include Abbreviations
   include Helpers
 
   # index
   get '/' do
     if user_signed_in?
-      @candidates = Candidate.all # ToDo: don't use `all` in production
+      @candidates = Candidate.all # TODO: don't use `all` in production
       erb :index
     else
       erb :login
@@ -32,7 +33,7 @@ class CandidatesController < ApplicationController
       intitalise_form_variables
       erb :edit
     else
-      erb '<h5>Не найдена анкета или срок жизни истек!</h5>' # ToDo: need other way if we can problem
+      erb '<h5>Не найдена анкета или срок жизни истек!</h5>' # TODO: need other way if we can problem
     end
   end
 
@@ -50,12 +51,12 @@ class CandidatesController < ApplicationController
 
   # update
   post '/candidates/:guid' do
-    erb '<h5>Не верный запрос!</h5>' unless params[:_method] && params[:_method] == 'patch' # ToDo: destroy in production
+    erb '<h5>Не верный запрос!</h5>' unless params[:_method] && params[:_method] == 'patch' # TODO: destroy in prod.
 
     @candidate = candidate
     @candidate.update(params[:candidate])
     @candidate.image = params[:image] if !candidate[:image_identifier] && params[:image]
-    add_arrays_to_candidate(@candidate, params) # ToDo: need refactoring
+    add_arrays_to_candidate(@candidate, params) # TODO: need refactoring
 
     if @candidate.save
       erb :show
@@ -87,15 +88,7 @@ class CandidatesController < ApplicationController
 
     # INDEX
     get '/candidates/:date?' do
-      candidates = Candidate.all
-
-      # we can add more filtering params in array
-      # example: /api/v1/candidates?guid=123
-      %i[id guid].each do |filter|
-        candidates = candidates.send(filter, params[filter]) if params[filter]
-      end
-
-      candidates.map { |candidate| CandidateSerializer.new(candidate) }.to_json
+      to_json_with_filters(params)
     end
 
     # SHOW

@@ -1,46 +1,64 @@
 <div class="card">
-  <div class="card-header h5">
-    ОБРАЗОВАНИЕ
-  </div>
-  <div class="card-body">
-    <div class="bs-example" data-example-id="contextual-table">
-      <table class="table">
-        <thead>
-        <tr>
-          <th style="width: 4%">Год поступления</th>
-          <th style="width: 4%">Год окончания</th>
-          <th style="width: 40%">Название учебного заведения</th>
-          <th style="width: 35%">Специальность по диплому</th>
-          <th style="width: 20%">Форма обучения</th>
-        </tr>
-        </thead>
-        <tbody id="education_rows">
-        <div class="form-group col-md-2">
-          <button class="btn btn-success btn-sm btn-block" onclick="return add_education_table_new_row()">Добавить</button>
+    <div class="card-header h5">
+      ОБРАЗОВАНИЕ
+    </div> 
+    <div class="table-responsive">
+      <div class="table-wrapper">
+        <div class="table-title">
+          <div class="row">
+            <div class="col-sm-11"><h5>Основное</h5></div>
+            <div class="col-sm-1">
+              <button type="button" class="btn btn-success " style="border-radius: 20px"><i class="fa fa-plus" onclick="return add_education_table_new_row()"></i></button>
+            </div>
+          </div>
         </div>
-        </tbody>
-      </table>
+        <div class="table_content" id="education_content" hidden><%= @candidate[:education].to_json %></div>
+        <table class="table table-bordered">
+          <thead>
+          <tr>
+            <th style="width: 16%">Год поступления</th>
+            <th style="width: 14%">Год окончания</th>
+            <th style="width: 30%">Название учебного заведения</th>
+            <th style="width: 30%">Специальность по диплому</th>
+            <th style="width: 20%">Форма обучения</th>
+            <th></th>
+          </tr>
+          </thead>
+          <tbody id="education_rows">
+
+          </tbody>
+        </table>
+      </div>
     </div>
 
-    <br />
-    <h6>Дополнительное образование (специализированные курсы, курсы повышения квалификации)</h6>
-
-    <div class="bs-example" data-example-id="contextual-table">
-      <table class="table">
-        <thead>
-        <tr>
-          <th style="width: 4%">Год обучения</th>
-          <th style="width: 40%">Наименование учебного заведения</th>
-          <th style="width: 40%">Название курса</th>
-          <th style="width: 16%">Продолжительность (месяцев)</th>
-        </tr>
-        </thead>
-        <tbody id="extra_rows">
-        <div class="form-group col-md-2">
-          <button class="btn btn-success btn-sm btn-block" onclick="return add_extra_table_new_row()">Добавить</button>
+    <div class="table-responsive">
+      <div class="table-wrapper">
+        <div class="table-title">
+          <div class="row">
+            <div class="col-sm-11"><h5>Дополнительное образование (специализированные курсы, курсы повышения квалификации)</h5></div>
+            <div class="col-sm-1">
+              <button type="button" class="btn btn-success " style="border-radius: 20px"><i class="fa fa-plus" onclick="return add_extra_table_new_row()"></i></button>
+            </div>
+          </div>
         </div>
-        </tbody>
-      </table>
+        <div class="table_content" id="extra_content" hidden><%= @candidate[:extra].to_json %></div>
+        <table class="table table-bordered">
+          <thead>
+          <tr>
+          <th style="width: 12%">Год обучения</th>
+          <th style="width: 35%">Наименование учебного заведения</th>
+          <th style="width: 30%">Название курса</th>
+          <th style="width: 23%">Продолжительность (месяцев)</th>
+            <th></th>
+          </tr>
+          </thead>
+          <tbody id="extra_rows">
+
+          </tbody>
+        </table>
+      </div>
     </div>
+  <div class="form-group col-md-2">
+    <a class="nav-link btn-outline-success" href="#" onclick="$('#pills-tab li:nth-child(3) a').tab('show')">Далее</a>
   </div>
 </div>
