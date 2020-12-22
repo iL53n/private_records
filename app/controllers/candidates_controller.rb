@@ -83,6 +83,7 @@ class CandidatesController < ApplicationController
   namespace '/api/v1' do
     # before
     before do
+      halt 401, '401 Unauthorized' unless request.env['HTTP_API_KEY'] == 'eb13944ea77e654bca4349016dbc7e0088d93d88'
       content_type 'application/json'
     end
 
