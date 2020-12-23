@@ -127,9 +127,15 @@ function add_language_table_new_row(){
 
     rowElement = document.createElement("tr");
     rowElement.innerHTML =
-        '<td><input class="form-control" type="text" id="language_'                   + String(count-1)  + '_name" name="language['     + String(count-1) + '][name]"></input></td>' +
-        '<td><input class="form-control" type="number" min="1" max="5" id="language_' + String(count-1)  + '_orally" name="language['   + String(count-1) + '][orally]"></input></td>'+
-        '<td><input class="form-control" type="number" min="1" max="5" id="language_' + String(count-1)  + '_writing" name="language['  + String(count-1) + '][writing]"></input></td>'+
+        '<td><input class="form-control" type="text" id="language_'                   
+            + String(count-1)  + '_name" name="language['     
+            + String(count-1) + '][name]" ></input></td>' +
+        '<td><input class="form-control" type="number" min="1" max="5" id="language_' 
+            + String(count-1)  + '_orally" name="language['   
+            + String(count-1) + '][orally]" onblur="this.value = Math.min(5, Math.max(this.value, 1))"></input></td>'+
+        '<td><input class="form-control" type="number" min="1" max="5" id="language_' 
+            + String(count-1)  + '_writing" name="language['  
+            + String(count-1) + '][writing]" onblur="this.value = Math.min(5, Math.max(this.value, 1))"></input></td>'+
         '<td><a class="delete" title="Удалить" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a></td>';
 
     tableBody.appendChild(rowElement);
