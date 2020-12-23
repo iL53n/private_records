@@ -26,7 +26,11 @@
           <input type="file" name="image" id="image" accept=".jpg, .jpeg, .png" onchange="handleFiles(this.files)" <%= "hidden" if @candidate.image_identifier && !@error %>>
         </div>
         <div id="preview">
-          <img class="img-fluid rounded mx-auto d-block" style="max-width:350px" src= "<%="/uploads/#{@candidate.image_identifier}" %>" <%= "hidden" unless @candidate.image_identifier && !@error %>/>
+          <% if @candidate.image_identifier && !@error %>
+            <img class="img-fluid rounded mx-auto d-block" style="max-width:350px" src= "<%="/uploads/#{@candidate.image_identifier}" %>">
+          <% else %>
+            <img class="img-fluid rounded mx-auto d-block" style="max-width:350px" src= "<%="/img/121.png" %>">
+          <% end %>
         </div>
       </div>
     </div>
