@@ -6,26 +6,22 @@ class CandidateSerializer
     @candidate = candidate
   end
 
-  def basic_object(*)
-    data = {}
+  def as_json(data={})
     data[:object] = @candidate
     data[:errors] = @candidate.errors if @candidate.errors.any?
+
     data
   end
 
-  def as_json(*)
-    basic_object
-  end
-
-  def only_basic(*)
-    data = {}
-    %i[guid first_name last_name email phone].each do |attr|
-      data[attr] = @candidate[attr]
-    end
-
-    data[:errors] = @candidate.errors if @candidate.errors.any?
-    data
-  end
+  # for filtering
+  # def as_json(data={}, *args)
+  #   %i[args].each do |attr|
+  #     data[attr] = @candidate[attr]
+  #   end
+  #   data[:errors] = @candidate.errors if @candidate.errors.any?
+  #
+  #   data
+  # end
 end
 
 
