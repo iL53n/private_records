@@ -39,13 +39,13 @@
         <label>WORD</label>
       </div>
       <div class="form-group col-md-1">
-        <input class="form-control" type="number" min="1" max="5" name="candidate[word_level]" id="candidate_word_level" value=<%= @candidate.word_level%>>
+        <input class="form-control" type="number" min="1" max="5" name="candidate[word_level]" id="candidate_word_level" onblur="this.value = Math.min(5, Math.max(this.value, 1))" value=<%= @candidate.word_level%>>
       </div>
       <div class="form-group col-md-1">
         <label>Excel</label>
       </div>
       <div class="form-group col-md-1">
-        <input class="form-control" type="number" min="1" max="5" name="candidate[excel_level]" id="candidate_excel_level" value=<%= @candidate.excel_level%>>
+        <input class="form-control" type="number" min="1" max="5" name="candidate[excel_level]" id="candidate_excel_level" onblur="this.value = Math.min(5, Math.max(this.value, 1))" value=<%= @candidate.excel_level%>>
       </div>
       <div class="form-group col-md-2">
         <label>Другое</label>
@@ -59,19 +59,19 @@
         <label>Aссess</label>
       </div>
       <div class="form-group col-md-1">
-        <input class="form-control" type="number" min="1" max="5" name="candidate[access_level]" id="candidate_access_level" value=<%= @candidate.access_level%>>
+        <input class="form-control" type="number" min="1" max="5" name="candidate[access_level]" id="candidate_access_level" onblur="this.value = Math.min(5, Math.max(this.value, 1))" value=<%= @candidate.access_level%>>
       </div>
       <div class="form-group col-md-1">
         <label>1C</label>
       </div>
       <div class="form-group col-md-1">
-        <input class="form-control" type="number" min="1" max="5" name="candidate[_1c_level]" id="candidate__1c_level" value=<%= @candidate._1c_level%>>
+        <input class="form-control" type="number" min="1" max="5" name="candidate[_1c_level]" id="candidate__1c_level" onblur="this.value = Math.min(5, Math.max(this.value, 1))" value=<%= @candidate._1c_level%>>
       </div>
       <div class="form-group col-md-2">
         <label>Дополнительные навыки</label>
       </div>
       <div class="form-group col-md-6">
-        <input class="form-control" type="text" name="candidate[extra_skills]" id="candidate_extra_skills" value=<%= @candidate.extra_skills%>>
+        <input class="form-control" type="text" name="candidate[extra_skills]" id="candidate_extra_skills"  value=<%= @candidate.extra_skills%>>
       </div>
     </div>
   </div>
