@@ -61,7 +61,7 @@ function add_relatives_table_new_row(){
     rowElement.innerHTML =
         '<td><select class="form-control" type="text" id="relatives_' + String(count-1) + '_type" name="relatives[' + String(count-1) + '][type]"></select></td>' +
         '<td><input class="form-control" type="text" id="relatives_' + String(count-1)  + '_name" name="relatives[' + String(count-1)  + '][name]"></input></td>' +
-        '<td><input class="form-control" type="text" id="relatives_' + String(count-1)  + '_date" name="relatives[' + String(count-1)  + '][date]"></input></td>' +
+        '<td><input class="form-control" type="date" id="relatives_' + String(count-1)  + '_date" name="relatives[' + String(count-1)  + '][date]"></input></td>' +
         '<td><input class="form-control" type="text" id="relatives_' + String(count-1)  + '_job"  name="relatives[' + String(count-1)  + '][job]"></input></td>' +
         '<td><input class="form-control" type="text" id="relatives_' + String(count-1)  + '_adr"  name="relatives[' + String(count-1)  + '][adr]"></input></td>' +
         '<td><a class="delete" title="Удалить" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a></td>';
