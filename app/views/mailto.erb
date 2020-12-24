@@ -5,7 +5,7 @@
     <div class="card-body">
 
     <% @subject = "Анкета кандидата для работы в ЗАО ЕКТ Групп" %>
-    <% @body = "Пожалуйста, перейдите по ссылке и заполните анкету: #{url("/candidates/" + @candidate.guid) + "/edit"}" %>
+    <% @body = "Пожалуйста, перейдите по ссылке и заполните анкету: #{url("/candidates/" + @candidate.guid + "/edit")}" %>
 
     <!-- TODO: Автоматическое открытие почты -->
     <a href="<%= "mailto:#{@candidate.email}?subject=#{@subject}&body=#{@body}" %>">Нажмите что-бы отправить на почту</a>
