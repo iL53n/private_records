@@ -76,7 +76,6 @@ function add_relatives_table_new_row(){
     return (false)
 }
 
-
 function add_education_table_new_row(){
     tableBody = document.getElementById("education_rows")
 
