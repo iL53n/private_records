@@ -259,6 +259,10 @@ function add_reccomenders_table_row(){
 function fill_relatives_content(contentElement){
     tableContent = JSON.parse(contentElement.innerHTML)
 
+    if (tableContent == null){
+        return
+    }
+
     rowsElement = document.getElementById("relatives_rows")
 
     for (i=0;i<tableContent.length; i++){
@@ -283,6 +287,10 @@ function fill_relatives_content(contentElement){
 
 function fill_education_content(contentElement){
     tableContent = JSON.parse(contentElement.innerHTML)
+
+    if (tableContent == null){
+        return
+    }
 
     rowsElement = document.getElementById("education_rows")
 
@@ -309,6 +317,10 @@ function fill_education_content(contentElement){
 function fill_extra_content(contentElement){
     tableContent = JSON.parse(contentElement.innerHTML)
 
+    if (tableContent == null){
+        return
+    }
+
     rowsElement = document.getElementById("extra_rows")
 
     for (i=0;i<tableContent.length; i++){
@@ -328,6 +340,10 @@ function fill_extra_content(contentElement){
 function fill_language_content(contentElement){
     tableContent = JSON.parse(contentElement.innerHTML)
 
+    if (tableContent == null){
+        return
+    }
+
     rowsElement = document.getElementById("language_rows")
 
     for (i=0;i<tableContent.length; i++){
@@ -345,6 +361,10 @@ function fill_language_content(contentElement){
 
 function fill_reccomenders_content(contentElement){
     tableContent = JSON.parse(contentElement.innerHTML)
+
+    if (tableContent == null){
+        return
+    }
 
     rowsElement = document.getElementById("reccomenders_rows")
 
