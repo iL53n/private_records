@@ -61,7 +61,7 @@ function add_relatives_table_new_row(){
     rowElement.innerHTML =
         '<td><select class="form-control" type="text" id="relatives_' + String(count-1) + '_type" name="relatives[' + String(count-1) + '][type]"></select></td>' +
         '<td><input class="form-control" type="text" id="relatives_' + String(count-1)  + '_name" name="relatives[' + String(count-1)  + '][name]"></input></td>' +
-        '<td><input class="form-control" type="text" id="relatives_' + String(count-1)  + '_date" name="relatives[' + String(count-1)  + '][date]"></input></td>' +
+        '<td><input class="form-control" type="date" id="relatives_' + String(count-1)  + '_date" name="relatives[' + String(count-1)  + '][date]"></input></td>' +
         '<td><input class="form-control" type="text" id="relatives_' + String(count-1)  + '_job"  name="relatives[' + String(count-1)  + '][job]"></input></td>' +
         '<td><input class="form-control" type="text" id="relatives_' + String(count-1)  + '_adr"  name="relatives[' + String(count-1)  + '][adr]"></input></td>' +
         '<td><a class="delete" title="Удалить" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a></td>';
@@ -75,7 +75,6 @@ function add_relatives_table_new_row(){
 
     return (false)
 }
-
 
 function add_education_table_new_row(){
     tableBody = document.getElementById("education_rows")
@@ -259,6 +258,10 @@ function add_reccomenders_table_row(){
 function fill_relatives_content(contentElement){
     tableContent = JSON.parse(contentElement.innerHTML)
 
+    if (tableContent == null){
+        return
+    }
+
     rowsElement = document.getElementById("relatives_rows")
 
     for (i=0;i<tableContent.length; i++){
@@ -283,6 +286,10 @@ function fill_relatives_content(contentElement){
 
 function fill_education_content(contentElement){
     tableContent = JSON.parse(contentElement.innerHTML)
+
+    if (tableContent == null){
+        return
+    }
 
     rowsElement = document.getElementById("education_rows")
 
@@ -309,6 +316,10 @@ function fill_education_content(contentElement){
 function fill_extra_content(contentElement){
     tableContent = JSON.parse(contentElement.innerHTML)
 
+    if (tableContent == null){
+        return
+    }
+
     rowsElement = document.getElementById("extra_rows")
 
     for (i=0;i<tableContent.length; i++){
@@ -328,6 +339,10 @@ function fill_extra_content(contentElement){
 function fill_language_content(contentElement){
     tableContent = JSON.parse(contentElement.innerHTML)
 
+    if (tableContent == null){
+        return
+    }
+
     rowsElement = document.getElementById("language_rows")
 
     for (i=0;i<tableContent.length; i++){
@@ -345,6 +360,10 @@ function fill_language_content(contentElement){
 
 function fill_reccomenders_content(contentElement){
     tableContent = JSON.parse(contentElement.innerHTML)
+
+    if (tableContent == null){
+        return
+    }
 
     rowsElement = document.getElementById("reccomenders_rows")
 
