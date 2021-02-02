@@ -148,7 +148,7 @@ function add_experience_table_row(){
     if (tableBody){
         var count = tableBody.childNodes.length;
 
-        count = count / 5;
+        count = count / 6;
 
         tableBody.appendChild(document.createElement("br"));
 
@@ -158,13 +158,18 @@ function add_experience_table_row(){
             '<div class="form-group col-md-3">' +
             '   <label for="expieience' + String(count) + 'Name">Название организации(' + String(count+1) + ')</label>' +
             '</div>' +
-            '<div class="form-group col-md-3">' +
+            '<div class="form-group col-md-9">' +
             '   <input class="form-control" type="text" id="experience_>' + String(count) + '_name" name="experience['+ String(count) + '][name]">' +
+            '</div>';
+        tableBody.appendChild(rowElement);
+
+        rowElement = document.createElement("div");
+        rowElement.classList.add("form-row");
+        rowElement.innerHTML =
+            '<div class="form-group col-md-3">' +
+            '   <label for="expieience' + String(count) + 'Period">Период работы</label>' +
             '</div>' +
-            '<div class="form-group col-md-1">' +
-            '   <label for="expieience' + String(count) + 'Period">период работы</label>' +
-            '</div>' +
-            '<div class="form-group col-md-1">' +
+            '<div class="form-group col-md-4">' +
             '   <input class="form-control" type="text" id="experience_>' + String(count) + '_period" name="experience['+ String(count) + '][period]">' +
             '</div>' +
             '<div class="form-group col-md-1">' +
@@ -378,5 +383,40 @@ function fill_reccomenders_content(contentElement){
         rowElement.childNodes[1].childNodes[0].value = rowData["job"]
         rowElement.childNodes[2].childNodes[0].value = rowData["position"]
         rowElement.childNodes[3].childNodes[0].value = rowData["phone"]
+    }
+}
+
+function fill_experience_content(contentElement){
+    tableContent = JSON.parse(contentElement.innerHTML)
+
+    if (tableContent == null){
+        return
+    }
+
+    rowsElement = document.getElementById("experience_fields")
+
+    if (tableContent.length == 0){
+        add_experience_table_row()
+    }
+
+    for (i=0;i<tableContent.length; i++){
+        add_experience_table_row()
+
+        rowData = tableContent[i]
+
+        rowsElement.childNodes[rowsElement.childNodes.length-5].childNodes[1].childNodes[1].value = rowData["name"]
+
+        rowsElement.childNodes[rowsElement.childNodes.length-4].childNodes[1].childNodes[1].value = rowData["period"]
+        rowsElement.childNodes[rowsElement.childNodes.length-4].childNodes[3].childNodes[1].value = rowData["workers"]
+        rowsElement.childNodes[rowsElement.childNodes.length-4].childNodes[5].childNodes[1].value = rowData["subords"]
+
+        rowsElement.childNodes[rowsElement.childNodes.length-3].childNodes[1].childNodes[1].value = rowData["field"]
+        rowsElement.childNodes[rowsElement.childNodes.length-3].childNodes[3].childNodes[1].value = rowData["pos"]
+
+        rowsElement.childNodes[rowsElement.childNodes.length-2].childNodes[1].childNodes[1].value = rowData["cond"]
+        rowsElement.childNodes[rowsElement.childNodes.length-2].childNodes[3].childNodes[1].value = rowData["dism"]
+
+        rowsElement.childNodes[rowsElement.childNodes.length-1].childNodes[0].childNodes[1].value = rowData["duties"]
+
     }
 }

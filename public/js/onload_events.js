@@ -5,7 +5,6 @@ $(function(){
 
     // Phone mask
     $("#candidate_phone").mask("+375 (99) 999-99-99")
-    add_experience_table_row()
     
     // Image content
     imageElement = document.getElementById("image")
@@ -22,9 +21,12 @@ $(function(){
 
     contentElement = document.getElementById('extra_content')
     if (contentElement){ fill_extra_content(contentElement) }
-    
+
     contentElement = document.getElementById('language_content')
     if (contentElement){ fill_language_content(contentElement) }
+    
+    contentElement = document.getElementById('experience_content')
+    if (contentElement){fill_experience_content(contentElement)} 
 
     contentElement = document.getElementById('reccomenders_content')
     if (contentElement){ fill_reccomenders_content(contentElement) }
