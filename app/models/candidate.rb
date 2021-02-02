@@ -92,6 +92,7 @@ class Candidate
   field :job_disciplinary_penalties,   type: String
   field :job_data_source,              type: String
   field :data_verification,            type: Boolean
+  field :author_email,                 type: String
 
   mount_uploader :image, ImageUploader, type: String
 
