@@ -72,10 +72,7 @@ class Candidate
   field :work_debufs,                  type: String
   field :trial_period_salaries,        type: Integer
   field :post_trial_salaries,          type: Integer
-  field :desired_pay_system,           type: Array # %w[sal salbon int salint] 
-  field :salbon,                       type: Boolean
-  field :int,                          type: Boolean
-  field :salint,                       type: Boolean
+  field :desired_pay_system,           type: Array # %w[sal salbon int salint]
   field :additional_income,            type: String
   field :overtime_work,                type: Integer
   field :business_trips,               type: Integer
