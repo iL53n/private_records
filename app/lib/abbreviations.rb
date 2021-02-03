@@ -32,10 +32,10 @@ module Abbreviations
 
   def desired_pay_system
     {
-      sal: 'Оклад',
-      salbon: 'Оклад+премия',
-      int: 'Процент',
-      salint: 'Оклад+процент'
+      'sal' => 'Оклад',
+      'salbon' => 'Оклад+премия',
+      'int' => 'Процент',
+      'salint' => 'Оклад+процент'
     }
   end
 

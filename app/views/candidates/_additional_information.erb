@@ -104,7 +104,7 @@
         <% @desired_pay_system.each do |key, value| %>
           <div class="form-check">
             <input type="checkbox" class="form-check-input" id=<%= "candidate_#{key}" %>
-                name="candidate[]" value = <%= key %> <%='checked' if @candidate[key] %>>
+                name="candidate[desired_pay_system][]" value = <%= key %> <%='checked' if @candidate.desired_pay_system.include?(key) %>>
             <label class="form-check-label" for=<%= "Candidate#{key[0].upcase}#{key[2..]}" %>><%= value %></label>
           </div>
         <% end %>
