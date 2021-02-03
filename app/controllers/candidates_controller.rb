@@ -53,6 +53,12 @@ class CandidatesController < ApplicationController
   post '/candidates/:guid' do
     erb '<h5>Не верный запрос!</h5>' unless params[:_method] && params[:_method] == 'patch' # TODO: destroy in prod.
 
+    params[:candidate][:last_job_like_dislike] ||= []
+    params[:candidate][:work_experience_areas] ||= []
+    params[:candidate][:desired_pay_system] ||= []
+
+    puts params[:candidate]
+
     @candidate = candidate
     @candidate.update(params[:candidate])
     @candidate.image = params[:image] if !candidate[:image_identifier] && params[:image]

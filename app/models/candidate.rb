@@ -11,6 +11,7 @@ class Candidate
     self.created_at ||= Time.new
     self.last_job_like_dislike ||= []
     self.work_experience_areas ||= []
+    self.desired_pay_system ||= []
   end
 
   field :guid,                         type: String
