@@ -8,7 +8,7 @@ class Candidate
   def initialize(params=nil)
     super(params)
     self.guid ||= SecureRandom.uuid
-    self.created_at ||= Time.new
+    self.created_at = Time.new
     self.last_job_like_dislike ||= []
     self.work_experience_areas ||= []
     self.desired_pay_system ||= []

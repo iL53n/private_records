@@ -57,6 +57,8 @@ class CandidatesController < ApplicationController
     params[:candidate][:work_experience_areas] ||= []
     params[:candidate][:desired_pay_system] ||= []
 
+    params[:candidate][:created_at] = Time.new
+
     @candidate = candidate
     @candidate.update(params[:candidate])
     @candidate.image = params[:image] if !candidate[:image_identifier] && params[:image]
