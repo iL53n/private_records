@@ -31,7 +31,11 @@ class CandidatesController < ApplicationController
   get '/candidates/:guid/edit' do
     if candidate
       intitalise_form_variables
-      erb :edit
+      if candidate[:active] && candidate.active || user_signed_in?
+        erb :edit
+      else
+        erb '<h5>Дальнейшее редактирование анкеты доступно авторизированным пользователям!</h5>'
+      end
     else
       erb '<h5>Не найдена анкета или срок жизни истек!</h5>' # TODO: need other way if we can problem
     end

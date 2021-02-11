@@ -5,13 +5,14 @@ class Candidate
   include Mongoid::Document
   include Attachments
 
-  def initialize(params=nil)
+  def initialize(params = nil)
     super(params)
     self.guid ||= SecureRandom.uuid
     self.created_at = Time.new
     self.last_job_like_dislike ||= []
     self.work_experience_areas ||= []
     self.desired_pay_system ||= []
+    self.active ||= true
   end
 
   field :guid,                         type: String
@@ -91,6 +92,7 @@ class Candidate
   field :job_data_source,              type: String
   field :data_verification,            type: Boolean
   field :author_email,                 type: String
+  field :active,                       type: Boolean
 
   mount_uploader :image, ImageUploader, type: String
 
@@ -98,8 +100,8 @@ class Candidate
             :position,
             :first_name,
             :last_name,
-            :sur_name,
-            :date,
+            # :sur_name,
+            # :date,
             :phone,
             :email,
             presence: true
