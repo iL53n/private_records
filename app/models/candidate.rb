@@ -34,7 +34,8 @@ class Candidate
   field :phone,                        type: String
   field :created_at,                   type: DateTime
   field :military_registration,        type: String
-  field :relatives,                    type: Array # {type:'',name:'',date:'',job:'',adr:''}
+  # relatives: {type:'',name:'',date:'',job:'',adr:''}
+  field :relatives,                    type: Array
   field :registration_city,            type: String
   field :registration_street,          type: String
   field :registration_house,           type: String
@@ -52,19 +53,26 @@ class Candidate
   field :year_of_admission,            type: Date
   field :year_of_ending,               type: Date
   field :form_of_education,            type: String
-  field :education,                    type: Array # {begin:'',end:'',inst:'',spec:'',form:''}
-  field :extra,                        type: Array # {year:0,inst:'',name:'',duration:0}
-  field :language,                     type: Array # {name:'',orally:0,writing:0}
+  # education: {begin:'',end:'',inst:'',spec:'',form:''}
+  field :education,                    type: Array
+  # extra: {year:0,inst:'',name:'',duration:0}
+  field :extra,                        type: Array
+  # language: {name:'',orally:0,writing:0}
+  field :language,                     type: Array
   field :word_level,                   type: String
   field :excel_level,                  type: String
   field :access_level,                 type: String
   field :_1c_level,                    type: String
   field :other_skills_level,           type: String
   field :extra_skills,                 type: String
-  field :experience,                   type: Array # {name:'',pos:'',field:'',conds:'',dism:'',period:'',workers:0,subords:0,duties:''}
-  field :reccomenders,                 type: Array # {name:'',job:'',position:'',phone:''}
-  field :last_job_like_dislike,        type: Array # %w[ls upct llbo drwm ncp emr ow so]
-  field :work_experience_areas,        type: Array # %w[so prod serv whsal ret publ pc build tr ent]
+  # experience: {name:'',pos:'',field:'',conds:'',dism:'',period:'',workers:0,subords:0,duties:''}
+  field :experience,                   type: Array
+  # reccomenders: {name:'',job:'',position:'',phone:''}
+  field :reccomenders,                 type: Array
+  # last_job_like_dislike: %w[ls upct llbo drwm ncp emr ow so]
+  field :last_job_like_dislike,        type: Array
+  # work_experience_areas: %w[so prod serv whsal ret publ pc build tr ent]
+  field :work_experience_areas,        type: Array
   field :work_experience_areas_other,  type: String
   field :hobbies,                      type: String
   field :personality_strengths,        type: String
@@ -73,7 +81,8 @@ class Candidate
   field :work_debufs,                  type: String
   field :trial_period_salaries,        type: Integer
   field :post_trial_salaries,          type: Integer
-  field :desired_pay_system,           type: Array # %w[sal salbon int salint]
+  # desired_pay_system: %w[sal salbon int salint]
+  field :desired_pay_system,           type: Array
   field :additional_income,            type: String
   field :overtime_work,                type: Integer
   field :business_trips,               type: Integer
