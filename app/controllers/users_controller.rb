@@ -14,7 +14,7 @@ class UsersController < ApplicationController
   end
 
   get '/users/new' do
-    if !ENV['REG_CLOSED'] || ENV['REG_CLOSED'] == 'false'
+    if ENV['REG_OPEN'] && ENV['REG_OPEN'] == 'true'
       @user = User.new({ username: '', email: '', password_digest: '', active: true, is_admin: true })
       erb :user_new
     else
