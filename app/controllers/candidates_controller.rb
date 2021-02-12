@@ -34,10 +34,10 @@ class CandidatesController < ApplicationController
       if candidate[:active] && candidate.active || user_signed_in?
         erb :edit
       else
-        erb '<h5>Дальнейшее редактирование анкеты доступно авторизированным пользователям!</h5>'
+        erb '<div class="alert alert-primary" role="alert">Дальнейшее редактирование анкеты доступно авторизированным пользователям!</div>'
       end
     else
-      erb '<h5>Не найдена анкета или срок жизни истек!</h5>' # TODO: need other way if we can problem
+      erb '<div class="alert alert-primary" role="alert">Не найдена анкета или срок жизни истек!</div>' # TODO: need other way if we can problem
     end
   end
 
@@ -55,7 +55,10 @@ class CandidatesController < ApplicationController
 
   # update
   post '/candidates/:guid' do
-    erb '<h5>Не верный запрос!</h5>' unless params[:_method] && params[:_method] == 'patch' # TODO: destroy in prod.
+    if !params[:_method] || params[:_method] != 'patch' # TODO: destroy in prod.
+      @error = 'Не верный запрос!'
+      erb :error
+    end
 
     params[:candidate][:last_job_like_dislike] ||= [] # TODO: try to remove this
     params[:candidate][:work_experience_areas] ||= []
