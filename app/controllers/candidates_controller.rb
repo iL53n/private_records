@@ -34,10 +34,12 @@ class CandidatesController < ApplicationController
       if candidate[:active] && candidate.active || user_signed_in?
         erb :edit
       else
-        erb '<div class="alert alert-primary" role="alert">Дальнейшее редактирование анкеты доступно авторизированным пользователям!</div>'
+        @error = 'Дальнейшее редактирование анкеты доступно авторизированным пользователям!'
+        erb :error
       end
     else
-      erb '<div class="alert alert-primary" role="alert">Не найдена анкета или срок жизни истек!</div>' # TODO: need other way if we can problem
+      @error = 'Не найдена анкета или срок жизни истек!'
+      erb :error
     end
   end
 
