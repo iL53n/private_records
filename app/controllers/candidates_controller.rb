@@ -31,9 +31,15 @@ class CandidatesController < ApplicationController
   get '/candidates/:guid/edit' do
     if candidate
       intitalise_form_variables
-      erb :edit
+      if candidate[:active] && candidate.active || user_signed_in?
+        erb :edit
+      else
+        @error = 'Дальнейшее редактирование анкеты доступно авторизированным пользователям!'
+        erb ''
+      end
     else
-      erb '<h5>Не найдена анкета или срок жизни истек!</h5>' # TODO: need other way if we can problem
+      @error = 'Не найдена анкета или срок жизни истек!'
+      erb ''
     end
   end
 
@@ -42,6 +48,7 @@ class CandidatesController < ApplicationController
     @candidate = Candidate.new(params[:candidate])
 
     if @candidate.save
+      @message_success = 'Анкета кандидата успешно создана'
       erb :mailto
     else
       @error = error(candidate)
@@ -51,11 +58,16 @@ class CandidatesController < ApplicationController
 
   # update
   post '/candidates/:guid' do
-    erb '<h5>Не верный запрос!</h5>' unless params[:_method] && params[:_method] == 'patch' # TODO: destroy in prod.
+    if !params[:_method] || params[:_method] != 'patch' # TODO: destroy in prod.
+      @error = 'Не верный запрос!'
+      erb ''
+    end
 
     params[:candidate][:last_job_like_dislike] ||= [] # TODO: try to remove this
     params[:candidate][:work_experience_areas] ||= []
     params[:candidate][:desired_pay_system] ||= []
+
+    params[:candidate][:created_at] = Time.new
 
     @candidate = candidate
     @candidate.update(params[:candidate])
@@ -63,6 +75,12 @@ class CandidatesController < ApplicationController
     add_arrays_to_candidate(@candidate, params) # TODO: need refactoring
 
     if @candidate.save
+      @message_success = if user_signed_in?
+                           'Данные сохранены!'
+                         else
+                           "Спасибо, #{@candidate.first_name} #{@candidate.last_name}, за заполнение анкеты!"
+                         end
+
       erb :show
     else
       @error = error(@candidate)
