@@ -26,6 +26,18 @@
         </div>
       <% end %>
 
+      <% if @message && @message.length > 0 %>
+        <div class="alert alert-primary">
+          <%= @message %>
+        </div>
+      <% end %>
+
+      <% if @message_success && @message_success.length > 0 %>
+        <div class="alert alert-success">
+          <%= @message_success %>
+        </div>
+      <% end %>
+
       <%= yield %>
 
       <%= erb :'shared/_footer' %>

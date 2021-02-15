@@ -35,11 +35,11 @@ class CandidatesController < ApplicationController
         erb :edit
       else
         @error = 'Дальнейшее редактирование анкеты доступно авторизированным пользователям!'
-        erb :error
+        erb ''
       end
     else
       @error = 'Не найдена анкета или срок жизни истек!'
-      erb :error
+      erb ''
     end
   end
 
@@ -48,6 +48,7 @@ class CandidatesController < ApplicationController
     @candidate = Candidate.new(params[:candidate])
 
     if @candidate.save
+      @message_success = 'Анкета кандидата успешно создана'
       erb :mailto
     else
       @error = error(candidate)
@@ -59,7 +60,7 @@ class CandidatesController < ApplicationController
   post '/candidates/:guid' do
     if !params[:_method] || params[:_method] != 'patch' # TODO: destroy in prod.
       @error = 'Не верный запрос!'
-      erb :error
+      erb ''
     end
 
     params[:candidate][:last_job_like_dislike] ||= [] # TODO: try to remove this
@@ -74,6 +75,12 @@ class CandidatesController < ApplicationController
     add_arrays_to_candidate(@candidate, params) # TODO: need refactoring
 
     if @candidate.save
+      @message_success = if user_signed_in?
+                           'Данные сохранены!'
+                         else
+                           "Спасибо, #{@candidate.first_name} #{@candidate.last_name}, за заполнение анкеты!"
+                         end
+
       erb :show
     else
       @error = error(@candidate)

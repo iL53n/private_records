@@ -1,8 +1,1 @@
-<div class="alert alert-primary" role="alert">
-  <% if user_signed_in? %>
-    <%= "Данные сохранены!" %>
-  <% else %>
-    <%= "Спасибо, #{@candidate.first_name} #{@candidate.last_name}, за заполнение анкеты!" %>
-  <% end %>
-</div>
 <p><a class="btn btn-success" role="button" aria-pressed="true" href="<%= "/candidates/#{@candidate.guid}/edit" %>">Вернуться к анкете</a>
