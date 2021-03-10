@@ -3,7 +3,9 @@ development:
     default:
       database: records_dev
       hosts:
-        - localhost:27017
+#        - localhost:27017
+#        - ["127.0.0.1:27017"]
+        - mongodb:27017
       options:
         server_selection_timeout: 1
 
