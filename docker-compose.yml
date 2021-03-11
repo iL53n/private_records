@@ -15,7 +15,7 @@ services:
     volumes:
       - ./public/uploads:/application/public/uploads
     healthcheck:
-      test: curl -f localhost/ || exit 1
+      test: curl -f localhost:4567 || exit 1
       interval: 10s
       timeout: 10s
       retries: 5
