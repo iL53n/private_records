@@ -2,12 +2,13 @@
 
 # Candidates controller class
 class CandidatesController < ApplicationController
+  include Abbreviations
   include Helpers
 
   # index
   get '/' do
     if user_signed_in?
-      @candidates = Candidate.all # ToDo: don't use `all` in production
+      @candidates = Candidate.all # TODO: don't use `all` in production
       erb :index
     else
       erb :login
@@ -30,9 +31,13 @@ class CandidatesController < ApplicationController
   get '/candidates/:guid/edit' do
     if candidate
       intitalise_form_variables
-      erb :edit
+      if candidate[:active] && candidate.active || user_signed_in?
+        erb :edit
+      else
+        erb "<% @error = 'Дальнейшее редактирование анкеты доступно авторизированным пользователям!' %>"
+      end
     else
-      erb '<h5>Не найдена анкета или срок жизни истек!</h5>' # ToDo: need other way if we can problem
+      erb "<% @error = 'Не найдена анкета или срок жизни истек!' %>"
     end
   end
 
@@ -41,6 +46,7 @@ class CandidatesController < ApplicationController
     @candidate = Candidate.new(params[:candidate])
 
     if @candidate.save
+      @message_success = 'Анкета кандидата успешно создана'
       erb :mailto
     else
       @error = error(candidate)
@@ -50,14 +56,28 @@ class CandidatesController < ApplicationController
 
   # update
   post '/candidates/:guid' do
-    erb '<h5>Не верный запрос!</h5>' unless params[:_method] && params[:_method] == 'patch' # ToDo: destroy in production
+    if !params[:_method] || params[:_method] != 'patch' # TODO: destroy in prod.
+      erb "<% @error = 'Не верный запрос!' %>"
+    end
+
+    params[:candidate][:last_job_like_dislike] ||= [] # TODO: try to remove this
+    params[:candidate][:work_experience_areas] ||= []
+    params[:candidate][:desired_pay_system] ||= []
+
+    params[:candidate][:created_at] = Time.new
 
     @candidate = candidate
     @candidate.update(params[:candidate])
     @candidate.image = params[:image] if !candidate[:image_identifier] && params[:image]
-    add_arrays_to_candidate(@candidate, params) # ToDo: need refactoring
+    add_arrays_to_candidate(@candidate, params) # TODO: need refactoring
 
     if @candidate.save
+      @message_success = if user_signed_in?
+                           'Данные сохранены!'
+                         else
+                           "Спасибо, #{@candidate.first_name} #{@candidate.last_name}, за заполнение анкеты!"
+                         end
+
       erb :show
     else
       @error = error(@candidate)
@@ -82,20 +102,15 @@ class CandidatesController < ApplicationController
   namespace '/api/v1' do
     # before
     before do
-      content_type 'application/json'
+      unless request.env['HTTP_API_KEY'] && request.env['HTTP_API_KEY'] == ENV['API_KEY']
+        halt 401, '401 Unauthorized'
+        content_type 'application/json'
+      end
     end
 
     # INDEX
     get '/candidates/:date?' do
-      candidates = Candidate.all
-
-      # we can add more filtering params in array
-      # example: /api/v1/candidates?guid=123
-      %i[id guid].each do |filter|
-        candidates = candidates.send(filter, params[filter]) if params[filter]
-      end
-
-      candidates.map { |candidate| CandidateSerializer.new(candidate) }.to_json
+      to_json_with_filters(params)
     end
 
     # SHOW

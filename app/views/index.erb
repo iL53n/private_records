@@ -1,43 +1,46 @@
 <h1 class="display-4">Кандидаты</h1>
 
 <% if @candidates.empty? %>
-  <div class="alert alert-primary" role="alert">
-    В базе отсутствует информация о кандидатах!
-  </div>
+  <div class="alert alert-primary" role="alert">В базе отсутствует информация о кандидатах!</div>
 <% else %>
   <table class="table table-striped table-bordered">
     <thead>
-    <tr>
-      <th scope="col">GUID</th>
-      <th scope="col">Фото</th>
-      <th scope="col">ФИО</th>
-      <th scope="col">Позиция</th>
-      <th scope="col">Email</th>
-      <th scope="col"></th>
-    </tr>
+      <tr>
+        <th scope="col">GUID</th>
+        <th scope="col">Фото</th>
+        <th scope="col">ФИО</th>
+        <th scope="col">Позиция</th>
+        <th scope="col">Email</th>
+        <th scope="col"></th>
+      </tr>
     </thead>
     <tbody>
-      <% @candidates.each do |candidate| %>
-        <tr>
-          <td><%= candidate.guid %></td>
-          <td>
-            <img class="rounded mx-auto d-block" alt="Фото" width="70" src= <%= "/uploads/#{candidate.image_identifier}" %> >
-          </td>
-          <td>
-            <a href="<%= "/candidates/#{candidate.guid}/edit" %>">
-              <%= "#{candidate.first_name} #{candidate.last_name} #{candidate.sur_name}" %>
-            </a>
-          </td>
-          <td><%= candidate.position %></td>
-          <td><%= candidate.email %></td>
-          <td>
-            <form action="/candidates/<%= candidate.guid %>/delete" method="post">
-              <input type="hidden" name="_method" value="delete">
-<!--              <input type="submit" value=""><i class="material-icons">&#xE872;</i>-->
-              <button type="submit" class="btn btn-danger " style="border-radius: 20px"><i class="fa fa-trash"></i></button>
-            </form>
-          </td>
-        </tr>
+    <% unless @candidates.nil? %>
+        <% @candidates.each do |candidate| %>
+          <tr>
+            <td><%= candidate.guid %></td>
+            <td>
+            <% if candidate.image_identifier %>
+                <img class="rounded mx-auto d-block" alt="Фото" width="70" src= <%= "/uploads/#{candidate.image_identifier}" %> >
+            <% else %>
+                <img class="rounded mx-auto d-block" alt="Фото" width="70" src= <%= "/img/121.png" %> >
+            <% end %>
+            </td>
+            <td>
+              <a href="<%= "/candidates/#{candidate.guid}/edit" %>">
+                <%= "#{candidate.first_name} #{candidate.last_name} #{candidate.sur_name}" %>
+              </a>
+            </td>
+            <td><%= candidate.position %></td>
+            <td><%= candidate.email %></td>
+            <td>
+              <form action="/candidates/<%= candidate.guid %>/delete" method="post">
+                <input type="hidden" name="_method" value="delete">
+                <button type="submit" class="btn btn-danger " style="border-radius: 20px"><i class="fa fa-trash"></i></button>
+              </form>
+            </td>
+          </tr>
+        <% end %>
       <% end %>
     </tbody>
   </table>

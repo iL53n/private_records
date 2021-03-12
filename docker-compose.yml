@@ -1,0 +1,50 @@
+version: "2.4"
+
+services:
+  app:
+    image: application
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        RUBY_VERSION: '2.6.3'
+        BUNDLER_VERSION: '2.1.4'
+    container_name: application
+    ports:
+      - 80:4567
+    volumes:
+      - ./public/uploads:/application/public/uploads
+    healthcheck:
+      test: curl -f localhost:4567 || exit 1
+      interval: 10s
+      timeout: 10s
+      retries: 5
+    links:
+      - mongodb
+    depends_on:
+      mongodb:
+        condition: service_healthy
+#        condition: service_started
+    networks:
+      - network
+
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    restart: always
+    ports:
+      - 27017:27017
+    volumes:
+#      - ./data/mongodb:/data/db
+      - $HOME/data/mongodb:/data/db
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongo mongodb:27017/test --quiet
+      interval: 10s
+      timeout: 10s
+      retries: 5
+    networks:
+      - network
+
+networks:
+  network:
+    driver: bridge

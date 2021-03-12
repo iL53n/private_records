@@ -3,21 +3,32 @@
     ВЛАДЕНИЕ ИНОСТРАННЫМИ ЯЗЫКАМИ, НАВЫКИ РАБОТЫ НА КОМПЬЮТЕРЕ
   </div>
   <div class="card-body">
-    <div class="bs-example" data-example-id="contextual-table">
-      <table class="table">
-        <thead>
-        <tr>
+
+    <div class="table-responsive">
+      <div class="table-wrapper">
+        <div class="table-title">
+          <div class="row">
+            <div class="col-sm-11"><h5>Иностранные языки по пятибальной системе</h5></div>
+            <div class="col-sm-1">
+              <button type="button" class="btn btn-success " style="border-radius: 20px"><i class="fa fa-plus" onclick="return add_language_table_new_row()"></i></button>
+            </div>
+          </div>
+        </div>
+        <div class="table_content" id="language_content" hidden><%= @candidate[:language].to_json %></div>
+        <table class="table table-bordered">
+          <thead>
+          <tr>
           <th style="width: 60%">Укажите язык</th>
           <th style="width: 20%">Уровень владения устно</th>
           <th style="width: 20%">Уровень владения письменно</th>
-        </tr>
-        </thead>
-        <tbody id="language_rows">
-        <div class="form-group col-md-2">
-          <button class="btn btn-success btn-sm btn-block" onclick="return add_language_table_new_row()">Добавить</button>
-        </div>
-        </tbody>
-      </table>
+            <th></th>
+          </tr>
+          </thead>
+          <tbody id="language_rows">
+
+          </tbody>
+        </table>
+      </div>
     </div>
 
     <br />
@@ -28,13 +39,13 @@
         <label>WORD</label>
       </div>
       <div class="form-group col-md-1">
-        <input class="form-control" type="number" min="1" max="5" name="candidate[word_level]" id="candidate_word_level" value=<%= @candidate.word_level%>>
+        <input class="form-control" type="number" min="1" max="5" name="candidate[word_level]" id="candidate_word_level" onblur="this.value = Math.min(5, Math.max(this.value, 1))" value=<%= @candidate.word_level%>>
       </div>
       <div class="form-group col-md-1">
         <label>Excel</label>
       </div>
       <div class="form-group col-md-1">
-        <input class="form-control" type="number" min="1" max="5" name="candidate[excel_level]" id="candidate_excel_level" value=<%= @candidate.excel_level%>>
+        <input class="form-control" type="number" min="1" max="5" name="candidate[excel_level]" id="candidate_excel_level" onblur="this.value = Math.min(5, Math.max(this.value, 1))" value=<%= @candidate.excel_level%>>
       </div>
       <div class="form-group col-md-2">
         <label>Другое</label>
@@ -48,20 +59,24 @@
         <label>Aссess</label>
       </div>
       <div class="form-group col-md-1">
-        <input class="form-control" type="number" min="1" max="5" name="candidate[access_level]" id="candidate_access_level" value=<%= @candidate.access_level%>>
+        <input class="form-control" type="number" min="1" max="5" name="candidate[access_level]" id="candidate_access_level" onblur="this.value = Math.min(5, Math.max(this.value, 1))" value=<%= @candidate.access_level%>>
       </div>
       <div class="form-group col-md-1">
         <label>1C</label>
       </div>
       <div class="form-group col-md-1">
-        <input class="form-control" type="number" min="1" max="5" name="candidate[_1c_level]" id="candidate__1c_level" value=<%= @candidate._1c_level%>>
+        <input class="form-control" type="number" min="1" max="5" name="candidate[_1c_level]" id="candidate__1c_level" onblur="this.value = Math.min(5, Math.max(this.value, 1))" value=<%= @candidate._1c_level%>>
       </div>
       <div class="form-group col-md-2">
         <label>Дополнительные навыки</label>
       </div>
       <div class="form-group col-md-6">
-        <input class="form-control" type="text" name="candidate[extra_skills]" id="candidate_extra_skills" value=<%= @candidate.extra_skills%>>
+        <input class="form-control" type="text" name="candidate[extra_skills]" id="candidate_extra_skills"  value=<%= @candidate.extra_skills%>>
       </div>
     </div>
+  </div>
+  <br>
+  <div class="form-group" align="right">
+    <a class="nav-link btn-lg btn-link" href="#" onclick="$('#pills-tab li:nth-child(4) a').tab('show')">Далее ❯</a>
   </div>
 </div>

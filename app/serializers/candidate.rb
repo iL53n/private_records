@@ -1,18 +1,27 @@
+# frozen_string_literal: true
+
+# CandidateSerializer Class
 class CandidateSerializer
   def initialize(candidate)
     @candidate = candidate
   end
 
-  def as_json(*)
-    data = {
-      # id: @candidates.id.to_s,
-      guid: @candidate.guid,
-      first_name: @candidate.first_name,
-      last_name: @candidate.last_name,
-      email: @candidate.email,
-      phone: @candidate.phone
-    }
+  def as_json(data={})
+    data[:object] = @candidate
     data[:errors] = @candidate.errors if @candidate.errors.any?
+
     data
   end
+
+  # for filtering
+  # def as_json(data={}, *args)
+  #   %i[args].each do |attr|
+  #     data[attr] = @candidate[attr]
+  #   end
+  #   data[:errors] = @candidate.errors if @candidate.errors.any?
+  #
+  #   data
+  # end
 end
+
+

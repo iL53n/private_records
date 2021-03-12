@@ -3,19 +3,19 @@
     ОБЩИЕ СВЕДЕНИЯ
   </div>
   <div class="card-body">
-    <div class="form-row">
+    <div class="form-row">        
         <label for="inputFirstname">Фамилия</label>
         <input class="form-control" type="text" name="candidate[first_name]" id="candidate_first_name" value="<%= @candidate.first_name %>">
         <label for="inputLastname">Имя</label>
         <input class="form-control" type="text" name="candidate[last_name]" id="candidate_last_name" value="<%= @candidate.last_name %>">
-        <label for="inputSurname">Отчество</label>
+        <!--<label for="inputSurname">Отчество</label>
         <input class="form-control" type="text" name="candidate[sur_name]" id="candidate_sur_name" value="<%= @candidate.sur_name %>">
         <label for="inputDate">Дата рождения</label>
-        <input class="form-control" type="date" name="candidate[date]" id="candidate_date" value="<%= @candidate.date %>">
+        <input class="form-control" type="date" name="candidate[date]" id="candidate_date" value="<%= @candidate.date %>">-->
         <label for="InputPhone">Телефон</label>
         <input class="form-control" type="text" name="candidate[phone]" id="candidate_phone" value="<%= @candidate.phone %>">
         <label for="InputPhone">E-mail</label>
-        <input class="form-control" type="text" name="candidate[email]" id="candidate_email" onblur="validateEmail(this.value)" value=<%= @candidate.email %>>
+        <input class="form-control" type="text" name="candidate[email]" id="candidate_email" onblur="validateEmail(this.value)" value="<%= @candidate.email %>">
         <div class="alert alert-danger" id="email_error" hidden="true">Не верный адрес электронной почты!</div>
     </div>
   </div>

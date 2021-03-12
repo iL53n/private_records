@@ -1,3 +1,11 @@
-RUBY API WITH SINATRA(for candidates records application)
+SINATRA SERVICE(for candidates records application)
 ***
-...in progress
+### How To Setup Locally
+
+```bash
+docker-compose build
+docker-compose up -d
+```
+Open `localhost`
+
+Running sh inside a container `docker exec -ti application sh`

@@ -20,6 +20,12 @@
 				</div>
 				<input readonly class="form-control" type="text" name="candidate[guid]" id="candidate_guid" value=<%= @candidate.guid %>>
 			</div>
+			<div class="input-group mb-2 mr-sm-2">
+				<div class="input-group-prepend">
+					<div class="input-group-text">Адрес почты автора:</div>
+				</div>
+				<input readonly class="form-control" type="text" name="candidate[author_email]" id="candidate_author_email" value="<%= current_user.email if user_signed_in? %>">
+			</div>
 		</div>
 	</div><br>
 

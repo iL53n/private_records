@@ -104,7 +104,7 @@
         <% @desired_pay_system.each do |key, value| %>
           <div class="form-check">
             <input type="checkbox" class="form-check-input" id=<%= "candidate_#{key}" %>
-                name="candidate[]" value = <%= key %> <%='checked' if @candidate[key] %>>
+                name="candidate[desired_pay_system][]" value = <%= key %> <%='checked' if @candidate.desired_pay_system.include?(key) %>>
             <label class="form-check-label" for=<%= "Candidate#{key[0].upcase}#{key[2..]}" %>><%= value %></label>
           </div>
         <% end %>
@@ -128,11 +128,11 @@
       <div class="form-group col-md-9">
         <div class="input-group">
           <div class="input-group-prepend" id="candidate_overtime_work">
-            <input type="radio" name="candidate[overtime_work]"value="0">0%
-            <input type="radio" name="candidate[overtime_work]"value="10">10%
-            <input type="radio" name="candidate[overtime_work]"value="30">30%
-            <input type="radio" name="candidate[overtime_work]"value="50">50%
-            <input type="radio" name="candidate[overtime_work]"value="70">70%
+            <input type="radio" <%= "checked" if candidate.overtime_work && candidate.overtime_work==0 %> name="candidate[overtime_work]"value="0">0%
+            <input type="radio" <%= "checked" if candidate.overtime_work && candidate.overtime_work==10 %> name="candidate[overtime_work]"value="10">10%
+            <input type="radio" <%= "checked" if candidate.overtime_work && candidate.overtime_work==30 %> name="candidate[overtime_work]"value="30">30%
+            <input type="radio" <%= "checked" if candidate.overtime_work && candidate.overtime_work==50 %> name="candidate[overtime_work]"value="50">50%
+            <input type="radio" <%= "checked" if candidate.overtime_work && candidate.overtime_work==70 %> name="candidate[overtime_work]"value="70">70%
           </div>
         </div>
       </div>
@@ -144,11 +144,11 @@
       <div class="form-group col-md-9">
         <div class="input-group">
           <div class="input-group-prepend" id="candidate_business_trips">
-            <input type="radio" name="candidate[business_trips]"value="0">0%
-            <input type="radio" name="candidate[business_trips]"value="10">10%
-            <input type="radio" name="candidate[business_trips]"value="30">30%
-            <input type="radio" name="candidate[business_trips]"value="50">50%
-            <input type="radio" name="candidate[business_trips]"value="70">70%
+            <input type="radio" <%= "checked" if candidate.business_trips && candidate.business_trips==0 %>  name="candidate[business_trips]"value="0">0%
+            <input type="radio" <%= "checked" if candidate.business_trips && candidate.business_trips==10 %> name="candidate[business_trips]"value="10">10%
+            <input type="radio" <%= "checked" if candidate.business_trips && candidate.business_trips==30 %> name="candidate[business_trips]"value="30">30%
+            <input type="radio" <%= "checked" if candidate.business_trips && candidate.business_trips==50 %> name="candidate[business_trips]"value="50">50%
+            <input type="radio" <%= "checked" if candidate.business_trips && candidate.business_trips==70 %> name="candidate[business_trips]"value="70">70%
           </div>
         </div>
       </div>
@@ -160,11 +160,11 @@
       <div class="form-group col-md-9">
         <div class="input-group">
           <div class="input-group-prepend" id="candidate_training">
-            <input type="radio" name="candidate[training]"value="0">0%
-            <input type="radio" name="candidate[training]"value="10">10%
-            <input type="radio" name="candidate[training]"value="30">30%
-            <input type="radio" name="candidate[training]"value="50">50%
-            <input type="radio" name="candidate[training]"value="70">70%
+            <input type="radio" <%= "checked" if candidate.training && candidate.training==0 %>  name="candidate[training]"value="0">0%
+            <input type="radio" <%= "checked" if candidate.training && candidate.training==10 %> name="candidate[training]"value="10">10%
+            <input type="radio" <%= "checked" if candidate.training && candidate.training==30 %> name="candidate[training]"value="30">30%
+            <input type="radio" <%= "checked" if candidate.training && candidate.training==50 %> name="candidate[training]"value="50">50%
+            <input type="radio" <%= "checked" if candidate.training && candidate.training==70 %> name="candidate[training]"value="70">70%
           </div>
         </div>
       </div>
@@ -179,4 +179,5 @@
 
     <label>Дата заполнения анкеты: <%= @candidate.created_at %></label>
   </div>
+  <button type="submit" class="btn btn-success btn-lg btn-block" width="20px">Отправить данные</button><br>
 </div>

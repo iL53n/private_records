@@ -1,14 +1,11 @@
-
-<h5>Анкета кандидата успешно создана</h5>
-
 <div class="card">
     <div class="card-body">
 
-    <% @subject = "Анкета кандидата для работы в ЗАО ЕКТ Групп" %>
-    <% @body = "Пожалуйста, перейдите по ссылке и заполните анкету: http://127.0.0.1:9393/candidates/" %>
+    <% @subject = "Анкета кандидата для работы в ООО ЕКТ Компани" %>
+    <% @body = "Добрый день, #{@candidate.last_name}!%0AПожалуйста, перейдите по ссылке и заполните анкету: #{url("/candidates/" + @candidate.guid + "/edit")}" %>
 
     <!-- TODO: Автоматическое открытие почты -->
-    <a href="<%= "mailto:#{@candidate.email}?subject=#{@subject}&body=#{@body}#{@candidate.guid}" %>">Нажмите что-бы отправить на почту</a>
+    <a href="<%= "mailto:#{@candidate.email}?subject=#{@subject}&body=#{@body}" %>">Нажмите что-бы отправить на почту</a>
 
     </div>
 </div>

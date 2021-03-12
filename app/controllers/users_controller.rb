@@ -14,8 +14,14 @@ class UsersController < ApplicationController
   end
 
   get '/users/new' do
-    @user = User.new({ username: '', email: '', password_digest: '', active: true, is_admin: true })
-    erb :user_new
+    if ENV['REG_OPEN'] == 'true'
+      @user = User.new({ username: '', email: '', password_digest: '', active: true, is_admin: true })
+      erb :user_new
+    else
+      @error = "Регистрация необходима только администраторам.\n
+      Ваша анкета будет доступна по ссылке в письме."
+      erb :login
+    end
   end
 
   post '/users' do
