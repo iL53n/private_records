@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Candidates controller class
-class CandidatesController < ApplicationController
+class CandidatesController < Application
   include Abbreviations
   include Helpers
 

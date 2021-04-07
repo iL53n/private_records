@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-# App controller Class
-class ApplicationController < Sinatra::Base
-  register Sinatra::Namespace
+class Application < Sinatra::Base
 
   enable :inline_templates
   # enable :sessions
@@ -13,10 +11,16 @@ class ApplicationController < Sinatra::Base
   }
 
   configure do
-    require './app/lib/helpers'
-    require './app/lib/abbreviations'
+    register Sinatra::Namespace
 
+    set :app_file, File.expand_path('../config.ru', __dir__)
     set :views, 'app/views'
     set :public_folder, 'public'
+  end
+
+  configure :development do
+    register Sinatra::Reloader
+
+    set :show_exceptions, false
   end
 end

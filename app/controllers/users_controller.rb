@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Users Controller class
-class UsersController < ApplicationController
+class UsersController < Application
   include Helpers
 
   get '/login' do
