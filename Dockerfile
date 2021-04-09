@@ -1,24 +1,27 @@
-FROM ruby:2.6.3-slim-buster
+ARG RUBY_VERSION
+FROM ruby:$RUBY_VERSION-slim-buster
 
-ENV BUNDLER_VERSION=2.2.0
+ARG BUNDLER_VERSION
+ENV APP_HOME /app
+ENV TZ=Europe/Minsk
 ENV LANG=C.UTF-8 \
     BUNDLE_JOBS=4 \
     BUNDLE_RETRY=3
 
+
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN apt-get update -qq && \
     apt-get install -y build-essential && \
-    apt-get install -y curl && \
-    gem update --system && \
+    apt-get install -y curl
+RUN gem update --system && \
     gem install bundler:$BUNDLER_VERSION
 
-ENV APP_HOME /application
-#RUN mkdir $APP_HOME
 WORKDIR $APP_HOME
 
-ADD Gemfile* $APP_HOME/
+COPY Gemfile Gemfile
+COPY Gemfile.lock Gemfile.lock
 RUN bundle config set without 'development test' && bundle install
-
-ADD . $APP_HOME
+COPY . .
 
 EXPOSE 4567
 
