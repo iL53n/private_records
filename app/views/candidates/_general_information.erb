@@ -46,8 +46,8 @@
       </div>
 
       <div class="form-group col-md-6">
-        <label for="candidateMaterialStatus">Семеной положение</label>
-        <select class="form-control" name="candidate[material_status]" id="candidate_material_status">
+        <label for="candidateMaritalStatus">Семеной положение</label>
+        <select class="form-control" name="candidate[marital_status]" id="candidate_marital_status">
           <option selected></option>
           <% ['Не замужем, не женат', 'Замужем, женат', 'Разведён, разведена', 'Вдова, вдовец'].each do |option| %>
             <option value="<%= option %>" <%= 'selected' if @candidate[:material_status] == option %>><%= option %></option>

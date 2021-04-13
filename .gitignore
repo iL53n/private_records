@@ -3,4 +3,5 @@ env.rb
 .idea
 /public/uploads/
 /config/public/
+.env.rb
 
