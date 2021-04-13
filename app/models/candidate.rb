@@ -22,11 +22,11 @@ class Candidate
   field :sur_name,                     type: String
   field :date,                         type: Date
   field :city,                         type: String
-  field :material_status,              type: String
+  field :marital_status,               type: String
   field :conditions,                   type: String
   field :passport_serial,              type: String
   field :passport_number,              type: String
-  field :nationality,                  type: String
+  field :citizenship,                  type: String
   field :private_number,               type: String
   field :passport_dep,                 type: String
   field :passport_date,                type: Date
@@ -48,11 +48,6 @@ class Candidate
   field :having_a_car,                 type: String
   field :political_membership,         type: String
   field :conviction,                   type: String
-  field :name_of_the_institution,      type: String
-  field :diploma_specialty,            type: String
-  field :year_of_admission,            type: Date
-  field :year_of_ending,               type: Date
-  field :form_of_education,            type: String
   # education: {begin:'',end:'',inst:'',spec:'',form:''}
   field :education,                    type: Array
   # extra: {year:0,inst:'',name:'',duration:0}
@@ -89,17 +84,6 @@ class Candidate
   field :training,                     type: Integer
   field :ready_to_start_work,          type: Date
   field :about_yourself,               type: String
-  field :date_of_filling,              type: Date
-  field :age,                          type: Integer
-  field :bad_habits,                   type: String
-  field :avg_income,                   type: Integer
-  field :health_status,                type: String
-  field :previous_conviction,          type: String
-  field :administrative_penalties,     type: String
-  field :orders_of_execution,          type: String
-  field :job_disciplinary_penalties,   type: String
-  field :job_data_source,              type: String
-  field :data_verification,            type: Boolean
   field :author_email,                 type: String
   field :active,                       type: Boolean
 
