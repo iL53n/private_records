@@ -20,6 +20,7 @@ class CandidatesController < ApplicationController
     if user_signed_in?
       @candidate = Candidate.new
       intitalise_form_variables
+      @vacancies = Vacancy.all
       erb :new
     else
       @error = 'Добавление анкет доступно авторизированным пользователям!'
@@ -96,49 +97,5 @@ class CandidatesController < ApplicationController
   get '/show/:id' do
     @candidate = Candidate.find(params[:id])
     erb :show
-  end
-
-  ####### API v1 #######
-  namespace '/api/v1' do
-    # before
-    before do
-      unless request.env['HTTP_API_KEY'] && request.env['HTTP_API_KEY'] == ENV['API_KEY']
-        halt 401, '401 Unauthorized'
-        content_type 'application/json'
-      end
-    end
-
-    # INDEX
-    get '/candidates/:date?' do
-      to_json_with_filters(params)
-    end
-
-    # SHOW
-    get '/candidates/:guid' do
-      candidate_not_found!
-      serialize(candidate)
-    end
-
-    # CREATE
-    post '/candidates' do
-      candidate = Candidate.new(json_params)
-      halt 422, serialize(candidate) unless candidate.save
-
-      response.headers['Location'] = "#{base_url}/api/v1/#{candidate.id}"
-      status 201
-    end
-
-    # UPDATE
-    patch '/candidates/:guid' do
-      candidate_not_found!
-      halt 422, serialize(candidate) unless candidate.update_attributes(json_params)
-      serialize(candidate)
-    end
-
-    # DELETE
-    delete '/candidates/:guid' do
-      candidate&.destroy
-      status 204
-    end
   end
 end
