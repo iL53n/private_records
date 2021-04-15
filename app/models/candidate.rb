@@ -17,6 +17,7 @@ class Candidate
 
   field :guid,                         type: String
   field :position,                     type: String
+  field :vacancy_id,                   type: String
   field :first_name,                   type: String
   field :last_name,                    type: String
   field :sur_name,                     type: String
