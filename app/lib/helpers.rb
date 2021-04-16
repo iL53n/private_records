@@ -36,24 +36,43 @@ module Helpers
     @candidate ||= Candidate.where(guid: params[:guid]).first
   end
 
+  def vacancy
+    @vacancy ||= Vacancy.where(guid: params[:guid]).first
+  end
+
   def candidate_not_found!
     halt(404, { message: 'Кандидата с таким GUID не существует!' }.to_json) unless candidate
+  end
+
+  def vacancy_not_found!
+    halt(404, { message: 'Вакансии с таким GUID не существует!' }.to_json) unless vacancy
   end
 
   def serialize(candidate)
     CandidateSerializer.new(candidate).to_json
   end
 
-  def to_json_with_filters(params)
-    candidates = Candidate.all
+  def to_json_with_filters(params, manager)
+    objcts = manager.all
 
-    # we can add more filtering params in array
-    # example: /api/v1/candidates?guid=123
     %i[id guid].each do |filter|
-      candidates = candidates.send(filter, params[filter]) if params[filter]
+      objcts = objcts.send(filter, params[filter]) if params[filter]
     end
 
-    candidates.map { |candidate| CandidateSerializer.new(candidate) }.to_json
+    objcts.map { |objct| CandidateSerializer.new(objct) }.to_json
+  end
+
+  def create_object(json_params, manager)
+    ojct = manager.new(json_params)
+    halt 422, serialize(ojct) unless ojct.save
+
+    response.headers['Location'] = "#{base_url}/api/v1/#{ojct.id}"
+    status 201
+  end
+
+  def update_object(objct, json_params)
+    halt 422, serialize(objct) unless objct.update_attributes(json_params)
+    serialize(objct)
   end
 
   # Candidate write methods
