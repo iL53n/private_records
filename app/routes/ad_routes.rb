@@ -2,6 +2,8 @@
 
 # API Class
 class AdRoutes < ApplicationController
+  include Helpers
+
   ####### API v1 #######
   namespace '/api/v1' do
     # before
@@ -79,7 +81,7 @@ class AdRoutes < ApplicationController
 
     # UPDATE
     patch '/vacancies/:guid' do
-      vacancy ||= Vacancy.where(guid: params[:guid]).first
+      # vacancy ||= Vacancy.where(guid: params[:guid]).first
       # halt(404, { message: 'Вакансии с таким GUID не существует!' }.to_json) unless vacancy
       # halt 422, serialize(vacancy) unless vacancy.update_attributes(json_params)
       # serialize(vacancy)
