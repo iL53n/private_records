@@ -50,6 +50,7 @@ class CandidatesController < ApplicationController
       @message_success = 'Анкета кандидата успешно создана'
       erb :mailto
     else
+      @vacancies = Vacancy.all
       @error = error(candidate)
       erb :new
     end
