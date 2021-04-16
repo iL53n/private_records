@@ -7,12 +7,12 @@ class AdRoutes < ApplicationController
   ####### API v1 #######
   namespace '/api/v1' do
     # before
-    # before do
-    #  unless request.env['HTTP_API_KEY'] && request.env['HTTP_API_KEY'] == ENV['API_KEY']
-    #    halt 401, '401 Unauthorized'
-    #    content_type 'application/json'
-    #  end
-    # end
+    before do
+      unless request.env['HTTP_API_KEY'] && request.env['HTTP_API_KEY'] == ENV['API_KEY']
+        halt 401, '401 Unauthorized'
+        content_type 'application/json'
+      end
+    end
 
     # Candidates
 
