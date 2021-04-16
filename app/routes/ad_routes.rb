@@ -2,6 +2,8 @@
 
 # API Class
 class AdRoutes < ApplicationController
+  include Helpers
+
   ####### API v1 #######
   namespace '/api/v1' do
     # before
