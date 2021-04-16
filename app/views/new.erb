@@ -29,7 +29,22 @@
 		</div>
 	</div><br>
 
-	<%= erb :'candidates/_position' %><br>
+	<div class="card">
+  		<div class="card-header h5">
+    		ВАКАНСИЯ
+  		</div>
+  		<div class="card-body">
+			<select class="form-control" name="candidate[position]" id="candidate_position">
+          		<option selected></option>
+          		<% @vacancies.each do |vacancy| %>
+					<% if !vacancy.is_closed %>
+            			<option <%= 'selected' if @candidate[:position] == vacancy.position %> value="<%= vacancy.position %>"><%= vacancy.name %></option>
+					<% end %>
+          		<% end %>
+    		</select>
+  		</div>
+	</div>
+
 	<%= erb :'candidates/_general_information_min' %><br>
 	<button type="submit" class="btn btn-success btn-lg btn-block" width="20px">Создать</button><br>
 </form>
