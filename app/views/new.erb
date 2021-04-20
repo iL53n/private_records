@@ -38,7 +38,7 @@
           		<option selected></option>
           		<% @vacancies.each do |vacancy| %>
 					<% if !vacancy.is_closed %>
-            			<option <%= 'selected' if @candidate[:position] == vacancy.position %> value="<%= vacancy.position %>"><%= vacancy.name %></option>
+            			<option <%= 'selected' if @candidate[:vacancy_id] == vacancy.guid %> value="<%= vacancy.guid %>"><%= vacancy.name %></option>
 					<% end %>
           		<% end %>
     		</select>

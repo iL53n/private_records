@@ -44,12 +44,21 @@ class CandidatesController < ApplicationController
 
   # create
   post '/candidates' do
+    @vacancy = Vacancy.where(guid: params[:candidate][:position]).first
+
+    if @vacancy
+      params[:candidate][:position] = @vacancy.position
+      params[:candidate][:vacancy_id] = @vacancy.guid
+    end
+
     @candidate = Candidate.new(params[:candidate])
 
     if @candidate.save
       @message_success = 'Анкета кандидата успешно создана'
       erb :mailto
     else
+      params[:candidate][:position] = @vacancy.guid if @vacancy
+
       @vacancies = Vacancy.all
       @error = error(candidate)
       erb :new

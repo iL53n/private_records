@@ -104,4 +104,18 @@ module Helpers
       'reccomenders' => :name
     }
   end
+
+  # Candidate types (worker/spec)
+  def get_view_for_type(view_page, type)
+    if type == 'worker'
+      same_pages = {
+        general_information: :general_information_worker
+      }
+
+      page_from_type = same_pages[view_page]
+      view_page = page_from_type if page_from_type
+    end
+
+    erb view_page
+  end
 end
