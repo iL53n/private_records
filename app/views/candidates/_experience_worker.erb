@@ -1,0 +1,23 @@
+<div class="card">
+  <div class="card-header h5">
+    ОПЫТ РАБОТЫ
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-sm-11">
+        <h5>Начиная с <b>ПОСЛЕДНЕГО</b> места работы, укажите реальный профессиональный опыт (в том числе, без записи в трудовой книжке).</h5>
+      </div>
+      <div id="experience_content" hidden><%= @candidate[:experience].to_json %></div>
+      <div class="col-sm-1">
+        <button type="button" class="btn btn-success " style="border-radius: 20px"><i class="fa fa-plus" onclick="return add_experience_table_row()"></i></button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12" id ="experience_fields"></div>
+    </div>
+  </div>
+  <br>
+  <div class="form-group" align="right">
+    <a class="nav-link btn-lg btn-link" href="#" onclick="$('#pills-tab li:nth-child(5) a').tab('show')">Далее ❯</a>
+  </div>
+</div>

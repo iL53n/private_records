@@ -1,0 +1,15 @@
+<div class="card">
+  <div class="card-header h5">
+    ДОПОЛНИТЕЛЬНАЯ ИНФОРМАЦИЯ
+  </div>
+  <div class="card-body">
+  
+    <div class="form-row">
+      <label for="CandidateReadyToStartWork">Когда Вы готовы приступить к работе?</label>
+      <input class="form-control" type="text" name="candidate[ready_to_start_work]" id="candidate_ready_to_start_work" value=<%= @candidate.ready_to_start_work%>>
+    </div>
+
+    <label>Дата заполнения анкеты: <%= @candidate.created_at %></label>
+  </div>
+  <button type="submit" class="btn btn-success btn-lg btn-block" width="20px">Отправить данные</button><br>
+</div>

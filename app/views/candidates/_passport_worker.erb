@@ -1,0 +1,74 @@
+<h6>Паспортные данные</h6>
+
+<div class="form-row">
+  <div class="form-group col-md-1">
+    <label for="inputPassportSerial">Серия</label>
+    <input class="form-control" type="text" name="candidate[passport_serial]" id="candidate_passport_serial" value="<%= @candidate.passport_serial %>">
+  </div>
+  <div class="form-group col-md-4">
+    <label for="inputPassportNumber">Номер</label>
+    <input class="form-control" type="text" name="candidate[passport_number]" id="candidate_passport_number" value="<%= @candidate.passport_number %>">
+  </div>
+  <div class="form-group col-md-7">
+    <label for="inputPrivateNumber">Идентификационный(личный) номер</label>
+    <input class="form-control" type="text" name="candidate[private_number]" id="candidate_private_number" value="<%= @candidate.private_number %>">
+  </div>
+  <div class="form-group col-md-9">
+    <label for="inputPassportDep">Наименование органа, выдавшего паспорт</label>
+    <input class="form-control" type="text" name="candidate[passport_dep]" id="candidate_passport_dep" value="<%= @candidate.passport_dep %>">
+  </div>
+  <div class="form-group col-md-3">
+    <label for="inputPassportDate">Дата выдачи</label>
+    <input class="form-control" type="date" name="candidate[passport_date]" id="candidate_passport_date" value="<%= @candidate.passport_date %>">
+  </div>
+</div>
+
+<div class="form-row">
+  <div class="form-group col-md-12">
+    <div class="form-row">
+      <div class="form-group col-md-2">
+        <label>Адрес регистрации</label>
+      </div>
+      <div class="form-group col-md-2">
+        <input class="form-control" type="text" name="candidate[registration_city]" id="candidate_registration_city" placeholder="Город" value="<%= @candidate.registration_city%>">
+      </div>
+      <div class="form-group col-md-3">
+        <input class="form-control" type="text" name="candidate[registration_street]" id="candidate_registration_street" placeholder="Улица" value="<%= @candidate.registration_street%>">
+      </div>
+      <div class="form-group col-md-2">
+        <input class="form-control" type="text" name="candidate[registration_house]" id="candidate_registration_house" placeholder="Дом" value="<%= @candidate.registration_house%>">
+      </div>
+      <div class="form-group col-md-2">
+        <input class="form-control" type="text" name="candidate[registration_apartment]" id="candidate_registration_apartment" placeholder="Квартира" value="<%= @candidate.registration_apartment%>">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-2">
+        <label>Адрес проживания</label>
+      </div>
+      <div class="form-group col-md-2">
+        <input class="form-control" type="text" name="candidate[residence_city]" id="candidate_residence_city" placeholder="Город" value="<%= @candidate.residence_city%>">
+      </div>
+      <div class="form-group col-md-3">
+        <input class="form-control" type="text" name="candidate[residence_street]" id="candidate_residence_street" placeholder="Улица" value="<%= @candidate.residence_street%>">
+      </div>
+      <div class="form-group col-md-2">
+        <input class="form-control" type="text" name="candidate[residence_house]" id="candidate_rresidence_house" placeholder="Дом" value="<%= @candidate.residence_house%>">
+      </div>
+      <div class="form-group col-md-2">
+        <input class="form-control" type="text" name="candidate[residence_apartment]" id="candidate_residence_apartment" placeholder="Квартира" value="<%= @candidate.residence_apartment%>">
+      </div>
+      <div class="form-group col-md-1">
+        <button class="btn btn-success btn-sm btn-block" onclick="return fill_residence_adr()">Заполн.</button>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-2">
+        <label>Сведения о воинском учете</label>
+      </div>
+      <div class="form-group col-md-10">
+        <input class="form-control" type="text" name="candidate[military_registration]" id="candidate_military_registration" value="<%= @candidate.military_registration%>">
+      </div>
+    </div>
+  </div>
+</div>

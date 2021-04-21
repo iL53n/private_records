@@ -17,6 +17,9 @@ class Candidate
 
   field :guid,                         type: String
   field :position,                     type: String
+  field :position_type,                type: String
+  field :vacancy_id,                   type: String
+  field :vacancy,                      type: String
   field :first_name,                   type: String
   field :last_name,                    type: String
   field :sur_name,                     type: String
@@ -103,4 +106,6 @@ class Candidate
 
   scope :id,   ->(id)   { where(id: id) }
   scope :guid, ->(guid) { where(guid: guid) }
+
+  belongs_to :vacancy
 end
