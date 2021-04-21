@@ -109,7 +109,7 @@ module Helpers
   def get_view_for_type(view_page, type)
     if type == 'worker'
       same_pages = {
-        # 'candidates/_general_information': :'candidates/_general_information_worker'
+        edit: :edit_worker
       }
 
       page_from_type = same_pages[view_page]
