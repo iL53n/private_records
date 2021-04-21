@@ -7,6 +7,8 @@
 	</div>
 </div>
 
+<div hidden id="is_worker"></div>
+
 <form action="<%= "/candidates/#{@candidate.guid}" %>" method="POST" enctype="multipart/form-data">
 	<input name="_method" type="hidden" value="patch" />
 	<div class="card" hidden="true">
@@ -24,9 +26,6 @@
 		</li>
 		<li class="nav-item" role="presentation">
 			<a class="nav-link" id="pills-education-tab" data-toggle="pill" href="#pills-education" role="tab" aria-controls="pills-education" aria-selected="false">Образование</a>
-		</li>
-		<li class="nav-item" role="presentation">
-			<a class="nav-link" id="pills-skills-tab" data-toggle="pill" href="#pills-skills" role="tab" aria-controls="pills-skills" aria-selected="false">Навыки</a>
 		</li>
 		<li class="nav-item" role="presentation">
 			<a class="nav-link" id="pills-experience-tab" data-toggle="pill" href="#pills-experience" role="tab" aria-controls="pills-experience" aria-selected="false">Опыт</a>
