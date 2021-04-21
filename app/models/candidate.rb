@@ -13,7 +13,6 @@ class Candidate
     self.work_experience_areas ||= []
     self.desired_pay_system ||= []
     self.active ||= true
-    self.position_type ||= 'worker'
   end
 
   field :guid,                         type: String

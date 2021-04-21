@@ -44,40 +44,16 @@
         <label for="inputCity">Место рождения</label>
         <input class="form-control" type="text" name="candidate[city]" id="candidate_city" value="<%= @candidate.city %>">
       </div>
-
-      <div class="form-group col-md-6">
-        <label for="candidateMaritalStatus">Семеной положение</label>
-        <select class="form-control" name="candidate[marital_status]" id="candidate_marital_status">
-          <option selected></option>
-          <% ['Не замужем, не женат', 'Замужем, женат', 'Разведён, разведена', 'Вдова, вдовец'].each do |option| %>
-            <option value="<%= option %>" <%= 'selected' if @candidate[:material_status] == option %>><%= option %></option>
-          <% end %>
-        </select>
-      </div>
-
-      <div class="form-group col-md-6">
-        <label for="candidateConditions">Жилищные условия</label>
-        <select class="form-control" name="candidate[conditions]" id="candidate_conditions">
-          <option selected></option>
-          <% ['Аренда', 'В собстенности', 'С родственниками'].each do |option| %>
-            <option value="<%= option %>" <%= 'selected' if @candidate[:conditions] == option %>><%= option %></option>
-          <% end %>
-        </select>
-      </div>
     </div>
 
-    <%= erb :'candidates/_passport' %><br>
+    <%= erb :'candidates/_passport_worker' %><br>
     <%= erb :'candidates/_family' %><br>
 
     <div class="form-row">
-      <label for="inputDriversLicense">Наличие водительского удостоверения, стаж вождения</label>
+      <label for="inputDriversLicense">Наличие водительского удостоверения</label>
       <input class="form-control" type="text" name="candidate[drivers_license]" id="candidate_drivers_license" value="<%= @candidate.drivers_license %>">
       <label for="inputHavingACar">Наличие автомобиля (марка)</label>
       <input class="form-control" type="text" name="candidate[having_a_car]" id="candidate_having_a_car" value="<%= @candidate.having_a_car %>">
-      <label for="inputPoliticalMembership">Принадлежность к политическим партиям, общественным объединениям  и т.п. (если да, то указать к каким именно)</label>
-      <input class="form-control" type="text" name="candidate[political_membership]" id="candidate_political_membership" value="<%= @candidate.political_membership %>">
-      <label for="inputConviction">Судимости, административные взыскания</label>
-      <input class="form-control" type="text" name="candidate[conviction]" id="candidate_conviction" value="<%= @candidate.conviction %>">
     </div>
   </div>
   <br>

@@ -3,6 +3,11 @@
 
 $(function(){
 
+    position_type = ""
+    if(document.getElementById('is_worker')){
+        position_type = "worker"
+    }
+
     // Phone mask
     $("#candidate_phone").mask("+375 (99) 999-99-99")
     
@@ -17,16 +22,16 @@ $(function(){
     if (contentElement){ fill_relatives_content(contentElement) }
 
     contentElement = document.getElementById('education_content')
-    if (contentElement){ fill_education_content(contentElement) }
+    if (contentElement){ fill_education_content(contentElement, position_type) }
 
     contentElement = document.getElementById('extra_content')
-    if (contentElement){ fill_extra_content(contentElement) }
+    if (contentElement){ fill_extra_content(contentElement, position_type) }
 
     contentElement = document.getElementById('language_content')
     if (contentElement){ fill_language_content(contentElement) }
     
     contentElement = document.getElementById('experience_content')
-    if (contentElement){fill_experience_content(contentElement)} 
+    if (contentElement){fill_experience_content(contentElement, position_type)} 
 
     contentElement = document.getElementById('reccomenders_content')
     if (contentElement){ fill_reccomenders_content(contentElement) }
