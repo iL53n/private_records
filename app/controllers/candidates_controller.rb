@@ -33,7 +33,7 @@ class CandidatesController < ApplicationController
     if candidate
       intitalise_form_variables
       if candidate[:active] && candidate.active || user_signed_in?
-        erb :edit
+        get_view_for_type(:edit, @candidate[:position_type])
       else
         erb "<% @error = 'Дальнейшее редактирование анкеты доступно авторизированным пользователям!' %>"
       end
@@ -44,20 +44,20 @@ class CandidatesController < ApplicationController
 
   # create
   post '/candidates' do
-    @vacancy = Vacancy.where(guid: params[:candidate][:position]).first
+    vacancy_guid = params[:candidate][:position]
+    @vacancy = Vacancy.where(guid: vacancy_guid).first
 
-    if @vacancy
-      params[:candidate][:position] = @vacancy.position
-      params[:candidate][:vacancy_id] = @vacancy.guid
-    end
+    params[:candidate][:position] = @vacancy.position if @vacancy
+    params[:candidate][:vacancy_id] = vacancy_guid if @vacancy
 
     @candidate = Candidate.new(params[:candidate])
+    @candidate.vacancy = @vacancy
 
     if @candidate.save
       @message_success = 'Анкета кандидата успешно создана'
       erb :mailto
     else
-      params[:candidate][:position] = @vacancy.guid if @vacancy
+      params[:candidate][:position] = vacancy_guid if @vacancy
 
       @vacancies = Vacancy.all
       @error = error(candidate)
@@ -93,7 +93,7 @@ class CandidatesController < ApplicationController
     else
       @error = error(@candidate)
       intitalise_form_variables
-      erb :edit
+      get_view_for_type(:edit, @candidate[:position_type])
     end
   end
 

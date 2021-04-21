@@ -14,4 +14,6 @@ class Vacancy
             :position,
             presence: true
   validates :guid, uniqueness: true
+
+  has_many :candidates
 end

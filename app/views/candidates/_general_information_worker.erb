@@ -1,0 +1,87 @@
+<div class="card">
+  <div class="card-header h5">
+    ОБЩИЕ СВЕДЕНИЯ
+  </div>
+  <div class="card-body">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputFirstname">Фамилия</label>
+        <input class="form-control" type="text" name="candidate[first_name]" id="candidate_first_name" value="<%= @candidate.first_name %>">
+        <label for="inputLastname">Имя</label>
+        <input class="form-control" type="text" name="candidate[last_name]" id="candidate_last_name" value="<%= @candidate.last_name %>">
+        <label for="inputSurname">Отчество</label>
+        <input class="form-control" type="text" name="candidate[sur_name]" id="candidate_sur_name" value="<%= @candidate.sur_name %>">
+        <label for="InputPhone">Телефон</label>
+        <input class="form-control" type="text" name="candidate[phone]" id="candidate_phone" value="<%= @candidate.phone %>">
+        <label for="InputPhone">E-mail</label>
+        <input class="form-control" type="text" name="candidate[email]" id="candidate_email" onblur="validateEmail(this.value)" value="<%= @candidate.email %>">
+        <div class="alert alert-danger" id="email_error" hidden="true">Не верный адрес электронной почты!</div>
+      </div>
+
+      <div class="form-group col-md-6">
+        <div class="form-row">
+          <label for="inputImage" <%= "hidden" if @candidate.image_identifier && !@error %>>Загрузите фотографию...</label>
+        </div>
+        <div class="form-row">
+          <input type="file" name="image" id="image" accept=".jpg, .jpeg, .png" onchange="handleFiles(this.files)" <%= "hidden" if @candidate.image_identifier && !@error %>>
+        </div>
+        <div id="preview">
+          <% if @candidate.image_identifier && !@error %>
+            <img class="img-fluid rounded mx-auto d-block" style="max-width:350px" src= "<%="/uploads/#{@candidate.image_identifier}" %>">
+          <% else %>
+            <img class="img-fluid rounded mx-auto d-block" style="max-width:350px" src= "<%="/img/121.png" %>">
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputDate">Дата рождения</label>
+        <input class="form-control" type="date" name="candidate[date]" id="candidate_date" value="<%= @candidate.date %>">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="inputCity">Место рождения</label>
+        <input class="form-control" type="text" name="candidate[city]" id="candidate_city" value="<%= @candidate.city %>">
+      </div>
+
+      <div class="form-group col-md-6">
+        <label for="candidateMaritalStatus">Семеной положение</label>
+        <select class="form-control" name="candidate[marital_status]" id="candidate_marital_status">
+          <option selected></option>
+          <% ['Не замужем, не женат', 'Замужем, женат', 'Разведён, разведена', 'Вдова, вдовец'].each do |option| %>
+            <option value="<%= option %>" <%= 'selected' if @candidate[:material_status] == option %>><%= option %></option>
+          <% end %>
+        </select>
+      </div>
+
+      <div class="form-group col-md-6">
+        <label for="candidateConditions">Жилищные условия</label>
+        <select class="form-control" name="candidate[conditions]" id="candidate_conditions">
+          <option selected></option>
+          <% ['Аренда', 'В собстенности', 'С родственниками'].each do |option| %>
+            <option value="<%= option %>" <%= 'selected' if @candidate[:conditions] == option %>><%= option %></option>
+          <% end %>
+        </select>
+      </div>
+    </div>
+
+    <%= erb :'candidates/_passport' %><br>
+    <%= erb :'candidates/_family' %><br>
+
+    <div class="form-row">
+      <label for="inputDriversLicense">Наличие водительского удостоверения, стаж вождения</label>
+      <input class="form-control" type="text" name="candidate[drivers_license]" id="candidate_drivers_license" value="<%= @candidate.drivers_license %>">
+      <label for="inputHavingACar">Наличие автомобиля (марка)</label>
+      <input class="form-control" type="text" name="candidate[having_a_car]" id="candidate_having_a_car" value="<%= @candidate.having_a_car %>">
+      <label for="inputPoliticalMembership">Принадлежность к политическим партиям, общественным объединениям  и т.п. (если да, то указать к каким именно)</label>
+      <input class="form-control" type="text" name="candidate[political_membership]" id="candidate_political_membership" value="<%= @candidate.political_membership %>">
+      <label for="inputConviction">Судимости, административные взыскания</label>
+      <input class="form-control" type="text" name="candidate[conviction]" id="candidate_conviction" value="<%= @candidate.conviction %>">
+    </div>
+  </div>
+  <br>
+  <div class="form-group" align="right">
+    <a class="nav-link btn-lg btn-link" href="#" onclick="$('#pills-tab li:nth-child(2) a').tab('show')">Далее ❯</a>
+  </div>
+</div>

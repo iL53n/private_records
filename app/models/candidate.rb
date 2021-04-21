@@ -13,12 +13,14 @@ class Candidate
     self.work_experience_areas ||= []
     self.desired_pay_system ||= []
     self.active ||= true
+    self.position_type ||= 'worker'
   end
 
   field :guid,                         type: String
   field :position,                     type: String
   field :position_type,                type: String
   field :vacancy_id,                   type: String
+  field :vacancy,                      type: String
   field :first_name,                   type: String
   field :last_name,                    type: String
   field :sur_name,                     type: String
@@ -105,4 +107,6 @@ class Candidate
 
   scope :id,   ->(id)   { where(id: id) }
   scope :guid, ->(guid) { where(guid: guid) }
+
+  belongs_to :vacancy
 end
