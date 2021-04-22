@@ -48,7 +48,6 @@ class CandidatesController < ApplicationController
     @vacancy = Vacancy.where(guid: vacancy_guid).first
 
     params[:candidate][:position] = @vacancy.position if @vacancy
-    params[:candidate][:vacancy_id] = vacancy_guid if @vacancy
 
     @candidate = Candidate.new(params[:candidate])
     @candidate.vacancy = @vacancy

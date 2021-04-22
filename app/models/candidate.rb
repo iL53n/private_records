@@ -87,6 +87,7 @@ class Candidate
   field :training,                              type: Integer
   field :ready_to_start_work,                   type: Date
   field :bad_habits,                            type: String
+  field :health_status,                         type: String
   field :last_average_monthly_income,           type: Integer
   field :previous_conviction,                   type: String
   field :administrative_penalties,              type: String

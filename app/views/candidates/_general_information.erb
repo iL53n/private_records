@@ -50,7 +50,7 @@
         <select class="form-control" name="candidate[marital_status]" id="candidate_marital_status">
           <option selected></option>
           <% ['Не замужем, не женат', 'Замужем, женат', 'Разведён, разведена', 'Вдова, вдовец'].each do |option| %>
-            <option value="<%= option %>" <%= 'selected' if @candidate[:material_status] == option %>><%= option %></option>
+            <option value="<%= option %>" <%= 'selected' if @candidate[:marital_status] == option %>><%= option %></option>
           <% end %>
         </select>
       </div>
