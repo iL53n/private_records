@@ -5,6 +5,15 @@
   <div class="card-body">
 
     <div class="form-row">
+      <label for="inputDriversLicense">Вредные привычки (алкоголь, курение и т.п.)</label>
+      <input class="form-control" type="text" name="candidate[bad_habits]" id="candidate_bad_habits" value="<%= @candidate.bad_habits %>">
+      <label for="inputDriversLicense">Вредные привычки (алкоголь, курение и т.п.)</label>
+      <input class="form-control" type="text" name="candidate[bad_habits]" id="candidate_bad_habits" value="<%= @candidate.bad_habits %>">
+    </div>
+
+    <br />
+
+    <div class="form-row">
       <div class="form-group col-md-4">
         <label for="CandidateReadyToStartWork">Когда Вы готовы приступить к работе?</label>
       </div>
@@ -13,7 +22,10 @@
       </div>
     </div>
 
-    <label>Дата заполнения анкеты: <%= @candidate.created_at %></label>
+    <div class="form-row">
+      <label>Дата заполнения анкеты: <%= @candidate.created_at %></label>
+    </div>
+
   </div>
   <button type="submit" class="btn btn-success btn-lg btn-block" width="20px" onclick="return deactive_candidate()">Отправить данные</button><br>
 </div>
