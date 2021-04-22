@@ -1,4 +1,8 @@
 ru:
-  an_article: "По названию"
-  create: "Создать"
-  delete: "Удалить"
+  article:
+    an_article: "По названию"
+    create: "Создать"
+    delete: "Удалить"
+  candidate:
+    error:
+      position: "Должность не может быть пустой!"
