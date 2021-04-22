@@ -79,6 +79,7 @@ DEPENDENCIES
   bcrypt (~> 3.1)
   carrierwave (~> 1.0)
   carrierwave-mongoid
+  i18n
   mongoid
   racksh
   rake
@@ -92,4 +93,4 @@ RUBY VERSION
    ruby 2.6.3p62
 
 BUNDLED WITH
-   2.2.0
+   2.2.9
