@@ -3,13 +3,17 @@
     ДОПОЛНИТЕЛЬНАЯ ИНФОРМАЦИЯ
   </div>
   <div class="card-body">
-  
+
     <div class="form-row">
-      <label for="CandidateReadyToStartWork">Когда Вы готовы приступить к работе?</label>
-      <input class="form-control" type="text" name="candidate[ready_to_start_work]" id="candidate_ready_to_start_work" value=<%= @candidate.ready_to_start_work%>>
+      <div class="form-group col-md-4">
+        <label for="CandidateReadyToStartWork">Когда Вы готовы приступить к работе?</label>
+      </div>
+      <div class="form-group col-md-2">
+        <input class="form-control" type="date" name="candidate[ready_to_start_work]" id="candidate_ready_to_start_work" value="<%= @candidate.ready_to_start_work%>">
+      </div>
     </div>
 
     <label>Дата заполнения анкеты: <%= @candidate.created_at %></label>
   </div>
-  <button type="submit" class="btn btn-success btn-lg btn-block" width="20px">Отправить данные</button><br>
+  <button type="submit" class="btn btn-success btn-lg btn-block" width="20px" onclick="return deactive_candidate()">Отправить данные</button><br>
 </div>

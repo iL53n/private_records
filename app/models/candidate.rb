@@ -102,6 +102,8 @@ class Candidate
             :email,
             presence: true
 
+  validates :ready_to_start_work, presence: true, unless: proc { |a| a.active }
+
   index({ guid: 1 }, { unique: true, name: 'guid_index' })
 
   scope :id,   ->(id)   { where(id: id) }
