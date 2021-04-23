@@ -7,8 +7,6 @@
     <div class="form-row">
       <label for="CandidateBadHabits">Вредные привычки (алкоголь, курение и т.п.)</label>
       <input class="form-control" type="text" name="candidate[bad_habits]" id="candidate_bad_habits" value="<%= @candidate.bad_habits %>">
-      <label for="CandidateLastAverageMonthlyIncome">Каков Ваш среднемесячный доход на последнем месте работы?</label>
-      <input class="form-control" type="number" name="candidate[last_average_monthly_income]" id="candidate_last_average_monthly_income" value="<%= @candidate.last_average_monthly_income %>">
       <label for="CandidateHealthStatus">Состояние здоровья (хронические заболевания, инвалидность)</label>
       <input class="form-control" type="text" name="candidate[health_status]" id="candidate_health_status" value="<%= @candidate.health_status %>">
       <label for="CandidatePreviousConviction">Были ли Вы судимы (когда и за что)?</label>
@@ -21,6 +19,17 @@
       <input class="form-control" type="text" name="candidate[previous_job_disciplinary_penalties]" id="candidate_previous_job_disciplinary_penalties" value="<%= @candidate.previous_job_disciplinary_penalties %>">
       <label for="CandidateJobDataSource">Укажите источники, из которых Вы получили сведения о вакансии.</label>
       <input class="form-control" type="text" name="candidate[job_data_source]" id="candidate_job_data_source" value="<%= @candidate.job_data_source %>">
+    </div>
+    
+    <br />
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="CandidateLastAverageMonthlyIncome">Каков Ваш среднемесячный доход на последнем месте работы?</label>
+      </div>
+      <div class="form-group col-md-2">
+        <input class="form-control" type="number" name="candidate[last_average_monthly_income]" id="candidate_last_average_monthly_income" value="<%= @candidate.last_average_monthly_income%>">
+      </div>
     </div>
     
     <br />
