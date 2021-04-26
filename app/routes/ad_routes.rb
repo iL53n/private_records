@@ -17,7 +17,7 @@ class AdRoutes < ApplicationController
     # Candidates
 
     # INDEX
-    get '/candidates/:date?' do
+    get '/candidates/' do
       to_json_with_filters(params, Candidate)
     end
 
