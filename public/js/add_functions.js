@@ -495,3 +495,10 @@ function fill_experience_content(contentElement, position_type){
         rowsElement.childNodes[rowsElement.childNodes.length-1].childNodes[0].childNodes[1].value = rowData["duties"]
     }
 }
+
+// Write Candidate
+
+function  deactive_candidate(){
+    document.getElementById("candidate_active").value = "false"
+    return (true)
+}

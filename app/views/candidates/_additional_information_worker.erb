@@ -3,13 +3,65 @@
     ДОПОЛНИТЕЛЬНАЯ ИНФОРМАЦИЯ
   </div>
   <div class="card-body">
-  
+
     <div class="form-row">
-      <label for="CandidateReadyToStartWork">Когда Вы готовы приступить к работе?</label>
-      <input class="form-control" type="text" name="candidate[ready_to_start_work]" id="candidate_ready_to_start_work" value=<%= @candidate.ready_to_start_work%>>
+      <label for="CandidateBadHabits">Вредные привычки (алкоголь, курение и т.п.)</label>
+      <input class="form-control" type="text" name="candidate[bad_habits]" id="candidate_bad_habits" value="<%= @candidate.bad_habits %>">
+      <label for="CandidateHealthStatus">Состояние здоровья (хронические заболевания, инвалидность)</label>
+      <input class="form-control" type="text" name="candidate[health_status]" id="candidate_health_status" value="<%= @candidate.health_status %>">
+      <label for="CandidatePreviousConviction">Были ли Вы судимы (когда и за что)?</label>
+      <input class="form-control" type="text" name="candidate[previous_conviction]" id="candidate_previous_conviction" value="<%= @candidate.previous_conviction %>">
+      <label for="CandidateAdministrativePenalties">Имели ли Вы административные взыскания?</label>
+      <input class="form-control" type="text" name="candidate[administrative_penalties]" id="candidate_administrative_penalties" value="<%= @candidate.administrative_penalties %>">
+      <label for="CandidateObligationsUnderOrdersOfExecution">Имеете ли Вы обязательства по исполительным листам?</label>
+      <input class="form-control" type="text" name="candidate[obligations_under_orders_of_execution]" id="candidate_obligations_under_orders_of_execution" value="<%= @candidate.obligations_under_orders_of_execution %>">
+      <label for="CandidaPtereviousJobDisciplinaryPenalties">Имеете ли Вы дисциплинарные взыскания на прежних местах работы, если да, то за что?</label>
+      <input class="form-control" type="text" name="candidate[previous_job_disciplinary_penalties]" id="candidate_previous_job_disciplinary_penalties" value="<%= @candidate.previous_job_disciplinary_penalties %>">
+      <label for="CandidateJobDataSource">Укажите источники, из которых Вы получили сведения о вакансии.</label>
+      <input class="form-control" type="text" name="candidate[job_data_source]" id="candidate_job_data_source" value="<%= @candidate.job_data_source %>">
+    </div>
+    
+    <br />
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="CandidateLastAverageMonthlyIncome">Каков Ваш среднемесячный доход на последнем месте работы?</label>
+      </div>
+      <div class="form-group col-md-2">
+        <input class="form-control" type="number" name="candidate[last_average_monthly_income]" id="candidate_last_average_monthly_income" value="<%= @candidate.last_average_monthly_income%>">
+      </div>
+    </div>
+    
+    <br />
+
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="CandidateReadyToStartWork">Когда Вы готовы приступить к работе?</label>
+      </div>
+      <div class="form-group col-md-2">
+        <input class="form-control" type="date" name="candidate[ready_to_start_work]" id="candidate_ready_to_start_work" value="<%= @candidate.ready_to_start_work%>">
+      </div>
     </div>
 
-    <label>Дата заполнения анкеты: <%= @candidate.created_at %></label>
+    <br />
+
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="CandidateDataVerification">Согласны ли Вы на проверку данных, указанных в анкете</label>
+      </div>
+      <div class="form-group col-md-1">
+        <select class="form-control" name="candidate[data_verification]" id="candidate_data_verification">
+            <option value="" <%= 'selected' if @candidate[:data_verification].nil? %>></option>
+            <option value="true" <%= 'selected' if @candidate[:data_verification] == true %>>Да</option>
+            <option value="false" <%= 'selected' if @candidate[:data_verification] == false %>>Нет</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <label>Дата заполнения анкеты: <%= @candidate.created_at %></label>
+    </div>
+
   </div>
-  <button type="submit" class="btn btn-success btn-lg btn-block" width="20px">Отправить данные</button><br>
+  <button type="submit" class="btn btn-success btn-lg btn-block" width="20px" onclick="return deactive_candidate()">Отправить данные</button><br>
 </div>
