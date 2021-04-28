@@ -4,6 +4,11 @@
 class Vacancy
   include Mongoid::Document
 
+  def initialize(params = nil)
+    super(params)
+    self.is_closed ||= false
+  end
+
   field :guid,          type: String
   field :is_closed,     type: Boolean
   field :name,          type: String
