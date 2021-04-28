@@ -1,1 +1,5 @@
-<p><a class="btn btn-success" role="button" aria-pressed="true" href="<%= "/candidates/#{@candidate.guid}/edit" %>">Вернуться к анкете</a>
+<% if @candidate.active || user_signed_in? %>
+    <p><a class="btn btn-success" role="button" aria-pressed="true" href="<%= "/candidates/#{@candidate.guid}/edit" %>">Вернуться к анкете</a>
+<% elsif !user_signed_in? %>
+    <% @message_success += "<br />Ваша анкета заполнена и передана для дальнейшей обработки." %>
+<% end %>
