@@ -16,5 +16,8 @@ class Vacancy
             presence: true
   validates :guid, uniqueness: true
 
+  scope :id,   ->(id)   { where(id: id) }
+  scope :guid, ->(guid) { where(guid: guid) }
+
   has_many :candidates
 end
