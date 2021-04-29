@@ -28,7 +28,7 @@ class AdRoutes < ApplicationController
     end
 
     # CREATE
-    post '/candidates' do
+    post '/candidates/' do
       create_object(json_params, Candidate)
     end
 
@@ -58,7 +58,7 @@ class AdRoutes < ApplicationController
     end
 
     # CREATE
-    post '/vacancies' do
+    post '/vacancies/' do
       create_object(json_params, Vacancy)
     end
 
