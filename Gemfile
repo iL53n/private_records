@@ -9,7 +9,7 @@ gem 'require_all' # helps to load dependencies
 gem 'shotgun'
 gem 'racksh'
 gem 'carrierwave', '~> 1.0'
-gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
+gem 'carrierwave-mongoid', require: 'carrierwave/mongoid'
 gem 'russian'
 gem 'bcrypt', '~> 3.1'
 gem 'i18n'

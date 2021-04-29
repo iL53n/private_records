@@ -64,6 +64,8 @@ GEM
       rack-protection (= 2.1.0)
       sinatra (= 2.1.0)
       tilt (~> 2.0)
+    sinatra-support (1.2.2)
+      sinatra (>= 1.0)
     ssrf_filter (1.0.7)
     thread_safe (0.3.6)
     tilt (2.0.10)
@@ -88,6 +90,7 @@ DEPENDENCIES
   shotgun
   sinatra
   sinatra-contrib
+  sinatra-support
 
 RUBY VERSION
    ruby 2.6.3p62
