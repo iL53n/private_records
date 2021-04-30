@@ -55,7 +55,7 @@ module Helpers
   def to_json_with_filters(params, manager)
     objcts = manager.all
 
-    %i[id guid].each do |filter|
+    %i[id guid updated_after].each do |filter|
       objcts = objcts.send(filter, params[filter]) if params[filter]
     end
 

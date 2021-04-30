@@ -121,8 +121,9 @@ class Candidate
 
   index({ guid: 1 }, { unique: true, name: 'guid_index' })
 
-  scope :id,   ->(id)   { where(id: id) }
-  scope :guid, ->(guid) { where(guid: guid) }
+  scope :id,            ->(id)            { where(id: id) }
+  scope :guid,          ->(guid)          { where(guid: guid) }
+  scope :updated_after, ->(updated_after) { where(created_at: updated_after.to_datetime..'2100-01-01'.to_datetime) }
 
   belongs_to :vacancy
 end
