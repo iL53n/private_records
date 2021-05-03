@@ -125,7 +125,5 @@ class Candidate
   scope :guid,          ->(guid)          { where(guid: guid) }
   scope :updated_after, ->(updated_after) { where(created_at: updated_after.to_datetime..'2100-01-01'.to_datetime) }
 
-  # Some comment
-
   belongs_to :vacancy
 end
