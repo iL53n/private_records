@@ -13,7 +13,7 @@ services:
     ports:
       - 80:4567
     volumes:
-      - ./public/uploads:/application/public/uploads
+      - ./public/uploads:/app/public/uploads
     healthcheck:
       test: curl -f localhost:4567 || exit 1
       interval: 10s
