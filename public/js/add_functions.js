@@ -373,9 +373,7 @@ function fill_education_content(contentElement, position_type){
         rowElement = rowsElement.childNodes[rowsElement.childNodes.length-1]
         typeOptions = rowElement.childNodes[4].childNodes[0]
 
-        if (position_type == "worker") {
-            rowElement.childNodes[3].childNodes[0].value = rowData["spec"]
-        }else{
+        if (position_type != "worker") {
             for (n=0;n<typeOptions.childNodes.length-1;n++){
                 option = typeOptions.childNodes[n]
                 option.selected = (option.value == rowData["form"])
@@ -385,6 +383,7 @@ function fill_education_content(contentElement, position_type){
         rowElement.childNodes[0].childNodes[0].value = rowData["begin"]
         rowElement.childNodes[1].childNodes[0].value = rowData["end"]
         rowElement.childNodes[2].childNodes[0].value = rowData["inst"]
+        rowElement.childNodes[3].childNodes[0].value = rowData["spec"]
     }
 }
 
