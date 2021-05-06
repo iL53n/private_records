@@ -184,6 +184,11 @@
       <textarea class="form-control" type="text" name="candidate[about_yourself]" id="candidate_about_yourself" value=<%= @candidate.about_yourself%>></textarea>
     </div>
 
+    <br>
+    <div class="form-group" align="right" style="margin-right: 20px;">
+      <button type="submit" class="btn btn-outline-success">Сохранить</button>   
+    </div>
+
     <label>Дата заполнения анкеты: <%= @candidate.created_at %></label>
   </div>
   <button type="submit" class="btn btn-success btn-lg btn-block" width="20px" onclick="return deactive_candidate()">Отправить данные</button><br>
