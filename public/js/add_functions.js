@@ -194,13 +194,13 @@ function add_experience_table_row(position_type=""){
                 '   <label for="expieience' + String(count) + 'PeriodStart">Месяц и год поступления</label>' +
                 '</div>' +
                 '<div class="form-group col-md-3">' +
-                '   <input class="form-control" type="text" id="experience_' + String(count) + '_period_start" name="experience['+ String(count) + '][period_start]">' +
+                '   <input class="form-control" type="date" id="experience_' + String(count) + '_period_start" name="experience['+ String(count) + '][period_start]">' +
                 '</div>' +
                 '<div class="form-group col-md-3">' +
                 '   <label for="expieience' + String(count) + 'PeriodFinish">Месяц и год ухода</label>' +
                 '</div>' +
                 '<div class="form-group col-md-3">' +
-                '   <input class="form-control" type="text" id="experience_' + String(count) + '_period_finish" name="experience['+ String(count) + '][period_finish]">' +
+                '   <input class="form-control" type="date" id="experience_' + String(count) + '_period_finish" name="experience['+ String(count) + '][period_finish]">' +
                 '</div>' +
                 '';
         }else{
