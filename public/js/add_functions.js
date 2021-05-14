@@ -190,7 +190,7 @@ function add_experience_table_row(position_type=""){
 
         if (position_type == "worker"){
             rowElement.innerHTML =
-                '<div class="form-row"><div class="form-group col-md-3">' +
+                '<div class="form-group col-md-3">' +
                 '   <label for="expieience1PeriodStart">Период работы c (можно первое число месяца и года)</label>' +
                 '</div>' +
                 '<div class="form-group col-md-2">' +
@@ -201,7 +201,6 @@ function add_experience_table_row(position_type=""){
                 '</div>' +
                 '<div class="form-group col-md-2">' +
                 '   <input class="form-control" type="date" id="experience_' + String(count) + '_period_finish" name="experience['+ String(count) + '][period_finish]">' +
-                '</div>' +
                 '';
         }else{
             rowElement.innerHTML =
