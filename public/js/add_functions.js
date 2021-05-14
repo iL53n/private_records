@@ -277,7 +277,7 @@ function add_experience_table_row(position_type=""){
                 '   <label for="expieience' + String(count) + 'Cond">Зарплата</label>' +
                 '</div>' +
                 '<div class="form-group col-md-3">' +
-                '   <input class="form-control" type="text" id="experience_' + String(count) + '_cond" name="experience['+ String(count) + '][cond]">' +
+                '   <input class="form-control" type="number" id="experience_' + String(count) + '_cond" name="experience['+ String(count) + '][cond]">' +
                 '</div>' +
                 '<div class="form-group col-md-2">' +
                 '   <label for="expieience' + String(count) + 'Dism">Причины увольнения</label>' +
@@ -482,15 +482,17 @@ function fill_experience_content(contentElement, position_type){
         if (position_type == "worker") {
             rowsElement.childNodes[rowsElement.childNodes.length-4].childNodes[1].childNodes[1].value = rowData["period_start"]
             rowsElement.childNodes[rowsElement.childNodes.length-4].childNodes[3].childNodes[1].value = rowData["period_finish"]
+            rowsElement.childNodes[rowsElement.childNodes.length-3].childNodes[1].childNodes[1].value = rowData["pos"]
+            rowsElement.childNodes[rowsElement.childNodes.length-2].childNodes[1].childNodes[1].value = rowData["dism"]
         }else{
             rowsElement.childNodes[rowsElement.childNodes.length-4].childNodes[1].childNodes[1].value = rowData["period"]
             rowsElement.childNodes[rowsElement.childNodes.length-4].childNodes[3].childNodes[1].value = rowData["workers"]
             rowsElement.childNodes[rowsElement.childNodes.length-4].childNodes[5].childNodes[1].value = rowData["subords"]
             rowsElement.childNodes[rowsElement.childNodes.length-3].childNodes[1].childNodes[1].value = rowData["field"]
             rowsElement.childNodes[rowsElement.childNodes.length-2].childNodes[1].childNodes[1].value = rowData["cond"]
+            rowsElement.childNodes[rowsElement.childNodes.length-3].childNodes[3].childNodes[1].value = rowData["pos"]
+            rowsElement.childNodes[rowsElement.childNodes.length-2].childNodes[3].childNodes[1].value = rowData["dism"]
         }
-        rowsElement.childNodes[rowsElement.childNodes.length-3].childNodes[1].childNodes[1].value = rowData["pos"]
-        rowsElement.childNodes[rowsElement.childNodes.length-2].childNodes[1].childNodes[1].value = rowData["dism"]
         rowsElement.childNodes[rowsElement.childNodes.length-1].childNodes[0].childNodes[1].value = rowData["duties"]
     }
 }
