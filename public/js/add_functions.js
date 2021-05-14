@@ -190,26 +190,32 @@ function add_experience_table_row(position_type=""){
 
         if (position_type == "worker"){
             rowElement.innerHTML =
-                '<div class="form-group col-md-3">' +
-                '   <label for="expieience' + String(count) + 'PeriodStart">Месяц и год поступления</label>' +
+                '<div class="form-row"><div class="form-group col-md-3">' +
+                '   <label for="expieience1PeriodStart">Период работы c (можно первое число месяца и года)</label>' +
                 '</div>' +
-                '<div class="form-group col-md-3">' +
+                '<div class="form-group col-md-2">' +
                 '   <input class="form-control" type="date" id="experience_' + String(count) + '_period_start" name="experience['+ String(count) + '][period_start]">' +
                 '</div>' +
-                '<div class="form-group col-md-3">' +
-                '   <label for="expieience' + String(count) + 'PeriodFinish">Месяц и год ухода</label>' +
+                '<div class="form-group col-md-1">' +
+                '   <label for="expieience' + String(count) + 'PeriodFinish">по</label>' +
                 '</div>' +
-                '<div class="form-group col-md-3">' +
+                '<div class="form-group col-md-2">' +
                 '   <input class="form-control" type="date" id="experience_' + String(count) + '_period_finish" name="experience['+ String(count) + '][period_finish]">' +
                 '</div>' +
                 '';
         }else{
             rowElement.innerHTML =
-                '<div class="form-group col-md-3">' +
-                '   <label for="expieience' + String(count) + 'Period">Период работы</label>' +
+                '<div class="form-row"><div class="form-group col-md-3">' +
+                '   <label for="expieience1PeriodStart">Период работы c (можно первое число месяца и года)</label>' +
                 '</div>' +
-                '<div class="form-group col-md-4">' +
-                '   <input class="form-control" type="text" id="experience_' + String(count) + '_period" name="experience['+ String(count) + '][period]">' +
+                '<div class="form-group col-md-2">' +
+                '   <input class="form-control" type="date" id="experience_' + String(count) + '_period_start" name="experience['+ String(count) + '][period_start]">' +
+                '</div>' +
+                '<div class="form-group col-md-1">' +
+                '   <label for="expieience' + String(count) + 'PeriodFinish">по</label>' +
+                '</div>' +
+                '<div class="form-group col-md-2">' +
+                '   <input class="form-control" type="date" id="experience_' + String(count) + '_period_finish" name="experience['+ String(count) + '][period_finish]">' +
                 '</div>' +
                 '<div class="form-group col-md-1">' +
                 '   <label for="expieience' + String(count) + 'Workers">сотруд-\nников</label>' +
