@@ -99,6 +99,7 @@ class Candidate
   field :author_email,                          type: String
   field :author_id,                             type: String
   field :active,                                type: Boolean
+  # TODO: syncid
 
   mount_uploader :image, ImageUploader, type: String
 

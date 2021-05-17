@@ -14,6 +14,7 @@ class Vacancy
   field :name,          type: String
   field :position,      type: String
   field :position_type, type: String
+  # TODO: syncid
 
   validates :guid,
             :name,
