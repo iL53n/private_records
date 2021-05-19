@@ -189,6 +189,6 @@
     </div>
 
     <label>Дата заполнения анкеты: <%= @candidate.created_at %></label>
-  </div>
-  <button type="submit" class="btn btn-success btn-lg btn-block" width="20px" onclick="return deactive_candidate()">Отправить данные</button><br>
+  </div>  
+  <%= erb :'shared/_add_info_submit_button' %><br>
 </div>

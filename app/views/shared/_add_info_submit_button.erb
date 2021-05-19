@@ -1,0 +1,26 @@
+<button type="button" class="btn btn-success btn-lg btn-block" width="20px" data-toggle="modal" data-target="#submitQuestModal">
+   Отправить данные
+</button>
+<br>
+  
+<!-- Modal -->
+<div class="modal fade" id="submitQuestModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Отправить анкету на проверку?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        После отправки данных анкета станет недоступна для редактирования.
+        Хотите отправить анкету для проверки?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
+        <button type="submit" class="btn btn-primary" onclick="return deactive_candidate()">ДА</button>
+      </div>
+    </div>
+  </div>
+</div>
