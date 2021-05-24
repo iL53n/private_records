@@ -33,7 +33,7 @@
       <div class="form-group col-md-6">
         <label for="CandidateWorkExperienceAreasOther">Прочие (укажите какие)</label>
         <textarea class="form-control" type="text" name="candidate[work_experience_areas_other]" id="candidate_work_experience_areas_other"
-                  rows="6" value=<%= @candidate.work_experience_areas_other%>></textarea>
+                  rows="6" ><%= @candidate.work_experience_areas_other%></textarea>
       </div>
     </div>
 
@@ -45,31 +45,31 @@
         <label> Ваши хобби, увлечения</label>
       </div>
       <div class="form-group col-md-9">
-        <textarea class="form-control" type="text" name="candidate[hobbies]" id="candidate_hobbies" value=<%= @candidate.hobbies%>></textarea>
+        <textarea class="form-control" type="text" name="candidate[hobbies]" id="candidate_hobbies" ><%= @candidate.hobbies%></textarea>
       </div>
       <div class="form-group col-md-3">
         <label>Укажите Ваши наиболее сильные стороны как личности</label>
       </div>
       <div class="form-group col-md-9">
-        <textarea class="form-control" type="text" name="candidate[personality_strengths]" id="candidate_personality_strengths" value=<%= @candidate.personality_strengths%>></textarea>
+        <textarea class="form-control" type="text" name="candidate[personality_strengths]" id="candidate_personality_strengths"><%= @candidate.personality_strengths%></textarea>
       </div>
       <div class="form-group col-md-3">
         <label>Опишите наиболее приемлемый для Вас распорядок рабочего дня</label>
       </div>
       <div class="form-group col-md-9">
-        <textarea class="form-control" type="text" name="candidate[acceptable_working_schedule]" id="candidate_acceptable_working_schedule" value=<%= @candidate.acceptable_working_schedule%>></textarea>
+        <textarea class="form-control" type="text" name="candidate[acceptable_working_schedule]" id="candidate_acceptable_working_schedule"><%= @candidate.acceptable_working_schedule%></textarea>
       </div>
       <div class="form-group col-md-3">
         <label>Что для Вас самое главное при выборе  работы?</label>
       </div>
       <div class="form-group col-md-9">
-        <textarea class="form-control" type="text" name="candidate[job_choice_reason]" id="candidate_job_choice_reason" value=<%= @candidate.job_choice_reason%>></textarea>
+        <textarea class="form-control" type="text" name="candidate[job_choice_reason]" id="candidate_job_choice_reason"><%= @candidate.job_choice_reason%></textarea>
       </div>
       <div class="form-group col-md-3">
         <label>Что у Вас отбивает желание работать?</label>
       </div>
       <div class="form-group col-md-9">
-        <textarea class="form-control" type="text" name="candidate[work_debufs]" id="candidate_work_debufs" value=<%= @candidate.work_debufs%>></textarea>
+        <textarea class="form-control" type="text" name="candidate[work_debufs]" id="candidate_work_debufs" ><%= @candidate.work_debufs%></textarea>
       </div>
     </div>
 
@@ -181,7 +181,7 @@
 
     <div class="form-row">
       <label for="CandidateAboutYourself">Дополнительная информация <i>(то, что Вы хотите добавить о себе)</i></label>
-      <textarea class="form-control" type="text" name="candidate[about_yourself]" id="candidate_about_yourself" value=<%= @candidate.about_yourself%>></textarea>
+      <textarea class="form-control" type="text" name="candidate[about_yourself]" id="candidate_about_yourself"><%= @candidate.about_yourself%></textarea>
     </div>
     <br>
     <div class="form-group" align="right" style="margin-right: 20px;">
