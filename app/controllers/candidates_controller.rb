@@ -86,7 +86,7 @@ class CandidatesController < ApplicationController
       @message_success = if user_signed_in?
                            'Данные сохранены.'
                          elsif @candidate.active?
-                           'Данные сохранены. Вы можете вернуться к редактированию анкеты.
+                           'Данные сохранены. Вы можете вернуться к редактированию анкеты.<br />
                             Рекрутер получит вашу анкету только если вы нажмёте кнопку "Отправить данные"'
                          else
                            "Спасибо, #{@candidate.first_name} #{@candidate.last_name}, за заполнение анкеты!"
