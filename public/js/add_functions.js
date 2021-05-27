@@ -485,8 +485,8 @@ function fill_experience_content(contentElement, position_type){
         rowsElement.childNodes[rowsElement.childNodes.length-5].childNodes[1].childNodes[1].value = rowData["name"]
 
         if (position_type == "worker") {
-            rowsElement.childNodes[rowsElement.childNodes.length-4].childNodes[0].childNodes[1].value = rowData["period_start"]
-            rowsElement.childNodes[rowsElement.childNodes.length-4].childNodes[0].childNodes[3].value = rowData["period_finish"]
+            rowsElement.childNodes[rowsElement.childNodes.length-4].childNodes[1].value = rowData["period_start"]
+            rowsElement.childNodes[rowsElement.childNodes.length-4].childNodes[3].value = rowData["period_finish"]
             rowsElement.childNodes[rowsElement.childNodes.length-3].childNodes[1].childNodes[1].value = rowData["pos"]
             rowsElement.childNodes[rowsElement.childNodes.length-2].childNodes[1].childNodes[1].value = rowData["dism"]
         }else{
